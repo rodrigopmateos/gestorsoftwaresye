@@ -22,6 +22,7 @@ public class ProjectsDto {
         this.id_project = id_project;
         this.id_user = id_user;
         this.project_name = project_name;
+        this.fecha=fecha;
         this.description = description;
         this.progress = progress;
         this.status = status;

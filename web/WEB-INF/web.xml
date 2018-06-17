@@ -12,6 +12,14 @@
         <servlet-name>InsertProjects</servlet-name>
         <servlet-class>com.gestorsye.controllers.InsertProjects</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteProjects</servlet-name>
+        <servlet-class>com.gestorsye.controllers.DeleteProjects</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VieProject</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewProject</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>InsertProjects</servlet-name>
         <url-pattern>/InsertProjects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProjects</servlet-name>
+        <url-pattern>/DeleteProjects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VieProject</servlet-name>
+        <url-pattern>/VieProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
