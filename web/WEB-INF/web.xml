@@ -17,7 +17,7 @@
         <servlet-class>com.gestorsye.controllers.DeleteProjects</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>VieProject</servlet-name>
+        <servlet-name>ViewProject</servlet-name>
         <servlet-class>com.gestorsye.controllers.ViewProject</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -37,8 +37,8 @@
         <url-pattern>/DeleteProjects</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VieProject</servlet-name>
-        <url-pattern>/VieProject</url-pattern>
+        <servlet-name>ViewProject</servlet-name>
+        <url-pattern>/ViewProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -88,10 +88,14 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
         ResultSet rs;
            
         try {           
-            ps = con.getConexion().prepareStatement(SQL_READ);                  
-            rs=ps.executeQuery();                                                                            
+            ps = con.getConexion().prepareStatement(SQL_READ); 
+            ps.setInt(1, (int)key);
+            rs=ps.executeQuery();  
+            
+            while(rs.next()){
             dto=new ProjectsDto(rs.getInt(1),rs.getInt(2),  rs.getString(3),rs.getString(4),  rs.getString(5), rs.getInt(6),  rs.getString(7));    
-                                           
+            }  
+            
         } catch (SQLException ex) {
             Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
         }
