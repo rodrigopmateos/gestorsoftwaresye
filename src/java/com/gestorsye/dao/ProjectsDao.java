@@ -22,9 +22,9 @@ import java.util.logging.Logger;
 public class ProjectsDao implements InterfaceDao<ProjectsDto>{
     
     private static final String SQL_INSERT = "INSERT INTO projects (name_project_creator, project_name, created_date, description, progress, status) VALUES(?,?,?,?,?,?)";
-    private static final String SQL_DELETE = " DELETE FROM PERSONA WHERE ID= ?";
-    private static final String SQL_UPDATE = "UPDATE PERSONA SET = ? WHERE ID = ?";
-    private static final String SQL_READ = "SELECT * FROM PERSONA WHERE ID = ?";
+    private static final String SQL_DELETE = " DELETE FROM projects WHERE id_project= ?";
+    private static final String SQL_UPDATE = "UPDATE projects SET = ? WHERE ID = ?";
+    private static final String SQL_READ = "SELECT * FROM projects WHERE id_project = ?";
     private static final String SQL_READALL = "SELECT * FROM projects";
     
         private static final Conexion con = Conexion.abrirConexion();
@@ -58,7 +58,22 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
 
     @Override
     public boolean delete(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean delete= true;
+        try{
+        PreparedStatement ps;
+            ps = con.getConexion().prepareStatement(SQL_DELETE);
+            ps.setInt(1, (int)key);
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            delete= false;
+            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            con.cerrarConexion();
+        }
+        return delete;
     }
 
     @Override
@@ -68,7 +83,23 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
 
     @Override
     public ProjectsDto select(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ProjectsDto dto=null;
+        PreparedStatement ps;
+        ResultSet rs;
+           
+        try {           
+            ps = con.getConexion().prepareStatement(SQL_READ);                  
+            rs=ps.executeQuery();                                                                            
+            dto=new ProjectsDto(rs.getInt(1),rs.getInt(2),  rs.getString(3),rs.getString(4),  rs.getString(5), rs.getInt(6),  rs.getString(7));    
+                                           
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            con.cerrarConexion();
+        }
+        return dto;
+
     }
 
     @Override
@@ -82,7 +113,7 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
             ps = con.getConexion().prepareStatement(SQL_READALL);                  
             rs=ps.executeQuery();            
             while(rs.next()){
-               
+            
              projects.add(new ProjectsDto(rs.getInt(1),rs.getInt(2),  rs.getString(3),rs.getString(4),  rs.getString(5), rs.getInt(6),  rs.getString(7) ));    
                    
             }

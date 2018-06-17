@@ -6,14 +6,8 @@
 package com.gestorsye.controllers;
 
 import com.gestorsye.dao.ProjectsDao;
-import com.gestorsye.dto.ProjectsDto;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jose
+ * @author gato-
  */
-public class InsertProjects extends HttpServlet {
+public class DeleteProjects extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,21 +30,13 @@ public class InsertProjects extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-
-        String name, description, date;
-        name = request.getParameter("nombre");
-        description = request.getParameter("descripcion");
-
-        ProjectsDto dto = new ProjectsDto(name, description, dtf.format(now));
-        ProjectsDao dao = new ProjectsDao();
-        dao.create(dto);
-
-        request.getRequestDispatcher("crearproyecto.jsp").forward(request, response);
-
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        ProjectsDao dao= new ProjectsDao();
+        dao.delete(id);
+        
+        request.getRequestDispatcher("ProjectsController").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
