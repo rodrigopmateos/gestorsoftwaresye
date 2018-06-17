@@ -1,3 +1,4 @@
+<%@page import="com.gestorsye.dto.ProjectsDto"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <%
+           ProjectsDto dto = (ProjectsDto) request.getSession().getAttribute("dto");
+        %>
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
@@ -47,32 +50,19 @@
           <div class="">
             <div class="page-title">
               <div class="title_center">
-                <h3>Proyecto</h3>
+                <h3>Proyectos</h3>
               </div>
 
             </div>
               <!--Aqui va todo el contenido nuevo-->
-              
+                                      <br>
+                        <br>
+                        <br>
               <div class="row">
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>New Partner Contracts Consultancy</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    <h2><%=dto.getProject_name()%></h2>
                     <div class="clearfix"></div>
                   </div>
 
@@ -82,22 +72,21 @@
 
                       <ul class="stats-overview">
                         <li>
-                          <span class="name"> Estimated budget </span>
+                          <span class="name"> Presupuesto estimado </span>
                           <span class="value text-success"> 2300 </span>
                         </li>
                         <li>
-                          <span class="name"> Total amount spent </span>
+                          <span class="name"> Total gastado </span>
                           <span class="value text-success"> 2000 </span>
                         </li>
                         <li class="hidden-phone">
-                          <span class="name"> Estimated project duration </span>
+                          <span class="name"> Duracion estimada del proyecto</span>
                           <span class="value text-success"> 20 </span>
                         </li>
                       </ul>
                       <br />
 
                       <div id="mainb" style="height:350px;"></div>
-
                       <div>
 
                         <h4>Recent Activity</h4>
@@ -115,7 +104,7 @@
                               <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
                               <br />
                               <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon="?"></span>
+                                <span class="fs1 text-info" aria-hidden="true"></span>
                                 <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
                               </p>
                             </div>
@@ -131,7 +120,7 @@
                               <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
                               <br />
                               <p class="url">
-                                <span class="fs1" aria-hidden="true" data-icon="?"></span>
+                                <span class="fs1" aria-hidden="true"></span>
                                 <a href="#" data-original-title="">Download</a>
                               </p>
                             </div>
@@ -147,7 +136,7 @@
                               <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
                               <br />
                               <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon="?"></span>
+                                <span class="fs1 text-info" aria-hidden="true"></span>
                                 <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
                               </p>
                             </div>
@@ -165,22 +154,17 @@
                     <div class="col-md-3 col-sm-3 col-xs-12">
 
                       <section class="panel">
-
-                        <div class="x_title">
-                          <h2>Project Description</h2>
-                          <div class="clearfix"></div>
-                        </div>
                         <div class="panel-body">
-                          <h3 class="green"><i class="fa fa-paint-brush"></i> Gentelella</h3>
+                          <h2>Descripcion</h2>
 
-                          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+                          <p><%=dto.getDescription()%></p>
                           <br />
 
                           <div class="project_detail">
 
-                            <p class="title">Client Company</p>
+                            <p class="title">Cliente del proyecto</p>
                             <p>Deveint Inc</p>
-                            <p class="title">Project Leader</p>
+                            <p class="title">Lider de proyecto</p>
                             <p>Tony Chicken</p>
                           </div>
 
