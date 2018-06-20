@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jose/Documents/NetBeansProjects/PROYECTO_RESIDENCIA/src/java/com/gestorsye/controllers/InsertProjects.java</file>
-            <file>file:/C:/Users/jose/Documents/NetBeansProjects/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dao/ProjectsDao.java</file>
-            <file>file:/C:/Users/jose/Documents/NetBeansProjects/PROYECTO_RESIDENCIA/web/projects.jsp</file>
-            <file>file:/C:/Users/jose/Documents/NetBeansProjects/PROYECTO_RESIDENCIA/src/java/com/gestorsye/controllers/ProjectsController.java</file>
-            <file>file:/C:/Users/jose/Documents/NetBeansProjects/PROYECTO_RESIDENCIA/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/jose/Documents/NetBeansProjects/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dto/ProjectsDto.java</file>
-            <file>file:/C:/Users/jose/Documents/NetBeansProjects/PROYECTO_RESIDENCIA/web/crearproyecto.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/web/index.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/controllers/InsertProjects.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/controllers/ProjectsController.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/web/crearproyecto.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/web/projects.jsp</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dao/ProjectsDao.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dto/ProjectsDto.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dao/TasksDao.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dto/UsersDto.java</file>
         </group>
     </open-files>
 </project-private>
