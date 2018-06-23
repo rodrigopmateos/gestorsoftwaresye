@@ -5,8 +5,8 @@
  */
 package com.gestorsye.controllers;
 
-import com.gestorsye.dao.ProjectsDao;
-import com.gestorsye.dto.ProjectsDto;
+import com.gestorsye.dao.UsersDao;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jose
  */
-public class InsertProjects extends HttpServlet {
+public class InsertUsers extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,15 +41,23 @@ public class InsertProjects extends HttpServlet {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
-        String name, description, date;
+        String name, email, area, usuario, pass;
+        int perfil, status;     
+        
+        perfil = Integer.parseInt(request.getParameter("perfil"));
         name = request.getParameter("nombre");
-        description = request.getParameter("descripcion");
+        email = request.getParameter("email");
+        area = request.getParameter("area");
+        usuario = request.getParameter("usuario");
+        pass = request.getParameter("pass");
+        status = Integer.parseInt(request.getParameter("status"));
 
-        ProjectsDto dto = new ProjectsDto(name, description, dtf.format(now));
-        ProjectsDao dao = new ProjectsDao();
+        UsersDto dto = new UsersDto(perfil, name, email, area, usuario, pass, status);
+        
+        UsersDao dao= new UsersDao();
         dao.create(dto);
 
-        request.getRequestDispatcher("crearproyecto.jsp").forward(request, response);
+        request.getRequestDispatcher("UsersController").forward(request, response);
 
     }
 

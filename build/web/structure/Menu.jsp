@@ -57,7 +57,7 @@
             </li>
             <li><a><i class="fa fa-clone"></i>Usuarios<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="fixed_sidebar.html">Administrar usuarios</a></li>
+                    <li><a href="${pageContext.request.contextPath}/UsersController">Administrar usuarios</a></li>
                 </ul>
             </li>
             <%

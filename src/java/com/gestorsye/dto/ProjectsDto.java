@@ -12,16 +12,17 @@ public class ProjectsDto {
   private String project_name;
   private String description;
   private int progress;
-  private int status;
+  private String status;
   private String fecha;
 
     public ProjectsDto() {
     }
 
-    public ProjectsDto(int id_project, int id_user, String project_name, String fecha,String description, int progress, int status) {
+    public ProjectsDto(int id_project, int id_user, String project_name, String fecha,String description, int progress, String status) {
         this.id_project = id_project;
         this.id_user = id_user;
         this.project_name = project_name;
+        this.fecha=fecha;
         this.description = description;
         this.progress = progress;
         this.status = status;
@@ -82,11 +83,11 @@ public class ProjectsDto {
         this.progress = progress;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
   

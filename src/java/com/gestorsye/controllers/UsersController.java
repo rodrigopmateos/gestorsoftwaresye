@@ -6,14 +6,13 @@
 package com.gestorsye.controllers;
 
 import com.gestorsye.dao.ProjectsDao;
+import com.gestorsye.dao.UsersDao;
 import com.gestorsye.dto.ProjectsDto;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jose
  */
-public class InsertProjects extends HttpServlet {
+public class UsersController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,20 +37,16 @@ public class InsertProjects extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-
-        String name, description, date;
-        name = request.getParameter("nombre");
-        description = request.getParameter("descripcion");
-
-        ProjectsDto dto = new ProjectsDto(name, description, dtf.format(now));
-        ProjectsDao dao = new ProjectsDao();
-        dao.create(dto);
-
-        request.getRequestDispatcher("crearproyecto.jsp").forward(request, response);
-
-    }
+            
+            
+            UsersDao dao = new UsersDao();
+            List<UsersDto> dtos =new ArrayList();
+            dtos = dao.selectAll();
+            request.getSession().setAttribute("dtos", dtos);
+            request.getRequestDispatcher("users.jsp").forward(request, response);
+            
+            
+        }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -66,6 +61,13 @@ public class InsertProjects extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+//        ProjectsDao dao = new ProjectsDao();
+//            List<ProjectsDto> dtos =new ArrayList();
+//            dtos = dao.selectAll();
+//            request.getSession().setAttribute("dtos", dtos);
+//            request.getRequestDispatcher("vista/templates/projects.jsp").forward(request, response);
+        
     }
 
     /**

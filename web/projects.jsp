@@ -90,25 +90,24 @@
                                                     <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                                     <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                                             </tr>
-                                            <%
-                                            for(int i=0; i<dtos.size(); i++){
+                                            <%                                                for (int i = 0; i < dtos.size(); i++) {
                                             %>
                                             <tr>
                                                 <td><a><%= dtos.get(i).getProject_name()%></a>
                                                     <br />
-                                                    <small>Created 01.01.2015</small></td>
+                                                    <small>Created <%= dtos.get(i).getFecha()%></small></td>
                                                 <td>Miembros del equipo</td>
                                                 <td><div class="progress progress_sm">
                                                         <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
                                                     </div>
-                                                    <small><%=dtos.get(i).getProgress() %>% Complete</small></td>
-                                                
-                                                <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus() %></button></td>
-                                                <td><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                                                    <small><%=dtos.get(i).getProgress()%>% Complete</small></td>
+
+                                                <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
+                                                <td><a href="ViewProject?id=<%=dtos.get(i).getId_project()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                    <a href="ViewProject?id=<%=dtos.get(i).getId_project()%>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                                    <a href="DeleteProjects?id=<%=dtos.get(i).getId_project()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                                             </tr>
-                                            <% } %>
+                                            <% }%>
                                         </tbody>
                                     </table>
                                 </div>
