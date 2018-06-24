@@ -1,3 +1,4 @@
+<%@page import="com.gestorsye.dto.ProfilesDto"%>
 <%@page import="com.gestorsye.dto.UsersDto"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
@@ -10,6 +11,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <%
             ArrayList<UsersDto> dtos = (ArrayList<UsersDto>) request.getSession().getAttribute("dtos");
+            ArrayList<ProfilesDto> dtosprofiles = (ArrayList<ProfilesDto>) request.getSession().getAttribute("dtosprofiles");
+
         %>
         <title>Gestor Sye | </title>
 
@@ -81,7 +84,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%                                                for (int i = 0; i < dtos.size(); i++) {
+                                            <%
+                                                for (int i = 0; i < dtos.size(); i++) {
                                             %>
                                             <tr>
                                                 <td><a><%= dtos.get(i).getName()%></a></td>
@@ -93,7 +97,7 @@
                                                 <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
                                                 <td><a href="ViewProject?id=<%=dtos.get(i).getId_user()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                                                     <a href="ViewProject?id=<%=dtos.get(i).getId_user()%>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="DeleteProjects?id=<%=dtos.get(i).getId_user()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                                                    <a href="DeleteUsers?id=<%=dtos.get(i).getId_user()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                                             </tr>
                                             <% }%>
                                         </tbody>
@@ -103,83 +107,76 @@
                         </div>
 
                 
-                        <!-- Modal para añadir nuevo usuario-->
-                        <div class="modal fade" id="modalNewUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">New User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <form action="InsertUsers" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
-                                    <div class="form-group">
-                                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Perfil</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        
+                         <!--modal--><!--Para añadir, visualizar, editar Usuarios-->
+                        <div class="modal fade" id="modalNewUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color: #2A3F54" >
+                                        <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">Crear nuevo usuario</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="InsertUsers" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Perfil</label>
                                             <select name="perfil" class="select2_single form-control" tabindex="-1">
-                                                <option></option>
-                                                <option value="1">Perfil 1</option>
+                                                <option value="0">Seleccione el perfil</option>
+                                                                                            <%
+                                                for (int i = 0; i < dtosprofiles.size(); i++) {
+                                            %>
+                                                <option value="<%=dtosprofiles.get(i).getId_profile()%>"><%=dtosprofiles.get(i).getName()%></option>
+                                            <% 
+                                            }
+                                            %>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre<span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="nombre" required="required" class="form-control col-md-7 col-xs-12" nam>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Email<span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="email" required="required" class="form-control col-md-7 col-xs-12" nam>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Área</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select name="area" class="select2_single form-control" tabindex="-1">
+                                                <label for="recipient-name" class="col-form-label">Nombre</label>
+                                                <input type="text" name="nombre" required="required" class="form-control" >                                                
+                                                <label for="recipient-name" class="col-form-label">Email</label>
+                                                <input type="text" name="email" required="required" class="form-control">                                                
+                                                <label for="recipient-name" class="col-form-label">Área</label>
+                                                <select name="area" class="select2_single form-control" tabindex="-1">
                                                 <option></option>
                                                 <option value="area1">Area 1</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Usuario<span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="usuario" required="required" class="form-control col-md-7 col-xs-12" nam>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Contraseña<span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="pass" required="required" class="form-control col-md-7 col-xs-12" nam>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Status<span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="status" required="required" class="form-control col-md-7 col-xs-12" nam>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
-                                </form>
-                              </div>
-
+                                                </select>                                                                                             
+                                                <label for="recipient-name" class="col-form-label">Usuario</label>
+                                                <input type="text" name="usuario" required="required" class="form-control">
+                                                <label for="recipient-name" class="col-form-label">Contraseña</label>
+                                                <input type="password" name="pass" required="required" class="form-control">
+                                                <label for="recipient-name" class="col-form-label">Status</label>
+                                                <input type="text" name="status" required="required" class="form-control">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Crear</button>
+                                            </div>
+                                        </form>
+                                </div>
                             </div>
-                          </div>
                         </div>
+                    </div>
+                         
+                    <!--modal--><!--Alerta de eliminacion de usuario-->
+                   <div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                       <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                               <div class="modal-header" style="background-color: #2A3F54" >
+                                   <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">Crear nuevo usuario</h5>
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                   </button>
+                               </div>
+                               <div class="modal-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                         
                         <!--Aqui va todo el contenido nuevo-->
+                        
                     </div>
                 </div>
                 <!-- /page content -->
@@ -193,6 +190,10 @@
         <script>
             function openModalNewUSer(){
                 $('#modalNewUser').modal('show')
+                //$('#modal1').modal('show')
+            }
+            function alert(){
+                $('#alert').modal('show')
             }
         </script>
 
