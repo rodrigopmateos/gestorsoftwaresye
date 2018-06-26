@@ -58,7 +58,7 @@
         <servlet-name>UpdateProjects</servlet-name>
         <url-pattern>/UpdateProjects</url-pattern>
     </servlet-mapping>
-    <servlet-mapping
+    <servlet-mapping>
         <servlet-name>UsersController</servlet-name>
         <url-pattern>/UsersController</url-pattern>
     </servlet-mapping>

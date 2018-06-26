@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/web/index.jsp</file>
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/controllers/InsertProjects.java</file>
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/controllers/ProjectsController.java</file>
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/web/crearproyecto.jsp</file>
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/web/projects.jsp</file>
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dao/ProjectsDao.java</file>
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dto/ProjectsDto.java</file>
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dao/TasksDao.java</file>
-            <file>file:/C:/Users/Rodrigo/Documents/PROYECTO_RESIDENCIA/src/java/com/gestorsye/dto/UsersDto.java</file>
-=======
-            <file>file:/C:/Users/gato-/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/controllers/InsertProjects.java</file>
-            <file>file:/C:/Users/gato-/Documents/git/gestorsoftwaresye/web/projects.jsp</file>
-            <file>file:/C:/Users/gato-/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/controllers/ProjectsController.java</file>
-            <file>file:/C:/Users/gato-/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/controllers/DeleteProjects.java</file>
-            <file>file:/C:/Users/gato-/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/dto/ProjectsDto.java</file>
-            <file>file:/C:/Users/gato-/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/dao/ProjectsDao.java</file>
->>>>>>> da94fb130af6a5454cabedc7a66443d69dd81144
-        </group>
+        <group/>
     </open-files>
 </project-private>
