@@ -5,6 +5,7 @@
  */
 package com.gestorsye.dao;
 
+import com.gestorsye.dto.ProjectsDto;
 import com.gestorsye.dto.UsersDto;
 import java.util.List;
 
@@ -28,10 +29,7 @@ public class UsersDao implements InterfaceDao<UsersDto>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean update(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     @Override
     public UsersDto select(Object key) {
@@ -40,6 +38,11 @@ public class UsersDao implements InterfaceDao<UsersDto>{
 
     @Override
     public List<UsersDto> selectAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(UsersDto dto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

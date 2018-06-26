@@ -23,7 +23,7 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
     
     private static final String SQL_INSERT = "INSERT INTO projects (name_project_creator, project_name, created_date, description, progress, status) VALUES(?,?,?,?,?,?)";
     private static final String SQL_DELETE = " DELETE FROM projects WHERE id_project= ?";
-    private static final String SQL_UPDATE = "UPDATE projects SET = ? WHERE ID = ?";
+    private static final String SQL_UPDATE = "UPDATE projects SET project_name= ?, description=?, progress=?,status=? WHERE id_project = ?";
     private static final String SQL_READ = "SELECT * FROM projects WHERE id_project = ?";
     private static final String SQL_READALL = "SELECT * FROM projects";
     
@@ -77,8 +77,26 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
     }
 
     @Override
-    public boolean update(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(ProjectsDto dto) {
+        boolean update=false;            
+            PreparedStatement ps;
+        try {
+            ps = con.getConexion().prepareStatement(SQL_UPDATE);
+            ps.setString(1, dto.getProject_name());
+            ps.setString(2, dto.getDescription());
+            ps.setInt(3, dto.getProgress());
+            ps.setString(4, dto.getStatus());
+            ps.setInt(5, dto.getId_project());
+            ps.executeUpdate();
+            
+            update=true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        finally{
+            con.cerrarConexion();
+        }
+       return update;
     }
 
     @Override
