@@ -10,6 +10,30 @@ public class UsersDto {
           private String user;
           private String pass;
           private int status;
+          
+    public UsersDto() {
+    }
+
+    public UsersDto(int id_user, int id_profile, String name, String email, String area, String user, String pass, int status) {
+        this.id_user = id_user;
+        this.id_profile = id_profile;
+        this.name = name;
+        this.email = email;
+        this.area = area;
+        this.user = user;
+        this.pass = pass;
+        this.status = status;
+    }
+
+    public UsersDto(int id_profile, String name, String email, String area, String user, String pass, int status) {
+        this.id_profile = id_profile;
+        this.name = name;
+        this.email = email;
+        this.area = area;
+        this.user = user;
+        this.pass = pass;
+        this.status = status;
+    }
 
     public int getId_user() {
         return id_user;

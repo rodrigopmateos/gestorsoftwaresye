@@ -24,6 +24,16 @@
         <servlet-name>UpdateProjects</servlet-name>
         <servlet-class>com.gestorsye.controllers.UpdateProjects</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UsersController</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UsersController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertUsers</servlet-name>
+        <servlet-class>com.gestorsye.controllers.InsertUsers</servlet-class>
+    </servlet>
+    
+    
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -47,6 +57,14 @@
     <servlet-mapping>
         <servlet-name>UpdateProjects</servlet-name>
         <url-pattern>/UpdateProjects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping
+        <servlet-name>UsersController</servlet-name>
+        <url-pattern>/UsersController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertUsers</servlet-name>
+        <url-pattern>/InsertUsers</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
