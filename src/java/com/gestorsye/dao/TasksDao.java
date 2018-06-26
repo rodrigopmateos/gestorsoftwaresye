@@ -5,6 +5,7 @@
  */
 package com.gestorsye.dao;
 
+import com.gestorsye.dto.ProjectsDto;
 import com.gestorsye.dto.TasksDto;
 import java.util.List;
 
@@ -30,10 +31,7 @@ public class TasksDao implements InterfaceDao<TasksDto> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean update(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     @Override
     public TasksDto select(Object key) {
@@ -42,6 +40,11 @@ public class TasksDao implements InterfaceDao<TasksDto> {
 
     @Override
     public List<TasksDto> selectAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(TasksDto dto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

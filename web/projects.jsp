@@ -104,7 +104,7 @@
 
                                                 <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
                                                 <td><a href="ViewProject?id=<%=dtos.get(i).getId_project()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                    <a href="ViewProject?id=<%=dtos.get(i).getId_project()%>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1" onclick="setData(<%=dtos.get(i).getId_project()%>,'<%=dtos.get(i).getProject_name()%>','<%=dtos.get(i).getDescription()%>',<%=dtos.get(i).getProgress()%>,'<%=dtos.get(i).getStatus()%>')" ><i class="fa fa-pencil"></i> Edit </a>
                                                     <a href="DeleteProjects?id=<%=dtos.get(i).getId_project()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                                             </tr>
                                             <% }%>
@@ -125,6 +125,50 @@
 
             </div>
         </div>
+                
+                        <!--modal-->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #2A3F54" >
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">Crear incidencia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="UpdateProjects" method="post" >
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Id del proyecto</label>
+                            <input type="text" class="form-control" id="txt_id" name="txt_id">
+                            <label for="recipient-name" class="col-form-label">Nombre del proyecto</label>
+                            <input type="text" class="form-control" id="txt_1" name="txt_1">
+                            <label for="recipient-name" class="col-form-label">Descripcion</label>
+                            <input type="text" class="form-control" id="txt_2" name="txt_2">
+                            <label for="recipient-name" class="col-form-label">Progreso</label>
+                            <input type="text" class="form-control" id="txt_3" name="txt_3">
+                            <label for="recipient-name" class="col-form-label">Status</label>
+                            <input type="input" class="form-control" id="txt_4" name="txt_4">                
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Aceptar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+                        <script>
+                            function setData(id,nombre, descripcion, progreso, status){
+                                console.log(nombre, descripcion, progreso, status)
+                                $('#txt_1').val(nombre);
+                                $('#txt_2').val(descripcion);
+                                $('#txt_3').val(progreso);
+                                $('#txt_4').val(status);
+                                $('#txt_id').val(id);
+                            }
+                        </script>
 
         <!-- jQuery -->
         <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>

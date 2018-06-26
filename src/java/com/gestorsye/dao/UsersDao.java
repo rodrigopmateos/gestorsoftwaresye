@@ -5,6 +5,7 @@
  */
 package com.gestorsye.dao;
 
+import com.gestorsye.dto.ProjectsDto;
 import com.gestorsye.conexion.Conexion;
 import com.gestorsye.dto.UsersDto;
 import java.sql.PreparedStatement;
@@ -78,11 +79,10 @@ public class UsersDao implements InterfaceDao<UsersDto>{
     }
 
     @Override
-    public boolean update(Object key) {
+    public boolean update(UsersDto dto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
+    
     public UsersDto select(Object key) {
                 UsersDto dto=null;
         PreparedStatement ps;
