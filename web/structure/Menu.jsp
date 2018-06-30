@@ -36,7 +36,8 @@
             </li>
             <li><a><i class="fa fa-desktop"></i>Tareas<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="tareaspendientes.jsp">Tareas pendientes</a></li>
+                    <li><a href="tasks.jsp">Tareas pendientes</a></li>
+                    <li><a href="ViewTasks">Administrar Tareas</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-table"></i> Trabajo <span class="fa fa-chevron-down"></span></a>
@@ -57,7 +58,7 @@
             </li>
             <li><a><i class="fa fa-clone"></i>Usuarios<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="fixed_sidebar.html">Administrar usuarios</a></li>
+                    <li><a href="${pageContext.request.contextPath}/UsersController">Administrar usuarios</a></li>
                 </ul>
             </li>
             <%
