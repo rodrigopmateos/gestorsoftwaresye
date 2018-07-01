@@ -7,21 +7,20 @@ package com.gestorsye.dto;
 
 public class TasksDto {
 
-  
-          private int id_task;
-          private int id_project;
-          private int id_userCreate;
-          private int id_userAssigned;
-          private String title;
-          private String description;
-          private String typeTask;
-          private String priority;
-          private String deliveryDate;
-          private String estimatedTime;
-          private String status_task;
-          private int status;
+    private int id_task;
+    private int id_project;
+    private int id_userCreate;
+    private int id_userAssigned;
+    private String title;
+    private String description;
+    private String typeTask;
+    private String priority;
+    private String deliveryDate;
+    private String estimatedTime;
+    private String status_task;
+    private int status;
 
-    public TasksDto(int id_task, int id_project, int id_userCreate, int id_userAssigned, String title, String description, String typeTask, String priority, String deliveryDate, String estimatedTime, String status_task,int status) {
+    public TasksDto(int id_task, int id_project, int id_userCreate, int id_userAssigned, String title, String description, String typeTask, String priority, String deliveryDate, String estimatedTime, String status_task, int status) {
         this.id_task = id_task;
         this.id_project = id_project;
         this.id_userCreate = id_userCreate;
@@ -32,12 +31,13 @@ public class TasksDto {
         this.priority = priority;
         this.deliveryDate = deliveryDate;
         this.estimatedTime = estimatedTime;
-        this.status_task=status_task;
+        this.status_task = status_task;
         this.status = status;
     }
 
-          
-          
+    public TasksDto() {
+    }
+
     public int getId_task() {
         return id_task;
     }
@@ -133,8 +133,5 @@ public class TasksDto {
     public void setStatus_task(String status_task) {
         this.status_task = status_task;
     }
-     
-    
-          
-          
+
 }

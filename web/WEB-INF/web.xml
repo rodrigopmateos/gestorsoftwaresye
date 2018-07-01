@@ -36,6 +36,10 @@
         <servlet-name>ViewTasks</servlet-name>
         <servlet-class>com.gestorsye.controllers.ViewTasks</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertTask</servlet-name>
+        <servlet-class>com.gestorsye.controllers.InsertTask</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ViewTasks</servlet-name>
         <url-pattern>/ViewTasks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertTask</servlet-name>
+        <url-pattern>/InsertTask</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

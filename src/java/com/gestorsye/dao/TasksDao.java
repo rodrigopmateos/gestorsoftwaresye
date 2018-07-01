@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class TasksDao implements InterfaceDao<TasksDto> {
 
-     private static final String SQL_INSERT = "INSERT INTO tasks (id, nombre, apellido) VALUES(?,?,?)";
+     private static final String SQL_INSERT = "INSERT INTO tasks (name_user_assigned, title, description, name_type_task, name_priority, delivery_date, estimated_time, status_task) VALUES(?,?,?,?,?,?,?,?)";
     private static final String SQL_DELETE = " DELETE FROM tasks WHERE id_task= ?";
     private static final String SQL_UPDATE = "UPDATE tasks SET = ? WHERE id_task=?";
     private static final String SQL_READ = "SELECT * FROM tasks WHERE id_task = ?";
@@ -30,7 +30,27 @@ public class TasksDao implements InterfaceDao<TasksDto> {
     
     @Override
     public boolean create(TasksDto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean create=true;
+        try {
+            PreparedStatement ps;
+            ps = con.getConexion().prepareStatement(SQL_INSERT);
+            ps.setInt(1,dto.getId_userAssigned() );
+            ps.setString(2, dto.getTitle());
+            ps.setString(3, dto.getDescription());
+            ps.setString(4, dto.getTypeTask());
+            ps.setString(5, dto.getPriority());
+            ps.setString(6, dto.getDeliveryDate());
+            ps.setString(7, dto.getEstimatedTime());
+            ps.setString(8, dto.getStatus_task());
+            ps.executeUpdate();
+           
+        } catch (SQLException ex) {
+            create=false;
+            Logger.getLogger(TasksDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.cerrarConexion();
+        }
+        return create;        
     }
 
     @Override

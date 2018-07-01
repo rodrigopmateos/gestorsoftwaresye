@@ -64,7 +64,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Table design <small>Custom design</small></h2>
+                                    <h2>Listado de tareas</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -83,9 +83,7 @@
                                     <div class="clearfix"></div>
                                 </div>
 
-                                <div class="x_content">
-
-                                    <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p>
+                                <div class="x_content">                                    
 
                                     <div class="table-responsive">
                                         <table class="table table-striped jambo_table bulk_action">
@@ -100,60 +98,32 @@
                                                     <th class="column-title">Informante </th>
                                                     <th class="column-title">Responsable</th>
                                                     <th class="column-title">Status</th>                                                    
-                                                    <th class="column-title no-link last"><span class="nobr">Action</span>
-                                                    </th>
-                                                    <th class="bulk-actions" colspan="7">
-                                                        <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                                                    </th>
+
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                <tr class="even pointer">
-                                                    
-                                                    <td class=" ">121000040</td>
-                                                    <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                                    <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                                    <td class=" ">John Blank L</td>
-                                                    <td class=" ">Paid</td>
-                                                    <td class="a-right a-right ">$7.45</td>
-                                                    <td class=" last"><a href="#">View</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd pointer">
-                                                    
-                                                    <td class=" ">121000039</td>
-                                                    <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                                    <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                                    </td>
-                                                    <td class=" ">John Blank L</td>
-                                                    <td class=" ">Paid</td>
-                                                    <td class="a-right a-right ">$741.20</td>
-                                                    <td class=" last"><a href="#">View</a>
-                                                    </td>
-                                                </tr>
-                                                <%                              for (int i = 0; i < dtos.size(); i++) {
+                                                <%                           
+                                                for (int i = 0; i < dtos.size(); i++) {
                                                 %>
                                                 <tr class="odd pointer">
-                                                    
+
                                                     <td > <%=dtos.get(i).getTitle()%></th>
                                                     <td ><%=dtos.get(i).getDescription()%> </th>
                                                     <td ><%=dtos.get(i).getTypeTask()%></th>
                                                     <td ><%=dtos.get(i).getPriority()%></th>
                                                     <td ><%=dtos.get(i).getEstimatedTime()%></th>
                                                     <td ><%=dtos.get(i).getDeliveryDate()%></th>
-                                                    <td ><%=dtos.get(i).getId_userCreate() %></th>
+                                                    <td ><%=dtos.get(i).getId_userCreate()%></th>
                                                     <td ><%=dtos.get(i).getId_userAssigned()%></th>
                                                     <td ><%=dtos.get(i).getStatus_task()%></th>   
                                                 </tr>
-                                                <%  }%>
-
-
+                                                <%
+                                                    }
+                                                %>
                                             </tbody>
                                         </table>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -168,18 +138,89 @@
 
             </div>
         </div>
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2A3F54" >
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">Crear tarea nueva</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="InsertTask" method="post">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Nombre de la tarea</label>
+                                <input name="title" type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Tipo de tarea</label>
+                                <div>
+                                    <select class="form-control" name="type">
+                                        <option>Tarea</option>
+                                        <option>Error</option>
+                                        <option>Error Cliente</option>
+                                        <option>Mejora</option>
+                                        <option>Solicitud de cambios</option>
+                                        <option>Datos generales</option>
+                                    </select>
+                                </div>
+                                <label for="recipient-name" class="col-form-label">Prioridad de la tarea</label>
+                                <div>
+                                    <select class="form-control" name="priority">
+                                        <option>Muy alta</option>
+                                        <option>Alta</option>
+                                        <option>Media</option>
+                                        <option>Baja</option>
+                                        <option>Muy baja</option>
+                                    </select>
+                                </div>
+                                <label for="recipient-name" class="col-form-label">Descripcion de la tarea</label>
+                                <textarea class="form-control" name="description" rows="5"></textarea>
+                                <label for="recipient-name" class="col-form-label">Fecha estimada</label>
+                                <input name="estimatedDate" type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Fecha de entrega</label>
+                                <input name="deliveryDate" type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Responsable</label>
+                                <div>
+                                    <select class="form-control" name="userAssigned">
+                                        <option value="1">Usuario 1</option>
+                                        <option value="2">Usuario 2</option>                                       
+                                    </select>
+                                </div>
+                                <label for="recipient-name" class="col-form-label">Status</label>
+                                <div>
+                                    <select class="form-control" name="status">
+                                        <option value="Abierta">Abierta</option>
+                                        <option value="Cerrada">Cerrada</option>
+                                        <option value="En progreso">En progreso</option>
+                                        <option value="Suspendida">Suspendida</option>
+                                        <option value="Reabierta">Reabierta</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Crear</button>
+                                </div>
+                        </form>
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
-        <!-- Bootstrap -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- FastClick -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
-        <!-- NProgress -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
-        <!-- Custom Theme Scripts -->
-        <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <!-- Bootstrap -->
+    <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
+    <!-- NProgress -->
+    <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
 
 
-    </body>
+</body>
 </html>
