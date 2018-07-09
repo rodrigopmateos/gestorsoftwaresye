@@ -1,6 +1,10 @@
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <%
+           ArrayList<UsersDto> participants = (ArrayList<UsersDto>) request.getSession().getAttribute("participants");
+        %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8">
@@ -90,13 +94,13 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <select class="select2_single form-control" tabindex="-1">
                                                         <option></option>
-                                                        <option value="AK">Particapante 1</option>
-                                                        <option value="HI">Particapante 1</option>
-                                                        <option value="CA">Particapante 1</option>
-                                                        <option value="NV">Particapante 1</option>
-                                                        <option value="OR">Particapante 1</option>
-                                                        <option value="WA">Particapante 1</option>
-                                                        <option value="AZ">Particapante 1</option>
+                                                        <%
+                                                        for (int i = 0; i < participants.size(); i++) {                                                                                                                            
+                                                        %>
+                                                        <option value="<%= participants.get(i).getId_user()%>"><%= participants.get(i).getName()%></option>                                                        
+                                                        <%
+                                                        }
+                                                        %>
                                                     </select>
                                                 </div>
                                             </div>

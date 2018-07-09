@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>controllers.LoginController</servlet-class>
+        <servlet-class>com.gestorsye.controllers.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProjectsController</servlet-name>
@@ -36,7 +36,7 @@
         <servlet-name>DeleteUsers</servlet-name>
         <servlet-class>com.gestorsye.controllers.DeleteUsers</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>ViewTasks</servlet-name>
         <servlet-class>com.gestorsye.controllers.ViewTasks</servlet-class>
     </servlet>
@@ -45,10 +45,13 @@
         <servlet-class>com.gestorsye.controllers.InsertTask</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ViewParticipants</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewParticipants</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UpdateUsers</servlet-name>
         <servlet-class>com.gestorsye.controllers.UpdateUsers</servlet-class>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -94,10 +97,13 @@
         <url-pattern>/DeleteUsers</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ViewParticipants</servlet-name>
+        <url-pattern>/ViewParticipants</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UpdateUsers</servlet-name>
         <url-pattern>/UpdateUsers</url-pattern>
     </servlet-mapping>
-    
     <session-config>
         <session-timeout>
             30

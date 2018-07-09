@@ -5,8 +5,7 @@
  */
 package com.gestorsye.controllers;
 
-import com.gestorsye.dao.ProjectsDao;
-import com.gestorsye.dto.ProjectsDto;
+import com.gestorsye.dao.UsersDao;
 import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jose
+ * @author gato-
  */
-public class ProjectsController extends HttpServlet {
+public class ViewParticipants extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,25 +33,15 @@ public class ProjectsController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
-            
-            
-            ProjectsDao dao = new ProjectsDao();          
-            List<ProjectsDto> dtos =new ArrayList();
-            List<ProjectsDto> projectsbycreator =new ArrayList();
-            
-            dtos = dao.selectAll();                        
-            request.getSession().setAttribute("dtos", dtos);
-            
-            UsersDto user = (UsersDto) request.getSession().getAttribute("user");
-            projectsbycreator = dao.selectbycreator(user.getId_user());
-            request.getSession().setAttribute("projectsbycreator", projectsbycreator);
-            
-            request.getRequestDispatcher("projects.jsp").forward(request, response);
-            
-            
-        }
+  
+        
+        UsersDao dao = new UsersDao();
+        List<UsersDto> users = new ArrayList<>();
+        users = dao.selectPartipants();
+        request.getSession().setAttribute("participants", users);
+        response.sendRedirect("crearproyecto.jsp");
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -67,13 +56,6 @@ public class ProjectsController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-//        ProjectsDao dao = new ProjectsDao();
-//            List<ProjectsDto> dtos =new ArrayList();
-//            dtos = dao.selectAll();
-//            request.getSession().setAttribute("dtos", dtos);
-//            request.getRequestDispatcher("vista/templates/projects.jsp").forward(request, response);
-        
     }
 
     /**

@@ -26,6 +26,7 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
     private static final String SQL_UPDATE = "UPDATE projects SET project_name= ?, description=?, progress=?,status=? WHERE id_project = ?";
     private static final String SQL_READ = "SELECT * FROM projects WHERE id_project = ?";
     private static final String SQL_READALL = "SELECT * FROM projects";
+    private static final String SQL_READBYCREATOR = "SELECT * FROM projects WHERE name_project_creator = ?";
     
         private static final Conexion con = Conexion.abrirConexion();
     public ProjectsDao(){
@@ -140,6 +141,29 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
                    
             }
             return projects;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            con.cerrarConexion();
+        }
+        return projects;
+
+    }
+     public List<ProjectsDto> selectbycreator(Object key) {
+        List<ProjectsDto> projects =new ArrayList();
+        PreparedStatement ps;
+        ResultSet rs;
+           
+        try {           
+            ps = con.getConexion().prepareStatement(SQL_READBYCREATOR); 
+            ps.setInt(1, (int)key);
+            rs=ps.executeQuery();  
+            
+            while(rs.next()){
+            projects.add(new ProjectsDto(rs.getInt(1),rs.getInt(2),  rs.getString(3),rs.getString(4),  rs.getString(5), rs.getInt(6),  rs.getString(7)));    
+            }  
+            
         } catch (SQLException ex) {
             Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
         }
