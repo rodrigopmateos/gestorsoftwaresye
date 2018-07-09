@@ -74,7 +74,7 @@ public class ProfilesDao implements InterfaceDao<ProfilesDto>{
     }
 
     @Override
-    public boolean update(Object key) {
+    public boolean update(ProfilesDto dto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

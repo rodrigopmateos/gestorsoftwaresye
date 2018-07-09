@@ -33,6 +33,13 @@ public class ProjectsDto {
         this.description = description;
         this.fecha = fecha;
     }
+    public ProjectsDto(int id_project,String project_name, String description, int progress, String status){
+        this.id_project=id_project;
+        this.project_name=project_name;
+        this.description=description;
+        this.progress=progress;
+        this.status=status;
+    }
     
 
     public String getFecha() {

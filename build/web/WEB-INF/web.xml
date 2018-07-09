@@ -21,6 +21,10 @@
         <servlet-class>com.gestorsye.controllers.ViewProject</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdateProjects</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UpdateProjects</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UsersController</servlet-name>
         <servlet-class>com.gestorsye.controllers.UsersController</servlet-class>
     </servlet>
@@ -31,6 +35,18 @@
     <servlet>
         <servlet-name>DeleteUsers</servlet-name>
         <servlet-class>com.gestorsye.controllers.DeleteUsers</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>ViewTasks</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewTasks</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertTask</servlet-name>
+        <servlet-class>com.gestorsye.controllers.InsertTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUsers</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UpdateUsers</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -54,6 +70,10 @@
         <url-pattern>/ViewProject</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UpdateProjects</servlet-name>
+        <url-pattern>/UpdateProjects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UsersController</servlet-name>
         <url-pattern>/UsersController</url-pattern>
     </servlet-mapping>
@@ -62,9 +82,22 @@
         <url-pattern>/InsertUsers</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ViewTasks</servlet-name>
+        <url-pattern>/ViewTasks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertTask</servlet-name>
+        <url-pattern>/InsertTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteUsers</servlet-name>
         <url-pattern>/DeleteUsers</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUsers</servlet-name>
+        <url-pattern>/UpdateUsers</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

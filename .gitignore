@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #
 # Project specific excludes
 #
@@ -55,3 +56,6 @@ nb-configuration.xml
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
+=======
+nbproject/private/private.properties
+>>>>>>> 4442e12418e7d37aed13976e2d99e39b397ee3df
