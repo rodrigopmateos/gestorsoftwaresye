@@ -36,13 +36,17 @@
         <servlet-name>DeleteUsers</servlet-name>
         <servlet-class>com.gestorsye.controllers.DeleteUsers</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>ViewTasks</servlet-name>
         <servlet-class>com.gestorsye.controllers.ViewTasks</servlet-class>
     </servlet>
-            <servlet>
+    <servlet>
         <servlet-name>InsertTask</servlet-name>
         <servlet-class>com.gestorsye.controllers.InsertTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewParticipants</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewParticipants</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -84,9 +88,13 @@
         <servlet-name>InsertTask</servlet-name>
         <url-pattern>/InsertTask</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteUsers</servlet-name>
         <url-pattern>/DeleteUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewParticipants</servlet-name>
+        <url-pattern>/ViewParticipants</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

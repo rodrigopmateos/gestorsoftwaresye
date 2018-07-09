@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <%
-           ProjectsDto dto = (ProjectsDto) request.getSession().getAttribute("dto");
+           ProjectsDto projects = (ProjectsDto) request.getSession().getAttribute("dto");
         %>
     <title>Gentelella Alela! | </title>
 
@@ -62,7 +62,7 @@
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><%=dto.getProject_name()%></h2>
+                    <h2><%=projects.getProject_name()%></h2>
                     <div class="clearfix"></div>
                   </div>
 
@@ -157,7 +157,7 @@
                         <div class="panel-body">
                           <h2>Descripcion</h2>
 
-                          <p><%=dto.getDescription()%></p>
+                          <p><%=projects.getDescription()%></p>
                           <br />
 
                           <div class="project_detail">

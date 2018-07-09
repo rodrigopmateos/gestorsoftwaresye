@@ -1,5 +1,6 @@
+<%@page import="com.gestorsye.dto.UsersDto"%>
 <%
-    String user = (String) request.getSession().getAttribute("user");
+    UsersDto dto = (UsersDto) request.getSession().getAttribute("user");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!-- menu profile quick info -->
@@ -10,7 +11,7 @@
     </div>
     <div class="profile_info">
         <span>Welcome,</span>
-        <h2><%= user%></h2>
+        <h2><%= dto.getUser()%></h2>
     </div>
     <div class="clearfix"></div>
 </div>
@@ -25,12 +26,12 @@
         <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="index.jsp">Dashboard</a></li>
+                    <li><a href="dashboard.jsp">Dashboard</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-edit"></i>Proyectos<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="crearproyecto.jsp">Crear Proyecto</a></li>
+                    <li><a href="ViewParticipants">Crear Proyecto</a></li>
                     <li><a href="${pageContext.request.contextPath}/ProjectsController">Visualizar</a></li>
                 </ul>
             </li>
@@ -42,7 +43,7 @@
             </li>
             <li><a><i class="fa fa-table"></i> Trabajo <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="tables_dynamic.html">Registrar trabajo</a></li>
+                    <li><a href="logwork.jsp">Registrar trabajo</a></li>
                     <li><a href="tables_dynamic.html">Ver trabajo</a></li>
                 </ul>
             </li>
@@ -53,7 +54,8 @@
             </li>
             <li><a><i class="fa fa-clone"></i>Historial<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
+                    <li><a href="prueba.jsp">Prueba</a></li>
+                     <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-clone"></i>Usuarios<span class="fa fa-chevron-down"></span></a>

@@ -7,6 +7,7 @@ package com.gestorsye.controllers;
 
 import com.gestorsye.conexion.Conexion;
 import com.gestorsye.dao.LogueoDao;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -25,15 +26,16 @@ public class LoginController extends HttpServlet {
         
         
         LogueoDao dao=new LogueoDao();
+        UsersDto dto;
         String user = request.getParameter("txt_username");
         String pass = request.getParameter("txt_password");   
         
-        request.getSession().setAttribute("user", user);
-        
-        if(dao.logueo(user, pass)){
-           request.getRequestDispatcher("index.jsp").forward(request, response);
+        dto=dao.getUser(user, pass);
+        if(dto!=null){           
+           request.getSession().setAttribute("user", dto);
+           request.getRequestDispatcher("dashboard.jsp").forward(request, response);
         }else{
-           request.getRequestDispatcher("login.jsp").forward(request, response);
+           request.getRequestDispatcher("index.jsp").forward(request, response);
            logueo=false;
            request.getSession().setAttribute("logueo", logueo);
         }

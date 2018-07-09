@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <%
             ArrayList<ProjectsDto> dtos = (ArrayList<ProjectsDto>) request.getSession().getAttribute("dtos");
+            ArrayList<ProjectsDto> projects = (ArrayList<ProjectsDto>) request.getSession().getAttribute("projectsbycreator");
         %>
         <title>Gentelella Alela! | </title>
 
@@ -21,7 +22,7 @@
         <link href="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css"/>
         <!-- Custom Theme Style -->
         <link href="${pageContext.request.contextPath}/assets/css/custom.min.css" rel="stylesheet" type="text/css"/>
-
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
 
     <body class="nav-md">
@@ -64,53 +65,100 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="x_panel">                   
-                                    <h2>Proyectos</h2>
-                                    <table class="table">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">Nombre del Proyecto</th>
-                                                <th scope="col">Miembros del equipo</th>
-                                                <th scope="col">Progreso del proyecto</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Opciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td ><a>Pesamakini Backend UI</a>
-                                                    <br />
-                                                    <small>Created 01.01.2015</small></td>
-                                                <td>Miembros del equipo</td>
-                                                <td><div class="progress progress_sm">
-                                                        <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
-                                                    </div>
-                                                    <small>57% Complete</small></td>
-                                                <td><button type="button" class="btn btn-success btn-xs">Success</button></td>
-                                                <td><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
-                                            </tr>
-                                            <%                                                for (int i = 0; i < dtos.size(); i++) {
-                                            %>
-                                            <tr>
-                                                <td><a><%= dtos.get(i).getProject_name()%></a>
-                                                    <br />
-                                                    <small>Created <%= dtos.get(i).getFecha()%></small></td>
-                                                <td>Miembros del equipo</td>
-                                                <td><div class="progress progress_sm">
-                                                        <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
-                                                    </div>
-                                                    <small><%=dtos.get(i).getProgress()%>% Complete</small></td>
 
-                                                <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
-                                                <td><a href="ViewProject?id=<%=dtos.get(i).getId_project()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1" onclick="setData(<%=dtos.get(i).getId_project()%>, '<%=dtos.get(i).getProject_name()%>', '<%=dtos.get(i).getDescription()%>',<%=dtos.get(i).getProgress()%>, '<%=dtos.get(i).getStatus()%>')" ><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="DeleteProjects?id=<%=dtos.get(i).getId_project()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmacion" onclick="setId(<%=dtos.get(i).getId_project()%>)"><i class="fa fa-trash-o"></i> Eliminar </a></td>
-                                            </tr>
-                                            <% }%>
-                                        </tbody>
-                                    </table>
+                                    <div class="w3-bar" style="background-color: #2A3F54">
+                                        <button class="w3-bar-item w3-button" onclick="openProject('Todos')" style="width:50%;color:white">Todos los proyectos</button>
+                                        <button class="w3-bar-item w3-button" onclick="openProject('Mios')" style="width:50%;color:white">Mis proyectos</button>                                       
+                                    </div>
+
+                                    <div id="Todos" class="w3-container proyectos">
+                                        <br/>
+                                        <table class="table">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">Nombre del Proyecto</th>
+                                                    <th scope="col">Miembros del equipo</th>
+                                                    <th scope="col">Progreso del proyecto</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td ><a>Pesamakini Backend UI</a>
+                                                        <br />
+                                                        <small>Created 01.01.2015</small></td>
+                                                    <td>Miembros del equipo</td>
+                                                    <td><div class="progress progress_sm">
+                                                            <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
+                                                        </div>
+                                                        <small>57% Complete</small></td>
+                                                    <td><button type="button" class="btn btn-success btn-xs">Success</button></td>
+                                                    <td><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                                                </tr>
+                                                <%                                                for (int i = 0; i < dtos.size(); i++) {
+                                                %>
+                                                <tr>
+                                                    <td><a><%= dtos.get(i).getProject_name()%></a>
+                                                        <br />
+                                                        <small>Created <%= dtos.get(i).getFecha()%></small></td>
+                                                    <td>Miembros del equipo</td>
+                                                    <td><div class="progress progress_sm">
+                                                            <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
+                                                        </div>
+                                                        <small><%=dtos.get(i).getProgress()%>% Complete</small></td>
+
+                                                    <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
+                                                    <td><a href="ViewProject?id=<%=dtos.get(i).getId_project()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                        <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1" onclick="setData(<%=dtos.get(i).getId_project()%>, '<%=dtos.get(i).getProject_name()%>', '<%=dtos.get(i).getDescription()%>',<%=dtos.get(i).getProgress()%>, '<%=dtos.get(i).getStatus()%>')" ><i class="fa fa-pencil"></i> Edit </a>
+                                                        <a href="DeleteProjects?id=<%=dtos.get(i).getId_project()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmacion" onclick="setId(<%=dtos.get(i).getId_project()%>)"><i class="fa fa-trash-o"></i> Eliminar </a></td>
+                                                </tr>
+                                                <% }%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div id="Mios" class="w3-container proyectos" style="display:none">
+                                        <h2>Mis proyectos</h2>
+                                        <br/>
+                                        <table class="table">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">Nombre del Proyecto</th>
+                                                    <th scope="col">Miembros del equipo</th>
+                                                    <th scope="col">Progreso del proyecto</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                            
+                                                <%                                                for (int i = 0; i < projects.size(); i++) {
+                                                %>
+                                                <tr>
+                                                    <td><a><%= projects.get(i).getProject_name()%></a>
+                                                        <br />
+                                                        <small>Created <%= projects.get(i).getFecha()%></small></td>
+                                                    <td>Miembros del equipo</td>
+                                                    <td><div class="progress progress_sm">
+                                                            <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
+                                                        </div>
+                                                        <small><%=projects.get(i).getProgress()%>% Complete</small></td>
+
+                                                    <td><button type="button" class="btn btn-success btn-xs"><%=projects.get(i).getStatus()%></button></td>
+                                                    <td><a href="ViewProject?id=<%=projects.get(i).getId_project()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                        <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1" onclick="setData(<%=projects.get(i).getId_project()%>, '<%=projects.get(i).getProject_name()%>', '<%=projects.get(i).getDescription()%>',<%=projects.get(i).getProgress()%>, '<%=projects.get(i).getStatus()%>')" ><i class="fa fa-pencil"></i> Edit </a>
+                                                        <a href="DeleteProjects?id=<%=projects.get(i).getId_project()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmacion" onclick="setId(<%=projects.get(i).getId_project()%>)"><i class="fa fa-trash-o"></i> Eliminar </a></td>
+                                                </tr>
+                                                <% }%>
+                                            </tbody>
+                                        </table>
+                                       
+                                    </div>
+
                                 </div>
                             </div>    
                         </div>
@@ -176,7 +224,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         <button onclick="deleteById()" class="btn btn-primary">Aceptar</button>
-                        
+
                     </div>
                 </div>
             </div>
@@ -191,15 +239,24 @@
                 $('#txt_4').val(status);
                 $('#txt_id').val(id);
             }
-            function setId(id){
-            this.id=id;    
+            function setId(id) {
+                this.id = id;
             }
-            function deleteById(){
+            function deleteById() {
                 console.log('deleteById');
-                window.location = "DeleteProjects?id="+id;
+                window.location = "DeleteProjects?id=" + id;
             }
         </script>
-
+        <script>
+            function openProject(cityName) {
+                var i;
+                var x = document.getElementsByClassName("proyectos");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                document.getElementById(cityName).style.display = "block";
+            }
+        </script>
         <!-- jQuery -->
         <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
