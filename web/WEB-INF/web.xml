@@ -48,6 +48,10 @@
         <servlet-name>ViewParticipants</servlet-name>
         <servlet-class>com.gestorsye.controllers.ViewParticipants</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateUsers</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UpdateUsers</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ViewParticipants</servlet-name>
         <url-pattern>/ViewParticipants</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUsers</servlet-name>
+        <url-pattern>/UpdateUsers</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
