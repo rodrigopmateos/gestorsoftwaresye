@@ -21,7 +21,7 @@ public class UsersDao implements InterfaceDao<UsersDto>{
 
     private static final String SQL_INSERT = "INSERT INTO users (id_profile, name, email, area, user, pass, status) VALUES(?,?,?,?,?,?,?)";
     private static final String SQL_DELETE = " DELETE FROM users WHERE id_user= ?";
-    private static final String SQL_UPDATE = "UPDATE users SET = ? WHERE id_user = ?";
+    private static final String SQL_UPDATE = "UPDATE users SET id_profile= ?, name=?, email=?, area=?, user=?, pass=?, status=? WHERE id_user = ?";
     private static final String SQL_READ = "SELECT * FROM users WHERE id_user = ?";
     private static final String SQL_READALL = "SELECT * FROM users";
     
@@ -49,7 +49,7 @@ public class UsersDao implements InterfaceDao<UsersDto>{
                 return true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             con.cerrarConexion();
         }
@@ -70,7 +70,7 @@ public class UsersDao implements InterfaceDao<UsersDto>{
             
         } catch (SQLException ex) {
             delete= false;
-            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally{
             con.cerrarConexion();
@@ -80,7 +80,28 @@ public class UsersDao implements InterfaceDao<UsersDto>{
 
     @Override
     public boolean update(UsersDto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean update=false;            
+            PreparedStatement ps;
+        try {
+            ps = con.getConexion().prepareStatement(SQL_UPDATE);
+            ps.setInt(1, dto.getId_profile());
+            ps.setString(2, dto.getName());
+            ps.setString(3, dto.getEmail());
+            ps.setString(4, dto.getArea());
+            ps.setString(5, dto.getUser());
+            ps.setString(6, dto.getPass());
+            ps.setInt(7, dto.getStatus());
+            ps.setInt(8, dto.getId_user());
+            ps.executeUpdate();
+            
+            update=true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        finally{
+            con.cerrarConexion();
+        }
+       return update;    
     }
     
     public UsersDto select(Object key) {
@@ -98,7 +119,7 @@ public class UsersDao implements InterfaceDao<UsersDto>{
             }  
             
         } catch (SQLException ex) {
-            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally{
             con.cerrarConexion();
@@ -123,7 +144,7 @@ public class UsersDao implements InterfaceDao<UsersDto>{
             }
             return users;
         } catch (SQLException ex) {
-            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally{
             con.cerrarConexion();

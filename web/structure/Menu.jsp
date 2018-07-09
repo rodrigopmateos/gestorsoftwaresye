@@ -56,7 +56,7 @@
                     <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-clone"></i>Usuarios<span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-users"></i>Usuarios<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="${pageContext.request.contextPath}/UsersController">Administrar usuarios</a></li>
                 </ul>
