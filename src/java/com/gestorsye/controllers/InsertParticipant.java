@@ -11,7 +11,6 @@ import com.gestorsye.dao.UsersDao;
 import com.gestorsye.dto.ProjectsDto;
 import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -21,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author gato-
+ * @author jose
  */
-public class ViewProject extends HttpServlet {
+public class InsertParticipant extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,30 +35,29 @@ public class ViewProject extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        
-           //Se obtiene el id del proyecto con el cual llamamos a la funcion 'select' para 
+
+        //Se obtiene el id del proyecto con el cual llamamos a la funcion 'select' para 
         //obetner los datos del proyecto seleccionado.
         int id = Integer.parseInt(request.getParameter("id"));
-        ProjectsDto dto = new ProjectsDto();
-        ProjectsDao dao = new ProjectsDao();
-        dto = dao.select(id);
-        request.getSession().setAttribute("dto", dto);
+//        ProjectsDto dto = new ProjectsDto();
+//        ProjectsDao dao = new ProjectsDao();
+//        dto = dao.select(id);
+//        request.getSession().setAttribute("dto", dto);
 
         //Se utiliza la funcion 'selectParticipants' para obtener
         //los participantes del proyecto a la cual le pasamos el parametro 
         //del 
-//        ParticipantsDao udao = new ParticipantsDao();;
-//        String[] participants = request.getParameterValues("participants");
-//        int var = 0;
-//        for (String participant : participants) {
-//            var = Integer.parseInt(participant);
-//            udao.add(id, var);
-//        }
+        ParticipantsDao dao = new ParticipantsDao();
+        String[] participants = request.getParameterValues("participants");
+        int var = 0;
+        for (String participant : participants) {
+            var = Integer.parseInt(participant);
+            dao.add(id, var);
+        }
 
         request.getSession().setAttribute("idProject", id);
-        response.sendRedirect("projectsview.jsp");
-        
+        request.getRequestDispatcher("projectsview.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

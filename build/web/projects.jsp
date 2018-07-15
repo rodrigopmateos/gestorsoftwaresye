@@ -71,6 +71,7 @@
                                         <button class="w3-bar-item w3-button" onclick="openProject('Mios')" style="width:50%;color:white">Mis proyectos</button>                                       
                                     </div>
 
+                                    Todos los proyectos
                                     <div id="Todos" class="w3-container proyectos">
                                         <br/>
                                         <table class="table">
@@ -80,46 +81,35 @@
                                                     <th scope="col">Miembros del equipo</th>
                                                     <th scope="col">Progreso del proyecto</th>
                                                     <th scope="col">Status</th>
-                                                    <th scope="col">Opciones</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td ><a>Pesamakini Backend UI</a>
-                                                        <br />
-                                                        <small>Created 01.01.2015</small></td>
-                                                    <td>Miembros del equipo</td>
-                                                    <td><div class="progress progress_sm">
-                                                            <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
-                                                        </div>
-                                                        <small>57% Complete</small></td>
-                                                    <td><button type="button" class="btn btn-success btn-xs">Success</button></td>
-                                                    <td><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
-                                                </tr>
-                                                <%                                                for (int i = 0; i < dtos.size(); i++) {
+
+                                                <%                                                    for (int i = 0; i < dtos.size(); i++) {
                                                 %>
                                                 <tr>
-                                                    <td><a><%= dtos.get(i).getProject_name()%></a>
+                                                    <td>
+                                                        <a><%= dtos.get(i).getProject_name()%></a>
                                                         <br />
-                                                        <small>Created <%= dtos.get(i).getFecha()%></small></td>
+                                                        <small>Created <%= dtos.get(i).getFecha()%></small>
+                                                    </td>
                                                     <td>Miembros del equipo</td>
                                                     <td><div class="progress progress_sm">
                                                             <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
                                                         </div>
-                                                        <small><%=dtos.get(i).getProgress()%>% Complete</small></td>
-
-                                                    <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
-                                                    <td><a href="ViewProject?id=<%=dtos.get(i).getId_project()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                        <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1" onclick="setData(<%=dtos.get(i).getId_project()%>, '<%=dtos.get(i).getProject_name()%>', '<%=dtos.get(i).getDescription()%>',<%=dtos.get(i).getProgress()%>, '<%=dtos.get(i).getStatus()%>')" ><i class="fa fa-pencil"></i> Edit </a>
-                                                        <a href="DeleteProjects?id=<%=dtos.get(i).getId_project()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmacion" onclick="setId(<%=dtos.get(i).getId_project()%>)"><i class="fa fa-trash-o"></i> Eliminar </a></td>
+                                                        <small><%=dtos.get(i).getProgress()%>% Complete</small>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button>
+                                                    </td>
                                                 </tr>
                                                 <% }%>
                                             </tbody>
                                         </table>
                                     </div>
+
+                                    <!--Mis protectos-->
 
                                     <div id="Mios" class="w3-container proyectos" style="display:none">
                                         <h2>Mis proyectos</h2>
@@ -156,7 +146,7 @@
                                                 <% }%>
                                             </tbody>
                                         </table>
-                                       
+
                                     </div>
 
                                 </div>

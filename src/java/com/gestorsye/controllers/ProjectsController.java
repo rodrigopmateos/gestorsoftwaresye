@@ -48,9 +48,8 @@ public class ProjectsController extends HttpServlet {
             UsersDto user = (UsersDto) request.getSession().getAttribute("user");
             projectsbycreator = dao.selectbycreator(user.getId_user());
             request.getSession().setAttribute("projectsbycreator", projectsbycreator);
-            
-            request.getRequestDispatcher("projects.jsp").forward(request, response);
-            
+                        
+            response.sendRedirect("projects.jsp");
             
         }
 
