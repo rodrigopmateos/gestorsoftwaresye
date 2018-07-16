@@ -5,10 +5,15 @@
  */
 package com.gestorsye.controllers;
 
+import com.gestorsye.dao.ParticipantsDao;
 import com.gestorsye.dao.ProjectsDao;
+import com.gestorsye.dao.UsersDao;
 import com.gestorsye.dto.ProjectsDto;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,12 +37,33 @@ public class ViewProject extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        int id = Integer.parseInt(request.getParameter("id"));        
-        ProjectsDto dto=new ProjectsDto();
-        ProjectsDao dao= new ProjectsDao();
-        dto=dao.select(id);
+        
+        //Se obtiene el id del proyecto con el cual llamamos a la funcion 'select' para 
+        //obetner los datos del proyecto seleccionado.
+        int id = Integer.parseInt(request.getParameter("id"));
+        ProjectsDto dto=null;
+        ProjectsDao dao = new ProjectsDao();
+        dto = dao.select(id);
         request.getSession().setAttribute("dto", dto);
-        request.getRequestDispatcher("projectsview.jsp").forward(request, response);
+
+        //Se utiliza la funcion 'selectParticipants' para obtener
+        //los participantes del proyecto a la cual le pasamos el id del proyecto
+        
+        ParticipantsDao pdao = new ParticipantsDao();;
+        List<UsersDto> usuarios=null;        
+        usuarios= pdao.selectUsersByProject(id);
+        
+        
+        //Se obtienen los usuarios  que no esten asignados a un proyecto
+        UsersDao udao =  new UsersDao();
+        List<UsersDto> participants =null;
+        participants = udao.selectPartipants();
+        
+        request.getSession().setAttribute("usuarios",usuarios);
+        request.getSession().setAttribute("participants", participants);
+        request.getSession().setAttribute("idProject", id);      
+        
+        response.sendRedirect("projectsview.jsp");
         
     }
 

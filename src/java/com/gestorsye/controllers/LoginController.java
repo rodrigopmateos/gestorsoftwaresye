@@ -33,9 +33,9 @@ public class LoginController extends HttpServlet {
         dto=dao.getUser(user, pass);
         if(dto!=null){           
            request.getSession().setAttribute("user", dto);
-           request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+           response.sendRedirect("dashboard.jsp");
         }else{
-           request.getRequestDispatcher("index.jsp").forward(request, response);
+           response.sendRedirect("index.jsp");
            logueo=false;
            request.getSession().setAttribute("logueo", logueo);
         }

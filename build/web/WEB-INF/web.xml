@@ -52,6 +52,10 @@
         <servlet-name>UpdateUsers</servlet-name>
         <servlet-class>com.gestorsye.controllers.UpdateUsers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertParticipant</servlet-name>
+        <servlet-class>com.gestorsye.controllers.InsertParticipant</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>UpdateUsers</servlet-name>
         <url-pattern>/UpdateUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertParticipant</servlet-name>
+        <url-pattern>/InsertParticipant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
