@@ -83,11 +83,13 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
             PreparedStatement ps;
         try {
             ps = con.getConexion().prepareStatement(SQL_UPDATE);
+            
             ps.setString(1, dto.getProject_name());
             ps.setString(2, dto.getDescription());
             ps.setInt(3, dto.getProgress());
             ps.setString(4, dto.getStatus());
             ps.setInt(5, dto.getId_project());
+            
             ps.executeUpdate();
             
             update=true;

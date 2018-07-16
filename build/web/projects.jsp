@@ -13,16 +13,21 @@
             ArrayList<ProjectsDto> projects = (ArrayList<ProjectsDto>) request.getSession().getAttribute("projectsbycreator");
         %>
         <title>Gentelella Alela! | </title>
-
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <!-- Bootstrap -->
         <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        
         <!-- Font Awesome -->
         <link href="${pageContext.request.contextPath}/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        
         <!-- NProgress -->
         <link href="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css"/>
+        
         <!-- Custom Theme Style -->
         <link href="${pageContext.request.contextPath}/assets/css/custom.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+               
+
+        
     </head>
 
     <body class="nav-md">
@@ -67,13 +72,16 @@
                                 <div class="x_panel">                   
 
                                     <div class="w3-bar" style="background-color: #2A3F54">
-                                        <button class="w3-bar-item w3-button" onclick="openProject('Todos')" style="width:50%;color:white">Todos los proyectos</button>
-                                        <button class="w3-bar-item w3-button" onclick="openProject('Mios')" style="width:50%;color:white">Mis proyectos</button>                                       
-                                    </div>
+                                        <div class="row" style="display:flex;height: 40px">
+                                        <button class="w3-bar-item w3-button" onclick="openProject('Todos')" style="width:50%;color:white;height: inherit">Todos los proyectos</button>
+                                        <button class="w3-bar-item w3-button" onclick="openProject('Mios')" style="width:50%;color:white; height: inherit">Mis proyectos</button>                                       
+                                        </div>
+                                        </div>
 
-                                    Todos los proyectos
+                                    
                                     <div id="Todos" class="w3-container proyectos">
-                                        <br/>
+                                       <h2>Todos los proyectos</h2>
+                                        <br/>                                        
                                         <table class="table">
                                             <thead class="thead-dark">
                                                 <tr>
@@ -248,15 +256,21 @@
             }
         </script>
         <!-- jQuery -->
+        
         <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        
         <!-- Bootstrap -->
         <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        
         <!-- FastClick -->
         <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
+        
         <!-- NProgress -->
         <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
+        
         <!-- Custom Theme Scripts -->
         <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
+        
 
 
     </body>

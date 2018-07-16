@@ -38,26 +38,31 @@ public class ViewProject extends HttpServlet {
             throws ServletException, IOException {
        
         
-           //Se obtiene el id del proyecto con el cual llamamos a la funcion 'select' para 
+        //Se obtiene el id del proyecto con el cual llamamos a la funcion 'select' para 
         //obetner los datos del proyecto seleccionado.
         int id = Integer.parseInt(request.getParameter("id"));
-        ProjectsDto dto = new ProjectsDto();
+        ProjectsDto dto=null;
         ProjectsDao dao = new ProjectsDao();
         dto = dao.select(id);
         request.getSession().setAttribute("dto", dto);
 
         //Se utiliza la funcion 'selectParticipants' para obtener
-        //los participantes del proyecto a la cual le pasamos el parametro 
-        //del 
-//        ParticipantsDao udao = new ParticipantsDao();;
-//        String[] participants = request.getParameterValues("participants");
-//        int var = 0;
-//        for (String participant : participants) {
-//            var = Integer.parseInt(participant);
-//            udao.add(id, var);
-//        }
-
-        request.getSession().setAttribute("idProject", id);
+        //los participantes del proyecto a la cual le pasamos el id del proyecto
+        
+        ParticipantsDao pdao = new ParticipantsDao();;
+        List<UsersDto> usuarios=null;        
+        usuarios= pdao.selectUsersByProject(id);
+        
+        
+        //Se obtienen los usuarios  que no esten asignados a un proyecto
+        UsersDao udao =  new UsersDao();
+        List<UsersDto> participants =null;
+        participants = udao.selectPartipants();
+        
+        request.getSession().setAttribute("usuarios",usuarios);
+        request.getSession().setAttribute("participants", participants);
+        request.getSession().setAttribute("idProject", id);      
+        
         response.sendRedirect("projectsview.jsp");
         
     }
