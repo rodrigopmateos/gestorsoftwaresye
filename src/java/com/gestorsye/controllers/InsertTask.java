@@ -52,9 +52,8 @@ public class InsertTask extends HttpServlet {
         dto.setStatus_task(status);
         TasksDao dao = new TasksDao();
         dao.create(dto);
-        
-        request.getRequestDispatcher("admintasks.jsp").forward(request, response);
-        
+              
+        response.sendRedirect("admintasks.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

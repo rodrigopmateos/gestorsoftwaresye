@@ -13,7 +13,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,13 +46,14 @@ public class InsertProjects extends HttpServlet {
         String name, description, date;
         name = request.getParameter("nombre");
         description = request.getParameter("descripcion");
+        String[] array= request.getParameterValues("participants");      
 
+        
         ProjectsDto dto = new ProjectsDto(name, description, dtf.format(now));
         ProjectsDao dao = new ProjectsDao();
         dao.create(dto);
 
-        request.getRequestDispatcher("crearproyecto.jsp").forward(request, response);
-
+        response.sendRedirect("crearproyecto.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
