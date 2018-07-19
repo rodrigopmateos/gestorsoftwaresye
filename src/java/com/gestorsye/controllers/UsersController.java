@@ -51,7 +51,7 @@ public class UsersController extends HttpServlet {
             
             request.getSession().setAttribute("dtos", dtos);
             request.getSession().setAttribute("dtosprofiles", dtosprofiles);
-            request.getRequestDispatcher("users.jsp").forward(request, response);
+            response.sendRedirect("users.jsp");
             
             
         }

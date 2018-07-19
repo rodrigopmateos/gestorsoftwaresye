@@ -41,7 +41,7 @@ public class UpdateProjects extends HttpServlet {
         ProjectsDao dao=new ProjectsDao();
         dao.update(dto);
         
-        request.getRequestDispatcher("ProjectsController").forward(request, response);
+        response.sendRedirect("ProjectsController");
         
         
     }

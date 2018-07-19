@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.gestorsye.dto.ProjectsDto"%>
 <!DOCTYPE html>
@@ -10,7 +11,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <%
             ProjectsDto projects = (ProjectsDto) request.getSession().getAttribute("dto");
-            ArrayList<UsersDto> participants = (ArrayList<UsersDto>) request.getSession().getAttribute("participants");
+            List<UsersDto> sinAsignar = (ArrayList<UsersDto>) request.getSession().getAttribute("sinAsignar");
+            List<UsersDto> asignados = (ArrayList<UsersDto>) request.getSession().getAttribute("asignados");
         %>
         <title>Gentelella Alela! | </title>
         <!-- jQuery -->
@@ -33,6 +35,14 @@
         <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
         <!-- NProgress -->
         <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>      
+        <!-- Datatables -->
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+
     </head>
 
     <body class="nav-md">
@@ -101,25 +111,34 @@
                                             <div id="mainb" style="height:350px;"></div>
                                             <div>
 
-                                                <h3>Participantes<a style="float:right" class="btn btn-sm btn-primary" data-toggle='modal' data-target='#addParticipant'>Agregar</a></h3>
-                                                <div class="x_content">
+                                                <h3>Integrantes del equipo<a style="float:right" class="btn btn-sm btn-primary" data-toggle='modal' data-target='#addParticipant'>Agregar</a></h3>
+                                                <div class="x_content">                                                  
                                                     <table class="table table-hover">
                                                         <thead>
                                                             <tr>
-                                                                <th>#</th>
-                                                                <th>First Name</th>
-                                                                <th>Last Name</th>
-                                                                <th>Username</th>
-                                                                <th>Puesto</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Usuario</th>
+                                                                <th scope="col">Correo</th>
+                                                                <th scope="col">Area</th>
+                                                                
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
-                                                            </tr>
+                                                        <tbody>   
+                                                <tr>
+                                                             <%                                                
+                                                                for (int i = 0; i < asignados.size(); i++) {
+                                                             %>
+                                                <tr>
+                                                    <td><%= asignados.get(i).getName()%></td>
+                                                    <td><%=asignados.get(i).getUser()%></td>
+                                                    <td><%=asignados.get(i).getEmail()%></td>
+                                                    <td><%=asignados.get(i).getArea()%></td>
+                                                      
+                                                    
+                                                    </tr>
+                                                <% }%>
+
+                                                    </tr>
                                                         </tbody>
                                                     </table>
 
@@ -221,7 +240,7 @@
                                                     <br />
 
                                                     <div class="text-center mtop20">
-                                                        <a href="#" class="btn btn-sm btn-primary">Add files</a>
+                                                        <a  class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addFile">Agregar archivos</a>
                                                         <a href="#" class="btn btn-sm btn-warning">Report contact</a>
                                                     </div>
                                                 </div>
@@ -258,17 +277,17 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="InsertParticipant?id=<%= projects.getId_project() %>" method="post">
+                        <form action="InsertParticipant?id=<%= projects.getId_project()%>" method="post">
                             <div class="form-group">
 
                                 <label for="recipient-name">Responsable</label>
                                 <div>
                                     <select class="form-control tokenize-demo" multiple  tabindex="-1" name="participants">
                                         <option></option>
-                                        <%                                                          
-                                            for (int i = 0; i < participants.size(); i++) {
+                                        <%
+                                            for (int i = 0; i < sinAsignar.size(); i++) {
                                         %>
-                                        <option value="<%= participants.get(i).getId_user()%>"><%= participants.get(i).getName()%></option>                                                        
+                                        <option value="<%= sinAsignar.get(i).getId_user()%>"><%= sinAsignar.get(i).getName()%></option>                                                        
                                         <%
                                             }
                                         %>
@@ -288,8 +307,56 @@
                     </div>
                 </div>
             </div>
-            <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
+        </div>
 
+        <div class="modal fade" id='addFile' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2A3F54" >
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">Agregar Archivo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="InsertParticipant?id=<%= projects.getId_project()%>" method="post">
+                            <div class="form-group">
+                                <br/>
+                                <label for="recipient-name">Selecciona el archivo</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile">                                  
+                                </div>
+                                <br/>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Agregar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
+        <!-- Datatables -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/jszip/dist/jszip.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/pdfmake/build/vfs_fonts.js"></script>
 
     </body>
 </html>

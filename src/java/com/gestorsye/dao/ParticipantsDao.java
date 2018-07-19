@@ -11,6 +11,7 @@ import com.gestorsye.dto.UsersDto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,14 +44,14 @@ public class ParticipantsDao {
     }
 
     public List<UsersDto> selectUsersByProject(int idProject) {
-        List<UsersDto> usuarios = null;
-        UsersDto dto = null;
+        List<UsersDto> usuarios = new ArrayList<>();
+        UsersDto dto = new UsersDto();
         PreparedStatement ps;
         ResultSet rs;
 
         try {
             ps = con.getConexion().prepareStatement(SQL_SELECT);
-            ps.setInt(1, (int) idProject);
+            ps.setInt(1,  idProject);
             rs = ps.executeQuery();
 
             while (rs.next()) {

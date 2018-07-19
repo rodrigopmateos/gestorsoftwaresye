@@ -5,14 +5,13 @@
         <group>
             <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/controllers/ViewParticipants.java</file>
             <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/dao/UsersDao.java</file>
-            <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/dao/TasksDao.java</file>
+            <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/web/logwork.jsp</file>
             <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/web/projects.jsp</file>
             <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/web/projectsview.jsp</file>
             <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/dao/ParticipantsDao.java</file>
             <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/dao/ProjectsDao.java</file>
             <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/controllers/ViewProject.java</file>
             <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/controllers/InsertParticipant.java</file>
-            <file>file:/C:/Users/jose/Documents/git/gestorsoftwaresye/src/java/com/gestorsye/dto/ProjectsDto.java</file>
         </group>
     </open-files>
 </project-private>
