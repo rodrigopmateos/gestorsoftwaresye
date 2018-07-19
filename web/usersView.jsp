@@ -10,9 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <%
-            ArrayList<UsersDto> dtos = (ArrayList<UsersDto>) request.getSession().getAttribute("dtos");
-            ArrayList<ProfilesDto> dtosprofiles = (ArrayList<ProfilesDto>) request.getSession().getAttribute("dtosprofiles");
-
+           UsersDto dtouser = (UsersDto) request.getSession().getAttribute("user");
         %>
         <title>Gestor Sye | </title>
 
@@ -111,7 +109,7 @@
                           <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
-                      <h3>Samuel Doe</h3>
+                        <h3><%= dtouser.getName()%></h3>
 
                       <ul class="list-unstyled user_data">
                         <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA

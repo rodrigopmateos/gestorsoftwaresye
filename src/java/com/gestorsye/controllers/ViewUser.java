@@ -5,8 +5,8 @@
  */
 package com.gestorsye.controllers;
 
-import com.gestorsye.dao.ProjectsDao;
-import com.gestorsye.dto.ProjectsDto;
+import com.gestorsye.dao.UsersDao;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,10 +33,10 @@ public class ViewUser extends HttpServlet {
             throws ServletException, IOException {
        
         int id = Integer.parseInt(request.getParameter("id"));        
-        ProjectsDto dto=new ProjectsDto();
-        ProjectsDao dao= new ProjectsDao();
+        UsersDto dto=new UsersDto();
+        UsersDao dao= new UsersDao();
         dto=dao.select(id);
-        request.getSession().setAttribute("dto", dto);
+        request.getSession().setAttribute("user", dto);
         request.getRequestDispatcher("usersView.jsp").forward(request, response);
         
     }

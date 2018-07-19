@@ -12,7 +12,6 @@
         <%
             ArrayList<UsersDto> dtos = (ArrayList<UsersDto>) request.getSession().getAttribute("dtos");
             ArrayList<ProfilesDto> dtosprofiles = (ArrayList<ProfilesDto>) request.getSession().getAttribute("dtosprofiles");
-
         %>
         <title>Gestor Sye | </title>
 
@@ -180,7 +179,7 @@
                           <td><%= dtos.get(i).getPass()%></td>
                           
                           <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
-                          <td><a href="usersView.jsp" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                          <td><a href="ViewUser?id=<%=dtos.get(i).getId_user()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                               <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEditUser" onclick="setData(<%=dtos.get(i).getId_user()%>, '<%=dtos.get(i).getId_profile()%>','<%=dtos.get(i).getName()%>', '<%=dtos.get(i).getEmail()%>', '<%=dtos.get(i).getArea()%>', '<%=dtos.get(i).getUser()%>', '<%=dtos.get(i).getPass()%>', '<%=dtos.get(i).getStatus()%>'  )" ><i class="fa fa-pencil"></i> Edit </a>
                               <a href="DeleteUsers?id=<%=dtos.get(i).getId_user()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                          </tr>
