@@ -44,12 +44,12 @@
             <li><a><i class="fa fa-table"></i> Trabajo <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="logwork.jsp">Registrar trabajo</a></li>
-                    <li><a href="tables_dynamic.html">Ver trabajo</a></li>
+                    <li><a href="viework.jsp">Ver trabajo</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-bar-chart-o"></i>Estadisticas<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="chartjs.html">Graficas</a></li>
+                    <li><a href="graphics.jsp">Graficas</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-clone"></i>Historial<span class="fa fa-chevron-down"></span></a>

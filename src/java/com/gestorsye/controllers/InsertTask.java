@@ -53,7 +53,7 @@ public class InsertTask extends HttpServlet {
         TasksDao dao = new TasksDao();
         dao.create(dto);
               
-        response.sendRedirect("admintasks.jsp");
+        response.sendRedirect("ViewTasks");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

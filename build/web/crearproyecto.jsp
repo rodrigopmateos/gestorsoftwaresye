@@ -102,20 +102,7 @@
                                                               data-parsley-validation-threshold="10"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Partipantes</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select class="form-control tokenize-demo" multiple  tabindex="-1" name="participants">
-                                                        <option></option>
-                                                        <%                                                            for (int i = 0; i < participants.size(); i++) {
-                                                        %>
-                                                        <option value="<%= participants.get(i).getId_user()%>"><%= participants.get(i).getName()%></option>                                                        
-                                                        <%
-                                                            }
-                                                        %>
-                                                    </select>
-                                                    <script>$('.tokenize-demo').tokenize2();</script>
-                                                </div>
+                                            <div class="form-group">                                                
                                             </div>
                                             <div class="ln_solid"></div>
                                             <div class="form-group" >
