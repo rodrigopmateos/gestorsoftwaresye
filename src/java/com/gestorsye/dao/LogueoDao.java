@@ -44,7 +44,7 @@ public class LogueoDao {
             Logger.getLogger(LogueoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (bdUser.equals(user) && bdPass.equals(pass) || user.equals("admin") && pass.equals("admin")) {
+        if (bdUser.equals(user) && bdPass.equals(pass)) {
             logueo = true;
         } else {
             logueo = false;
@@ -53,11 +53,10 @@ public class LogueoDao {
     }
 
     public UsersDto getUser(String user, String pass) {
-              UsersDto dto = new UsersDto();
+              UsersDto dto = null;
         try {
       
-            ResultSet rs;
-            
+            ResultSet rs;            
             PreparedStatement ps;
             
             ps = con.getConexion().prepareStatement(READUSER);
@@ -66,6 +65,7 @@ public class LogueoDao {
             rs = ps.executeQuery();
             
             while (rs.next()) {
+            dto = new UsersDto();
             dto.setId_user(rs.getInt(1));
             dto.setId_profile(rs.getInt(2));
             dto.setName(rs.getString(3));
@@ -78,7 +78,7 @@ public class LogueoDao {
            
         } catch (SQLException ex) {
             Logger.getLogger(LogueoDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }   
          return dto;
     }
 
