@@ -32,12 +32,12 @@ public class LoginController extends HttpServlet {
         String pass = request.getParameter("txt_password");   
         
         dto=dao.getUser(user, pass);
-        if(dto!=null){           
+        if(dto!= null){           
            request.getSession().setAttribute("user", dto);
            sesion.setAttribute("usuarioSesion", dto);
            response.sendRedirect("dashboard.jsp");
         }else{
-           response.sendRedirect("index.jsp");
+           response.sendRedirect("index.jsp");           
            logueo=false;
            request.getSession().setAttribute("logueo", logueo);
         }

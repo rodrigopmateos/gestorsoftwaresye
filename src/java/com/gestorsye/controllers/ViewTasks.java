@@ -39,7 +39,7 @@ public class ViewTasks extends HttpServlet {
         tareas=dao.selectAll();
         request.getSession().setAttribute("tareas", tareas);
         
-        request.getRequestDispatcher("admintasks.jsp").forward(request, response);
+        response.sendRedirect("admintasks.jsp");
                 
     }
 

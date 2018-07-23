@@ -1,7 +1,9 @@
+<%@page import="com.gestorsye.dto.ProjectsDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gestorsye.dto.TasksDto"%>
 <%
+    ProjectsDto project = (ProjectsDto) request.getSession().getAttribute("dto");
     ArrayList<TasksDto> dtos = (ArrayList<TasksDto>) request.getSession().getAttribute("tareas");
 %>
 <!DOCTYPE html>
@@ -23,8 +25,28 @@
         <link href="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css"/>
         <!-- Custom Theme Style -->
         <link href="${pageContext.request.contextPath}/assets/css/custom.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Datatables -->
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">       
+
+
+        <link href="${pageContext.request.contextPath}/assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+        <!-- bootstrap-datetimepicker -->
+        <link href="${pageContext.request.contextPath}/assets/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+        <!-- Ion.RangeSlider -->
+        <link href="${pageContext.request.contextPath}/assets/vendors/normalize-css/normalize.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+        <!-- Bootstrap Colorpicker -->
+        <link href="${pageContext.request.contextPath}/assets/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+        <link href="${pageContext.request.contextPath}/assets/vendors/cropper/dist/cropper.min.css" rel="stylesheet">
 
     </head>
+
 
     <body class="nav-md">
         <div class="container body">
@@ -60,74 +82,71 @@
                         <br>
                         <br>
                         <!--Aqui va todo el contenido nuevo-->
+                        <div class="x_panel">
                         <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1">Agregar</a>
+                        </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Listado de tareas</h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
+                                    <h2>Listado de tareas<%= project.getId_project()%></h2>                                    
                                     <div class="clearfix"></div>
                                 </div>
 
                                 <div class="x_content">                                    
 
                                     <div class="table-responsive">
-                                        <table class="table table-striped jambo_table bulk_action">
+                                        <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr class="headings">                                                                                                                                                            
-                                                    <th class="column-title">Titulo </th>
-                                                    <th class="column-title">Descripcion </th>
+                                                    <th class="column-title">Titulo </th>                                                    
                                                     <th class="column-title">Tipo de tarea</th>
                                                     <th class="column-title">Prioridad </th>
                                                     <th class="column-title">Tiempo estimado </th>
                                                     <th class="column-title">Fecha de entrega </th>
                                                     <th class="column-title">Informante </th>
                                                     <th class="column-title">Responsable</th>
-                                                    <th class="column-title">Status</th>                                                    
+                                                    <th class="column-title">Status</th>         
+                                                    <th class="column-title">Opciones</th>         
 
                                                 </tr>
                                             </thead>
-
-                                            <tbody>
-                                                <%                           
-                                                for (int i = 0; i < dtos.size(); i++) {
+                                            <tbody>   
+                                                <%                                                    for (int i = 0; i < dtos.size(); i++) {
                                                 %>
                                                 <tr class="odd pointer">
 
-                                                    <td > <%=dtos.get(i).getTitle()%></th>
-                                                    <td ><%=dtos.get(i).getDescription()%> </th>
-                                                    <td ><%=dtos.get(i).getTypeTask()%></th>
-                                                    <td ><%=dtos.get(i).getPriority()%></th>
-                                                    <td ><%=dtos.get(i).getEstimatedTime()%></th>
-                                                    <td ><%=dtos.get(i).getDeliveryDate()%></th>
-                                                    <td ><%=dtos.get(i).getId_userCreate()%></th>
-                                                    <td ><%=dtos.get(i).getId_userAssigned()%></th>
-                                                    <td ><%=dtos.get(i).getStatus_task()%></th>   
+                                                    <td ><%=dtos.get(i).getTitle()%></td>
+                                                    <td ><%=dtos.get(i).getTypeTask()%></td>
+                                                    <td ><%=dtos.get(i).getPriority()%></td>
+                                                    <td ><%=dtos.get(i).getEstimatedTime()%></td>
+                                                    <td ><%=dtos.get(i).getDeliveryDate()%></td>
+                                                    <td ><%=dtos.get(i).getId_userCreate()%></td>
+                                                    <td ><%=dtos.get(i).getId_userAssigned()%></td>
+                                                    <td ><%=dtos.get(i).getStatus_task()%></td>   
+                                                    <td>
+                                                       <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+                                                    </td>
                                                 </tr>
                                                 <%
                                                     }
                                                 %>
                                             </tbody>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                                            
                         <!--Aqui va todo el contenido nuevo-->
                     </div>
                 </div>
@@ -151,10 +170,10 @@
                         <form action="InsertTask" method="post">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Nombre de la tarea</label>
-                                <input name="title" type="text" class="form-control" id="recipient-name">
+                                <input name="title" type="text" class="form-control" id="recipient-name" required>
                                 <label for="recipient-name" class="col-form-label">Tipo de tarea</label>
                                 <div>
-                                    <select class="form-control" name="type">
+                                    <select class="form-control" name="type" required>
                                         <option>Tarea</option>
                                         <option>Error</option>
                                         <option>Error Cliente</option>
@@ -165,7 +184,7 @@
                                 </div>
                                 <label for="recipient-name" class="col-form-label">Prioridad de la tarea</label>
                                 <div>
-                                    <select class="form-control" name="priority">
+                                    <select class="form-control" name="priority" required>
                                         <option>Muy alta</option>
                                         <option>Alta</option>
                                         <option>Media</option>
@@ -174,53 +193,72 @@
                                     </select>
                                 </div>
                                 <label for="recipient-name" class="col-form-label">Descripcion de la tarea</label>
-                                <textarea class="form-control" name="description" rows="5"></textarea>
+                                <textarea class="form-control" name="description" rows="5" required></textarea>
                                 <label for="recipient-name" class="col-form-label">Fecha estimada</label>
-                                <input name="estimatedDate" type="text" class="form-control" id="recipient-name">
+                                <input name="estimatedDate" type="date" class="form-control" id="recipient-name" required>
                                 <label for="recipient-name" class="col-form-label">Fecha de entrega</label>
-                                <input name="deliveryDate" type="text" class="form-control" id="recipient-name">
+                                <input name="deliveryDate" type="date" class="form-control" id="recipient-name" required>
                                 <label for="recipient-name" class="col-form-label">Responsable</label>
                                 <div>
-                                    <select class="form-control" name="userAssigned">
+                                    <select class="form-control" name="userAssigned" required>
                                         <option value="1">Usuario 1</option>
                                         <option value="2">Usuario 2</option>                                       
                                     </select>
                                 </div>
                                 <label for="recipient-name" class="col-form-label">Status</label>
                                 <div>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control" name="status" required>
                                         <option value="Abierta">Abierta</option>
                                         <option value="Cerrada">Cerrada</option>
                                         <option value="En progreso">En progreso</option>
                                         <option value="Suspendida">Suspendida</option>
                                         <option value="Reabierta">Reabierta</option>
                                     </select>
-                                </div>
+                                </div>                      
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-primary">Crear</button>
                                 </div>
+
+                            </div>
                         </form>
-
-
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
-    <!-- Bootstrap -->
-    <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- FastClick -->
-    <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
-    <!-- NProgress -->
-    <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
+        <!-- jQuery -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- FastClick -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
+        <!-- NProgress -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/moment/min/moment.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
+        
+        <!-- iCheck -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/iCheck/icheck.min.js" type="text/javascript"></script>
+        <!-- Datatables -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/jszip/dist/jszip.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/vendors/pdfmake/build/vfs_fonts.js"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
 
+        <script>
 
-</body>
+    </body>
 </html>

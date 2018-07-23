@@ -44,7 +44,7 @@ public class UpdateUsers extends HttpServlet {
         UsersDao dao=new UsersDao();
         dao.update(dto);
         
-        request.getRequestDispatcher("UsersController").forward(request, response);
+        response.sendRedirect("UsersController");
         
         
     }

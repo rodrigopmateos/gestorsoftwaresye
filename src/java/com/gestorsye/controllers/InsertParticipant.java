@@ -56,7 +56,7 @@ public class InsertParticipant extends HttpServlet {
         }
 
         request.getSession().setAttribute("idProject", id);
-        request.getRequestDispatcher("projectsview.jsp").forward(request, response);
+        response.sendRedirect("ViewProject");
 
     }
 

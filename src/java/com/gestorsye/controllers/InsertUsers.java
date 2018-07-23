@@ -57,7 +57,7 @@ public class InsertUsers extends HttpServlet {
         UsersDao dao= new UsersDao();
         dao.create(dto);
 
-        request.getRequestDispatcher("UsersController").forward(request, response);
+        response.sendRedirect("UsersController");
 
     }
 
