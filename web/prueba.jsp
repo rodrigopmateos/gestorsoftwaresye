@@ -69,9 +69,25 @@
                                 <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                             </div>
                         </div>
+                        <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false">Default <span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="#">Action</a>
+                        </li>
+                        <li><a href="#">Another action</a>
+                        </li>
+                        <li><a href="#">Something else here</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a>
+                        </li>
+                    </ul>
+                </div>
                         <!--Aqui va todo el contenido nuevo-->
                     </div>
                 </div>
+                
                 <!-- /page content -->
 
                 <!-- footer content -->
@@ -202,13 +218,13 @@
         </div>
     </div>
     <script>
-    var el = document.getElementById('btn');
-    var txt1 = document.getElementById('tags_1');
-    
-    el.onclick=function(){
-        $('#tags').tagInput("Hola");
+        var el = document.getElementById('btn');
+        var txt1 = document.getElementById('tags_1');
 
-    }
+        el.onclick = function () {
+            $('#tags').tagInput("Hola");
+
+        }
     </script>
     <!-- jQuery -->
     <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js"></script>

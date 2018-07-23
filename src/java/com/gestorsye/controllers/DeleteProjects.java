@@ -31,8 +31,7 @@ public class DeleteProjects extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int id = Integer.parseInt(request.getParameter("id"));
-        
+        int id = Integer.parseInt(request.getParameter("id"));        
         ProjectsDao dao= new ProjectsDao();
         dao.delete(id);
         

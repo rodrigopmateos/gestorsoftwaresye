@@ -57,6 +57,14 @@
         <servlet-class>com.gestorsye.controllers.InsertParticipant</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeleteTask</servlet-name>
+        <servlet-class>com.gestorsye.controllers.DeleteTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTask</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UpdateTask</servlet-class>
+ </servlet>
+  <servlet>
         <servlet-name>ViewUser</servlet-name>
         <servlet-class>com.gestorsye.controllers.ViewUser</servlet-class>
     </servlet>
@@ -116,6 +124,14 @@
         <servlet-name>InsertParticipant</servlet-name>
         <url-pattern>/InsertParticipant</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTask</servlet-name>
+        <url-pattern>/DeleteTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTask</servlet-name>
+        <url-pattern>/UpdateTask</url-pattern>
+ </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewUser</servlet-name>
         <url-pattern>/ViewUser</url-pattern>

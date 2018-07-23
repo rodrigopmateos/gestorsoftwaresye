@@ -25,6 +25,7 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+
         HttpSession sesion = request.getSession();
         LogueoDao dao=new LogueoDao();
         UsersDto dto;

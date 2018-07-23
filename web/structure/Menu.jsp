@@ -46,7 +46,7 @@
             <li><a><i class="fa fa-desktop"></i>Tareas<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="tasks.jsp">Tareas pendientes</a></li>
-                    <li><a href="ViewTasks">Administrar Tareas</a></li>
+                    <li><a href="admintasks.jsp">Administrar Tareas</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-table"></i> Trabajo <span class="fa fa-chevron-down"></span></a>

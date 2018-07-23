@@ -1,10 +1,18 @@
+<%@page import="com.gestorsye.dao.UsersDao"%>
+<%@page import="com.gestorsye.dao.TasksDao"%>
 <%@page import="com.gestorsye.dto.ProjectsDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gestorsye.dto.TasksDto"%>
 <%
-    ProjectsDto project = (ProjectsDto) request.getSession().getAttribute("dto");
-    ArrayList<TasksDto> dtos = (ArrayList<TasksDto>) request.getSession().getAttribute("tareas");
+    //ProjectsDto project = (ProjectsDto) request.getSession().getAttribute("dto");
+    //ArrayList<TasksDto> dtos = (ArrayList<TasksDto>) request.getSession().getAttribute("tareas");
+    TasksDao dao = new TasksDao();
+    List<TasksDto> dtos = new ArrayList();
+    dtos = dao.selectAll();
+
+    UsersDao us = new UsersDao();
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,12 +91,12 @@
                         <br>
                         <!--Aqui va todo el contenido nuevo-->
                         <div class="x_panel">
-                        <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1">Agregar</a>
+                            <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1">Agregar</a>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Listado de tareas<%= project.getId_project()%></h2>                                    
+                                    <h2>Listado de tareas</h2>                                    
                                     <div class="clearfix"></div>
                                 </div>
 
@@ -100,9 +108,7 @@
                                                 <tr class="headings">                                                                                                                                                            
                                                     <th class="column-title">Titulo </th>                                                    
                                                     <th class="column-title">Tipo de tarea</th>
-                                                    <th class="column-title">Prioridad </th>
-                                                    <th class="column-title">Tiempo estimado </th>
-                                                    <th class="column-title">Fecha de entrega </th>
+                                                    <th class="column-title">Prioridad </th>                           
                                                     <th class="column-title">Informante </th>
                                                     <th class="column-title">Responsable</th>
                                                     <th class="column-title">Status</th>         
@@ -111,29 +117,34 @@
                                                 </tr>
                                             </thead>
                                             <tbody>   
-                                                <%                                                    for (int i = 0; i < dtos.size(); i++) {
+                                                <%                                                    
+                                                    for (int i = 0; i < dtos.size(); i++) {
                                                 %>
                                                 <tr class="odd pointer">
 
                                                     <td ><%=dtos.get(i).getTitle()%></td>
                                                     <td ><%=dtos.get(i).getTypeTask()%></td>
                                                     <td ><%=dtos.get(i).getPriority()%></td>
-                                                    <td ><%=dtos.get(i).getEstimatedTime()%></td>
-                                                    <td ><%=dtos.get(i).getDeliveryDate()%></td>
-                                                    <td ><%=dtos.get(i).getId_userCreate()%></td>
-                                                    <td ><%=dtos.get(i).getId_userAssigned()%></td>
+                                                    <td ><%=us.getNameById(dtos.get(i).getId_userCreate())%></td>
+                                                    <td ><a href="#"><%=us.getNameById(dtos.get(i).getId_userAssigned())%></a></td>
                                                     <td ><%=dtos.get(i).getStatus_task()%></td>   
                                                     <td>
-                                                       <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+
+                                                        <a href="ViewProject" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Ver </a>
+                                                        <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1" ><i class="fa fa-pencil"></i> Editar </a>                                                        
+                                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmacion" onclick="setId(<%=dtos.get(i).getId_task()%>)" ></i> Eliminar </a>
+                                                        <div class="btn-group">
+                                                            <button data-toggle="dropdown" class="btn btn-xs dropdown-toggle" type="button" aria-expanded="false">Accion <span class="caret"></span>
+                                                            </button>
+                                                            <ul role="menu" class="dropdown-menu">
+                                                                <li><a data-toggle="modal" data-target="#cerrar" onclick="setOpcion('Cerrada');setId(<%=dtos.get(i).getId_task()%>);changeStatus()">Cerrar</a>
+                                                                </li>
+                                                                <li><a data-toggle="modal" data-target="#suspender" onclick="setOpcion('Suspendida');setId(<%=dtos.get(i).getId_task()%>);changeStatus()">Suspender</a>
+                                                                </li>
+                                                                <li><a data-toggle="modal" data-target="#reabrir" onclick="setOpcion('Reabierta');setId(<%=dtos.get(i).getId_task()%>);changeStatus()">Reabir</a>
+                                                                </li>                                                                
+                                                            </ul>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <%
@@ -146,7 +157,7 @@
                                 </div>
                             </div>
                         </div>
-                                            
+
                         <!--Aqui va todo el contenido nuevo-->
                     </div>
                 </div>
@@ -227,6 +238,104 @@
             </div>
         </div>
 
+        <div class="modal fade" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2A3F54">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:#fff">Advertencia</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="text-align: center">
+                        <h5>¿Seguro desea eliminar esta tarea?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button onclick="deleteById()" class="btn btn-primary">Aceptar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+                        <div class="modal fade" id="reabrir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2A3F54">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:#fff">Reabrir incidencia</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="text-align: center">
+                        <h5>¿Seguro desea eliminar esta tarea?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button onclick="deleteById()" class="btn btn-primary">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        <div class="modal fade" id="suspender" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2A3F54">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:#fff">Suspender incidencia</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="text-align: center">
+                        <h5>¿Seguro desea eliminar esta tarea?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button onclick="deleteById()" class="btn btn-primary">Aceptar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+                        <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2A3F54">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:#fff">Cerrar incidencia</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="text-align: center">
+                        <h5>¿Seguro desea eliminar esta tarea?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button onclick="deleteById()" class="btn btn-primary">Aceptar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var opcion;
+            var id;
+            
+            function setId(id) {
+                this.id = id;
+            }
+            function deleteById() {
+                window.location = "DeleteTask?id=" + id;
+            }
+            function setOpcion(opcion){
+                console.log('opcion:::', opcion);
+            this.opcion=opcion;    
+            }
+            function changeStatus(){
+                window.location = "UpdateTask?id=" + id +"&opcion="+opcion;
+            }
+        </script>
+
         <!-- jQuery -->
         <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
@@ -236,7 +345,7 @@
         <!-- NProgress -->
         <script src="${pageContext.request.contextPath}/assets/vendors/moment/min/moment.min.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
-        
+
         <!-- iCheck -->
         <script src="${pageContext.request.contextPath}/assets/vendors/iCheck/icheck.min.js" type="text/javascript"></script>
         <!-- Datatables -->
@@ -260,5 +369,5 @@
 
         <script>
 
-    </body>
-</html>
+        </body>
+        </html>
