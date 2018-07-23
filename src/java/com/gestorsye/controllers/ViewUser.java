@@ -5,8 +5,7 @@
  */
 package com.gestorsye.controllers;
 
-import com.gestorsye.conexion.Conexion;
-import com.gestorsye.dao.LogueoDao;
+import com.gestorsye.dao.UsersDao;
 import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,37 +13,32 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author gato-
+ */
+public class ViewUser extends HttpServlet {
 
-public class LoginController extends HttpServlet {
-    
-    private static final Conexion con = Conexion.abrirConexion();
-    public boolean logueo=true;
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
+        int id = Integer.parseInt(request.getParameter("id"));        
+        UsersDto dto=new UsersDto();
+        UsersDao dao= new UsersDao();
+        dto=dao.select(id);
+        request.getSession().setAttribute("user", dto);
+        request.getRequestDispatcher("usersView.jsp").forward(request, response);
         
-
-        HttpSession sesion = request.getSession();
-        LogueoDao dao=new LogueoDao();
-        UsersDto dto;
-        String user = request.getParameter("txt_username");
-        String pass = request.getParameter("txt_password");   
-        
-        dto=dao.getUser(user, pass);
-        if(dto!= null){           
-           request.getSession().setAttribute("user", dto);
-           sesion.setAttribute("usuarioSesion", dto);
-           response.sendRedirect("dashboard.jsp");
-        }else{
-           response.sendRedirect("index.jsp");           
-           logueo=false;
-           request.getSession().setAttribute("logueo", logueo);
-        }
-            
-        
-         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
