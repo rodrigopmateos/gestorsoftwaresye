@@ -134,20 +134,16 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><small>Users</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                         <h2><small></small></h2>
+                        </div>
+
+                       <div class="col-md-1 col-sm-12 col-xs-12">
+                         <a href="#" onclick="openModalNewUSer()" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Añadir nuevo usuario </a>
+                       </div>
                     <div class="clearfix"></div>
                   </div>
+
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
                         Usuarios activos actualmente

@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class LoginController extends HttpServlet {
@@ -24,7 +25,7 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
+        HttpSession sesion = request.getSession();
         LogueoDao dao=new LogueoDao();
         UsersDto dto;
         String user = request.getParameter("txt_username");
@@ -33,6 +34,7 @@ public class LoginController extends HttpServlet {
         dto=dao.getUser(user, pass);
         if(dto!=null){           
            request.getSession().setAttribute("user", dto);
+           sesion.setAttribute("usuarioSesion", dto);
            response.sendRedirect("dashboard.jsp");
         }else{
            response.sendRedirect("index.jsp");
