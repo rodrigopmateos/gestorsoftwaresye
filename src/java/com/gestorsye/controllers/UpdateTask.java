@@ -5,14 +5,9 @@
  */
 package com.gestorsye.controllers;
 
-import com.gestorsye.dao.ParticipantsDao;
-import com.gestorsye.dao.ProjectsDao;
-import com.gestorsye.dao.UsersDao;
-import com.gestorsye.dto.ProjectsDto;
-import com.gestorsye.dto.UsersDto;
+import com.gestorsye.dao.TasksDao;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jose
+ * @author gato-
  */
-public class InsertParticipant extends HttpServlet {
+public class UpdateTask extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,29 +30,15 @@ public class InsertParticipant extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //Se obtiene el id del proyecto con el cual llamamos a la funcion 'select' para 
-        //obetner los datos del proyecto seleccionado.
-        int id = Integer.parseInt(request.getParameter("id"));
-//        ProjectsDto dto = new ProjectsDto();
-//        ProjectsDao dao = new ProjectsDao();
-//        dto = dao.select(id);
-//        request.getSession().setAttribute("dto", dto);
-
-        //Se utiliza la funcion 'selectParticipants' para obtener
-        //los participantes del proyecto a la cual le pasamos el parametro 
-        //del 
-        ParticipantsDao dao = new ParticipantsDao();
-        String[] participants = request.getParameterValues("participants");
-        int var = 0;
-        for (String participant : participants) {
-            var = Integer.parseInt(participant);
-            dao.add(id, var);
-        }
-
-        request.getSession().setAttribute("idProject", id);
-        response.sendRedirect("projectsview.jsp");
-
+        
+        int id= Integer.parseInt(request.getParameter("id"));
+        String opcion =request.getParameter("opcion");
+                
+        TasksDao dao=new TasksDao();
+        dao.changeStatus(id, opcion);
+        
+        response.sendRedirect("admintasks.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

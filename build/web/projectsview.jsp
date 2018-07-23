@@ -1,3 +1,4 @@
+<%@page import="com.gestorsye.dao.UsersDao"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.gestorsye.dto.ProjectsDto"%>
@@ -11,8 +12,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <%
             ProjectsDto projects = (ProjectsDto) request.getSession().getAttribute("dto");
-            List<UsersDto> sinAsignar = (ArrayList<UsersDto>) request.getSession().getAttribute("sinAsignar");
             List<UsersDto> asignados = (ArrayList<UsersDto>) request.getSession().getAttribute("asignados");
+
+            UsersDao udao = new UsersDao();
+            List<UsersDto> sinAsignar = new ArrayList();
+            sinAsignar = udao.selectPartipants();
         %>
         <title>Gentelella Alela! | </title>
         <!-- jQuery -->
@@ -120,25 +124,25 @@
                                                                 <th scope="col">Usuario</th>
                                                                 <th scope="col">Correo</th>
                                                                 <th scope="col">Area</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>   
-                                                <tr>
-                                                             <%                                                
-                                                                for (int i = 0; i < asignados.size(); i++) {
-                                                             %>
-                                                <tr>
-                                                    <td><%= asignados.get(i).getName()%></td>
-                                                    <td><%=asignados.get(i).getUser()%></td>
-                                                    <td><%=asignados.get(i).getEmail()%></td>
-                                                    <td><%=asignados.get(i).getArea()%></td>
-                                                      
-                                                    
-                                                    </tr>
-                                                <% }%>
+                                                            <tr>
+                                                                <%
+                                                                    for (int i = 0; i < asignados.size(); i++) {
+                                                                %>
+                                                            <tr>
+                                                                <td><%= asignados.get(i).getName()%></td>
+                                                                <td><%=asignados.get(i).getUser()%></td>
+                                                                <td><%=asignados.get(i).getEmail()%></td>
+                                                                <td><%=asignados.get(i).getArea()%></td>
 
-                                                    </tr>
+
+                                                            </tr>
+                                                            <% }%>
+
+                                                            </tr>
                                                         </tbody>
                                                     </table>
 

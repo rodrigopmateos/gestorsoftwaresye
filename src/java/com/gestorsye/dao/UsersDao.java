@@ -24,7 +24,8 @@ public class UsersDao implements InterfaceDao<UsersDto> {
     private static final String SQL_READ = "SELECT * FROM users WHERE id_user = ?";
     private static final String SQL_READALL = "SELECT * FROM users";
     private static final String SQL_PARTICIPANTS = "SELECT id_user, name from users u LEFT JOIN collaborators c on u.id_user=c.Cid_user WHERE c.Cid_user is null";
-
+    private static final String SQL_NAME="SELECT name FROM `users` where id_user = ?";
+    
     private static final Conexion con = Conexion.abrirConexion();
 
     public UsersDao() {
@@ -182,6 +183,30 @@ public class UsersDao implements InterfaceDao<UsersDto> {
             con.cerrarConexion();
         }
         return users;
+    }
+    public String getNameById(Object key){
+        String name="";
+        PreparedStatement ps;
+        ResultSet rs;
+
+        try {
+            ps = con.getConexion().prepareStatement(SQL_NAME);
+            ps.setInt(1, (int) key);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+            name =rs.getString(1);
+            }
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            con.cerrarConexion();
+        }
+        
+        return name;        
     }
 
 }

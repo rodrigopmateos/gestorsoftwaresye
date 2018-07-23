@@ -255,7 +255,6 @@
                 this.id = id;
             }
             function deleteById() {
-                console.log('deleteById');
                 window.location = "DeleteProjects?id=" + id;
             }
         </script>

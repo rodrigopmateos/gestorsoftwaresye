@@ -23,7 +23,7 @@ public class TasksDao implements InterfaceDao<TasksDto> {
 
      private static final String SQL_INSERT = "INSERT INTO tasks (name_user_assigned, title, description, name_type_task, name_priority, delivery_date, estimated_time, status_task) VALUES(?,?,?,?,?,?,?,?)";
     private static final String SQL_DELETE = " DELETE FROM tasks WHERE id_task= ?";
-    private static final String SQL_UPDATE = "UPDATE tasks SET = ? WHERE id_task=?";
+    private static final String SQL_UPDATE = "UPDATE tasks SET status_task= ? WHERE id_task=?";
     private static final String SQL_READ = "SELECT * FROM tasks WHERE id_task = ?";
     private static final String SQL_READALL = "SELECT * FROM tasks";
     private static final Conexion con = Conexion.abrirConexion();
@@ -55,7 +55,22 @@ public class TasksDao implements InterfaceDao<TasksDto> {
 
     @Override
     public boolean delete(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         boolean delete= true;
+        try{
+        PreparedStatement ps;
+            ps = con.getConexion().prepareStatement(SQL_DELETE);
+            ps.setInt(1, (int)key);
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            delete= false;
+            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            con.cerrarConexion();
+        }
+        return delete;
     }
 
 
@@ -109,4 +124,25 @@ public class TasksDao implements InterfaceDao<TasksDto> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public boolean changeStatus(Object key, String opcion)
+    {
+        boolean update= true;
+        try{
+        PreparedStatement ps;
+            ps = con.getConexion().prepareStatement(SQL_UPDATE);            
+            ps.setString(1, opcion);
+            ps.setInt(2, (int)key);
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            update= false;
+            Logger.getLogger(TasksDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            con.cerrarConexion();
+        }
+        return update;            
+    }
+        
 }

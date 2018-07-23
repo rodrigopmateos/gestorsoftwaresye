@@ -25,7 +25,7 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         
         
-        LogueoDao dao=new LogueoDao();
+        LogueoDao dao = new LogueoDao();
         UsersDto dto;
         String user = request.getParameter("txt_username");
         String pass = request.getParameter("txt_password");   
