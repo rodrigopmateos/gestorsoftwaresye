@@ -56,6 +56,10 @@
         <servlet-name>InsertParticipant</servlet-name>
         <servlet-class>com.gestorsye.controllers.InsertParticipant</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewUser</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>InsertParticipant</servlet-name>
         <url-pattern>/InsertParticipant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUser</servlet-name>
+        <url-pattern>/ViewUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

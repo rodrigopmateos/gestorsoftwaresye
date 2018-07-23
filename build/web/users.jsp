@@ -12,7 +12,6 @@
         <%
             ArrayList<UsersDto> dtos = (ArrayList<UsersDto>) request.getSession().getAttribute("dtos");
             ArrayList<ProfilesDto> dtosprofiles = (ArrayList<ProfilesDto>) request.getSession().getAttribute("dtosprofiles");
-
         %>
         <title>Gestor Sye | </title>
 
@@ -135,20 +134,16 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><small>Users</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                         <h2><small></small></h2>
+                        </div>
+
+                       <div class="col-md-1 col-sm-12 col-xs-12">
+                         <a href="#" onclick="openModalNewUSer()" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Añadir nuevo usuario </a>
+                       </div>
                     <div class="clearfix"></div>
                   </div>
+
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
                         Usuarios activos actualmente
@@ -180,7 +175,7 @@
                           <td><%= dtos.get(i).getPass()%></td>
                           
                           <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
-                          <td><a href="ViewProject?id=<%=dtos.get(i).getId_user()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                          <td><a href="ViewUser?id=<%=dtos.get(i).getId_user()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                               <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEditUser" onclick="setData(<%=dtos.get(i).getId_user()%>, '<%=dtos.get(i).getId_profile()%>','<%=dtos.get(i).getName()%>', '<%=dtos.get(i).getEmail()%>', '<%=dtos.get(i).getArea()%>', '<%=dtos.get(i).getUser()%>', '<%=dtos.get(i).getPass()%>', '<%=dtos.get(i).getStatus()%>'  )" ><i class="fa fa-pencil"></i> Edit </a>
                               <a href="DeleteUsers?id=<%=dtos.get(i).getId_user()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                          </tr>
@@ -322,7 +317,7 @@
         <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
         
             <!-- iCheck -->
-    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendors/iCheck/icheck.min.js"></script>
     <!-- Datatables -->
     <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

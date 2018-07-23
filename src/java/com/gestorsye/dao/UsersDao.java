@@ -19,10 +19,11 @@ import java.util.logging.Logger;
 public class UsersDao implements InterfaceDao<UsersDto> {
 
     private static final String SQL_INSERT = "INSERT INTO users (id_profile, name, email, area, user, pass, status) VALUES(?,?,?,?,?,?,?)";
-    private static final String SQL_DELETE = " DELETE FROM users WHERE id_user= ?";
+    //private static final String SQL_DELETE = " DELETE FROM users WHERE id_user= ?";
+    private static final String SQL_DELETE = "UPDATE users SET status=0 WHERE id_user= ?";
     private static final String SQL_UPDATE = "UPDATE users SET id_profile= ?, name=?, email=?, area=?, user=?, pass=?, status=? WHERE id_user = ?";
     private static final String SQL_READ = "SELECT * FROM users WHERE id_user = ?";
-    private static final String SQL_READALL = "SELECT * FROM users";
+    private static final String SQL_READALL = "SELECT * FROM users WHERE status=1";
     private static final String SQL_PARTICIPANTS = "SELECT id_user, name from users u LEFT JOIN collaborators c on u.id_user=c.Cid_user WHERE c.Cid_user is null";
 
     private static final Conexion con = Conexion.abrirConexion();

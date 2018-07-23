@@ -1,6 +1,14 @@
 <%@page import="com.gestorsye.dto.UsersDto"%>
 <%
+    UsersDto usr;
+    if(session.getAttribute("usuarioSesion") !=null){
     UsersDto dto = (UsersDto) request.getSession().getAttribute("user");
+    usr = (UsersDto)session.getAttribute("usuarioSesion");
+    }else{
+%>
+    <jsp:forward page="index.jsp"/>
+<%
+    }
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!-- menu profile quick info -->
@@ -11,7 +19,7 @@
     </div>
     <div class="profile_info">
         <span>Welcome,</span>
-        <h2><%= dto.getUser()%></h2>
+        <h2><%= usr.getName()%></h2>
     </div>
     <div class="clearfix"></div>
 </div>
@@ -92,7 +100,7 @@
     <a data-toggle="tooltip" data-placement="top" title="Lock">
         <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
     </a>
-    <a data-toggle="tooltip" data-placement="top" title="Logout" href="index.jsp">
+    <a data-toggle="tooltip" data-placement="top" title="Logout" href="cerrarSesion.jsp">
         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
     </a>
 </div>
