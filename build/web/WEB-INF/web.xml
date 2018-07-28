@@ -63,10 +63,14 @@
     <servlet>
         <servlet-name>UpdateTask</servlet-name>
         <servlet-class>com.gestorsye.controllers.UpdateTask</servlet-class>
- </servlet>
-  <servlet>
+    </servlet>
+    <servlet>
         <servlet-name>ViewUser</servlet-name>
         <servlet-class>com.gestorsye.controllers.ViewUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PruebaServlet</servlet-name>
+        <servlet-class>com.gestorsye.controllers.PruebaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -131,10 +135,14 @@
     <servlet-mapping>
         <servlet-name>UpdateTask</servlet-name>
         <url-pattern>/UpdateTask</url-pattern>
- </servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewUser</servlet-name>
         <url-pattern>/ViewUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PruebaServlet</servlet-name>
+        <url-pattern>/PruebaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -55,8 +55,8 @@ public class ParticipantsDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                dto.setId_user(rs.getInt(1));
-                dto.setId_profile(rs.getInt(2));
+                dto.setIdUser(rs.getInt(1));
+                dto.setIdProfile(rs.getInt(2));
                 dto.setName(rs.getString(3));
                 dto.setEmail(rs.getString(4));
                 dto.setArea(rs.getString(5));

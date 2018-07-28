@@ -40,7 +40,7 @@ public class UsersDao implements InterfaceDao<UsersDto> {
             PreparedStatement ps;
             ps = con.getConexion().prepareStatement(SQL_INSERT);
             //ps.setS(1,"null" );
-            ps.setInt(1, dto.getId_profile());
+            ps.setInt(1, dto.getIdProfile());
             ps.setString(2, dto.getName());
             ps.setString(3, dto.getEmail());
             ps.setString(4, dto.getArea());
@@ -89,14 +89,14 @@ public class UsersDao implements InterfaceDao<UsersDto> {
             PreparedStatement ps;
         try {
             ps = con.getConexion().prepareStatement(SQL_UPDATE);
-            ps.setInt(1, dto.getId_profile());
+            ps.setInt(1, dto.getIdProfile());
             ps.setString(2, dto.getName());
             ps.setString(3, dto.getEmail());
             ps.setString(4, dto.getArea());
             ps.setString(5, dto.getUser());
             ps.setString(6, dto.getPass());
             ps.setInt(7, dto.getStatus());
-            ps.setInt(8, dto.getId_user());
+            ps.setInt(8, dto.getIdUser());
             ps.executeUpdate();
             
             update=true;
@@ -171,7 +171,7 @@ public class UsersDao implements InterfaceDao<UsersDto> {
             while (rs.next()) {
                 
                 UsersDto dto = new UsersDto();
-                dto.setId_user(rs.getInt(1));
+                dto.setIdUser(rs.getInt(1));
                 dto.setName(rs.getString(2));
 
                 users.add(dto);
