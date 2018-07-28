@@ -1,4 +1,9 @@
-        <!-- top navigation -->
+<%@page import="com.gestorsye.dto.UsersDto"%>
+<%
+        UsersDto usr2 = (UsersDto)session.getAttribute("usuarioSesion");
+%>
+<c:set var="context" value="${pageContext.request.contextPath}" />  
+<!-- top navigation -->
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
@@ -9,7 +14,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/images/img.jpg" alt="">John Doe
+                    <img src="assets/images/img.jpg" alt=""><%= usr2.getName()%>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -35,7 +40,7 @@
                       <a>
                         <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
                         <span>
-                          <span>John Smith</span>
+                          <span><%= usr2.getName()%></span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
@@ -47,7 +52,7 @@
                       <a>
                         <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
                         <span>
-                          <span>John Smith</span>
+                          <span><%= usr2.getName()%></span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
@@ -59,7 +64,7 @@
                       <a>
                         <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
                         <span>
-                          <span>John Smith</span>
+                          <span><%= usr2.getName()%></span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
@@ -71,7 +76,7 @@
                       <a>
                         <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
                         <span>
-                          <span>John Smith</span>
+                          <span><%= usr2.getName()%></span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">

@@ -7,50 +7,71 @@ package com.gestorsye.dto;
 
 public class TasksDto {
 
-  
-          private int id_task;
-          private int id_project;
-          private int id_userCreate;
-          private int id_userAssigned;
-          private String title;
-          private String description;
-          private String typeTask;
-          private String priority;
-          private String deliveryDate;
-          private String estimatedTime;
-          private int status;
+    private int idTask;
+    private int idProject;
+    private int nameCreator;
+    private int userAssigned;
+    private String title;
+    private String description;
+    private String typeTask;
+    private String priority;
+    private String deliveryDate;
+    private String estimatedTime;
+    private String statusTask;
+    private int status;
 
-    public int getId_task() {
-        return id_task;
+    public TasksDto(int idTask, int idProject, int nameCreator, int userAssigned, String title, String description, String typeTask, String priority, String deliveryDate, String estimatedTime, String statusTask, int status) {
+        this.idTask = idTask;
+        this.idProject = idProject;
+        this.nameCreator = nameCreator;
+        this.userAssigned = userAssigned;
+        this.title = title;
+        this.description = description;
+        this.typeTask = typeTask;
+        this.priority = priority;
+        this.deliveryDate = deliveryDate;
+        this.estimatedTime = estimatedTime;
+        this.statusTask = statusTask;
+        this.status = status;
     }
 
-    public void setId_task(int id_task) {
-        this.id_task = id_task;
+    public TasksDto() {
     }
 
-    public int getId_project() {
-        return id_project;
+    public int getIdTask() {
+        return idTask;
     }
 
-    public void setId_project(int id_project) {
-        this.id_project = id_project;
+    public void setIdTask(int idTask) {
+        this.idTask = idTask;
     }
 
-    public int getId_userCreate() {
-        return id_userCreate;
+    public int getIdProject() {
+        return idProject;
     }
 
-    public void setId_userCreate(int id_userCreate) {
-        this.id_userCreate = id_userCreate;
+    public void setIdProject(int idProject) {
+        this.idProject = idProject;
     }
 
-    public int getId_userAssigned() {
-        return id_userAssigned;
+    public int getNameCreator() {
+        return nameCreator;
     }
 
-    public void setId_userAssigned(int id_userAssigned) {
-        this.id_userAssigned = id_userAssigned;
+    public void setNameCreator(int nameCreator) {
+        this.nameCreator = nameCreator;
     }
+
+    public int getUserAssigned() {
+        return userAssigned;
+    }
+
+    public void setUserAssigned(int UserAssigned) {
+        this.userAssigned = UserAssigned;
+    }
+
+   
+
 
     public String getTitle() {
         return title;
@@ -107,7 +128,14 @@ public class TasksDto {
     public void setStatus(int status) {
         this.status = status;
     }
-          
-          
-          
+
+    public String getStatusTask() {
+        return statusTask;
+    }
+
+    public void setStatusTask(String statusTask) {
+        this.statusTask = statusTask;
+    }
+
+
 }

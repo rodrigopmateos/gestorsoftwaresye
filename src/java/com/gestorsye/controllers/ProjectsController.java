@@ -7,6 +7,7 @@ package com.gestorsye.controllers;
 
 import com.gestorsye.dao.ProjectsDao;
 import com.gestorsye.dto.ProjectsDto;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -37,12 +38,18 @@ public class ProjectsController extends HttpServlet {
 
             
             
-            ProjectsDao dao = new ProjectsDao();
+            ProjectsDao dao = new ProjectsDao();          
             List<ProjectsDto> dtos =new ArrayList();
-            dtos = dao.selectAll();
-            request.getSession().setAttribute("dtos", dtos);
-            request.getRequestDispatcher("projects.jsp").forward(request, response);
+            List<ProjectsDto> projectsbycreator =new ArrayList();
             
+            dtos = dao.selectAll();                        
+            request.getSession().setAttribute("dtos", dtos);
+            
+            UsersDto user = (UsersDto) request.getSession().getAttribute("user");
+            projectsbycreator = dao.selectbycreator(user.getIdUser());
+            request.getSession().setAttribute("projectsbycreator", projectsbycreator);
+                        
+            response.sendRedirect("projects.jsp");
             
         }
 

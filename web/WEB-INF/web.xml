@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>controllers.LoginController</servlet-class>
+        <servlet-class>com.gestorsye.controllers.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProjectsController</servlet-name>
@@ -11,6 +11,66 @@
     <servlet>
         <servlet-name>InsertProjects</servlet-name>
         <servlet-class>com.gestorsye.controllers.InsertProjects</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProjects</servlet-name>
+        <servlet-class>com.gestorsye.controllers.DeleteProjects</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProject</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewProject</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProjects</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UpdateProjects</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UsersController</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UsersController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertUsers</servlet-name>
+        <servlet-class>com.gestorsye.controllers.InsertUsers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteUsers</servlet-name>
+        <servlet-class>com.gestorsye.controllers.DeleteUsers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewTasks</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewTasks</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertTask</servlet-name>
+        <servlet-class>com.gestorsye.controllers.InsertTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewParticipants</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewParticipants</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUsers</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UpdateUsers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertParticipant</servlet-name>
+        <servlet-class>com.gestorsye.controllers.InsertParticipant</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTask</servlet-name>
+        <servlet-class>com.gestorsye.controllers.DeleteTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTask</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UpdateTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewUser</servlet-name>
+        <servlet-class>com.gestorsye.controllers.ViewUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PruebaServlet</servlet-name>
+        <servlet-class>com.gestorsye.controllers.PruebaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -23,6 +83,66 @@
     <servlet-mapping>
         <servlet-name>InsertProjects</servlet-name>
         <url-pattern>/InsertProjects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProjects</servlet-name>
+        <url-pattern>/DeleteProjects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProject</servlet-name>
+        <url-pattern>/ViewProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProjects</servlet-name>
+        <url-pattern>/UpdateProjects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsersController</servlet-name>
+        <url-pattern>/UsersController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertUsers</servlet-name>
+        <url-pattern>/InsertUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewTasks</servlet-name>
+        <url-pattern>/ViewTasks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertTask</servlet-name>
+        <url-pattern>/InsertTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUsers</servlet-name>
+        <url-pattern>/DeleteUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewParticipants</servlet-name>
+        <url-pattern>/ViewParticipants</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUsers</servlet-name>
+        <url-pattern>/UpdateUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertParticipant</servlet-name>
+        <url-pattern>/InsertParticipant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTask</servlet-name>
+        <url-pattern>/DeleteTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTask</servlet-name>
+        <url-pattern>/UpdateTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUser</servlet-name>
+        <url-pattern>/ViewUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PruebaServlet</servlet-name>
+        <url-pattern>/PruebaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

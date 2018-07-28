@@ -7,30 +7,38 @@ package com.gestorsye.dto;
 
 public class ProjectsDto {
 
-  private int id_project;
-  private int id_user;
-  private String project_name;
+  private int idProject;
+  private int idUser;
+  private String projectName;
   private String description;
   private int progress;
-  private int status;
+  private String status;
   private String fecha;
 
     public ProjectsDto() {
     }
 
-    public ProjectsDto(int id_project, int id_user, String project_name, String fecha,String description, int progress, int status) {
-        this.id_project = id_project;
-        this.id_user = id_user;
-        this.project_name = project_name;
+    public ProjectsDto(int idProject, int idUser, String project_name, String fecha,String description, int progress, String status) {
+        this.idProject = idProject;
+        this.idUser = idUser;
+        this.projectName = project_name;
+        this.fecha=fecha;
         this.description = description;
         this.progress = progress;
         this.status = status;
     }
 
     public ProjectsDto(String project_name, String description, String fecha) {
-        this.project_name = project_name;
+        this.projectName = project_name;
         this.description = description;
         this.fecha = fecha;
+    }
+    public ProjectsDto(int idProject,String projectName, String description, int progress, String status){
+        this.idProject=idProject;
+        this.projectName=projectName;
+        this.description=description;
+        this.progress=progress;
+        this.status=status;
     }
     
 
@@ -42,29 +50,31 @@ public class ProjectsDto {
         this.fecha = fecha;
     }
 
-    public int getId_project() {
-        return id_project;
+    public int getIdProject() {
+        return idProject;
     }
 
-    public void setId_project(int id_project) {
-        this.id_project = id_project;
+    public void setIdProject(int idProject) {
+        this.idProject = idProject;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public String getProject_name() {
-        return project_name;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setProject_name(String project_name) {
-        this.project_name = project_name;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
+
+   
 
     public String getDescription() {
         return description;
@@ -82,11 +92,11 @@ public class ProjectsDto {
         this.progress = progress;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
   

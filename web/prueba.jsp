@@ -56,10 +56,38 @@
                         <a class="btn btn-primary" data-toggle="modal" data-target="#modal1">Ir a modal</a>
                         <a class="btn btn-primary" data-toggle="modal" data-target="#modal2">Ir a modal2</a>
                         <a class="btn btn-primary" data-toggle="modal" data-target="#modal3">Ir a modal3</a>
+                        <br>
+                        <br>
+                        <input type="text" id="txt1">
+                        <input type="text" id="txt2">
+                        <button id="btn">Pasar</button>
 
+                        <div class="control-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Input Tags</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input id="tags_1" type="text" class="tags form-control" value="social, adverts, sales" />
+                                <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false">Default <span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="#">Action</a>
+                        </li>
+                        <li><a href="#">Another action</a>
+                        </li>
+                        <li><a href="#">Something else here</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a>
+                        </li>
+                    </ul>
+                </div>
                         <!--Aqui va todo el contenido nuevo-->
                     </div>
                 </div>
+                
                 <!-- /page content -->
 
                 <!-- footer content -->
@@ -153,8 +181,8 @@
             </div>
         </div>
     </div>
-    
-        <!--modal-->
+
+    <!--modal-->
     <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -177,7 +205,7 @@
                             <input type="date" class="form-control" id="recipient-name">
                             <label for="recipient-name" class="col-form-label">Responsable</label>
                             <input type="date" class="form-control" id="recipient-name">
-                            
+
 
 
                         </div>
@@ -189,9 +217,17 @@
             </div>
         </div>
     </div>
+    <script>
+        var el = document.getElementById('btn');
+        var txt1 = document.getElementById('tags_1');
 
+        el.onclick = function () {
+            $('#tags').tagInput("Hola");
+
+        }
+    </script>
     <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- FastClick -->
@@ -200,7 +236,7 @@
     <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
     <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
-
-
+    <!-- jQuery Tags Input -->
+    <script src="${pageContext.request.contextPath}/assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js" type="text/javascript"></script>
 </body>
 </html>

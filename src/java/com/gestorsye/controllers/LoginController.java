@@ -6,12 +6,15 @@
 package com.gestorsye.controllers;
 
 import com.gestorsye.conexion.Conexion;
+import com.gestorsye.dao.LogueoDao;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class LoginController extends HttpServlet {
@@ -22,16 +25,20 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
+
+        HttpSession sesion = request.getSession();
+        LogueoDao dao=new LogueoDao();
+        UsersDto dto;
         String user = request.getParameter("txt_username");
         String pass = request.getParameter("txt_password");   
         
-        request.getSession().setAttribute("user", user);
-        
-        if(user.equals("user") && pass.equals("pass")){
-           request.getRequestDispatcher("index.jsp").forward(request, response);
+        dto=dao.getUser(user, pass);
+        if(dto!= null){           
+           request.getSession().setAttribute("user", dto);
+           sesion.setAttribute("usuarioSesion", dto);
+           response.sendRedirect("dashboard.jsp");
         }else{
-           request.getRequestDispatcher("login.jsp").forward(request, response);
+           response.sendRedirect("index.jsp");           
            logueo=false;
            request.getSession().setAttribute("logueo", logueo);
         }

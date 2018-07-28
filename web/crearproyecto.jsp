@@ -1,6 +1,10 @@
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <%
+            ArrayList<UsersDto> participants = (ArrayList<UsersDto>) request.getSession().getAttribute("participants");
+        %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8">
@@ -8,15 +12,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Gentelella Alela! | </title>
-
+        <!-- jQuery -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>     
         <!-- Bootstrap -->
         <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Tokenize-->
+        <script src="${pageContext.request.contextPath}/assets/vendors/Tokenize/tokenize2.min.js" type="text/javascript"></script>
+        <!--        Tokenize-->
+        <link href="${pageContext.request.contextPath}/assets/vendors/Tokenize/tokenize2.min.css" rel="stylesheet" type="text/css"/>
         <!-- Font Awesome -->
         <link href="${pageContext.request.contextPath}/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- NProgress -->
         <link href="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css"/>
         <!-- Custom Theme Style -->
         <link href="${pageContext.request.contextPath}/assets/css/custom.min.css" rel="stylesheet" type="text/css"/>
+
+
+        <!-- Bootstrap -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- FastClick -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
+        <!-- NProgress -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>      
 
     </head>
 
@@ -55,7 +72,6 @@
 
                         <br>
                         <br>
-                        <br>
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
@@ -86,24 +102,11 @@
                                                               data-parsley-validation-threshold="10"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Partipantes</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select class="select2_single form-control" tabindex="-1">
-                                                        <option></option>
-                                                        <option value="AK">Particapante 1</option>
-                                                        <option value="HI">Particapante 1</option>
-                                                        <option value="CA">Particapante 1</option>
-                                                        <option value="NV">Particapante 1</option>
-                                                        <option value="OR">Particapante 1</option>
-                                                        <option value="WA">Particapante 1</option>
-                                                        <option value="AZ">Particapante 1</option>
-                                                    </select>
-                                                </div>
+                                            <div class="form-group">                                                
                                             </div>
                                             <div class="ln_solid"></div>
                                             <div class="form-group" >
-                                                
+
                                                 <div class="col-md-6" style="border: ">
                                                     <button class="btn btn-primary" type="reset">Limpiar</button>
                                                     <button type="submit" class="btn btn-success">Crear</button>
@@ -126,18 +129,8 @@
 
             </div>
         </div>
-
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
-        <!-- Bootstrap -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- FastClick -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
-        <!-- NProgress -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
         <!-- Custom Theme Scripts -->
         <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
-
 
     </body>
 </html>
