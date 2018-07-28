@@ -77,9 +77,9 @@ public class PruebaServlet extends HttpServlet {
                          out.println(" <div class=\"btn-group\">");
                          out.println("<button data-toggle=\"dropdown\" class=\"btn btn-xs dropdown-toggle\" type=\"button\" aria-expanded=\"false\">Accion <span class=\"caret\"></span></button>");
                          out.println(" <ul role=\"menu\" class=\"dropdown-menu\">");
-                         out.println("<li><a data-toggle=\"modal\" data-target=\"#cerrar\" onclick=\"setOpcion('Cerrada');setId("+dtos.get(i).getIdTask()+");changeStatus()\">Cerrar</a></li>");
-                         out.println("<li><a data-toggle=\"modal\" data-target=\"#suspender\" onclick=\"setOpcion('Suspendida');setId("+dtos.get(i).getIdTask()+");changeStatus()\">Suspender</a></li>");
-                         out.println("<li><a data-toggle=\"modal\" data-target=\"#reabrir\" onclick=\"setOpcion('Reabierta');setId("+dtos.get(i).getIdTask()+");changeStatus()\">Reabir</a></li>");
+                         out.println("<li><a id=\"cerrar\" data-toggle=\"modal\" data-target=\"#cerrar\" onclick=\"setOpcion('Cerrada');setId("+dtos.get(i).getIdTask()+");changeStatus()\">Cerrar</a></li>");
+                         out.println("<li><a id=\"suspender\" data-toggle=\"modal\" data-target=\"#suspender\" onclick=\"setOpcion('Suspendida');setId("+dtos.get(i).getIdTask()+");changeStatus()\">Suspender</a></li>");
+                         out.println("<li><a id=\"reabrir\" data-toggle=\"modal\" data-target=\"#reabrir\" onclick=\"setOpcion('Reabierta');setId("+dtos.get(i).getIdTask()+");changeStatus()\">Reabir</a></li>");
                          out.println("</ul>");
                          out.println("</div>");                                                  
                 out.println("</td>");   
