@@ -5,9 +5,6 @@
  */
 package com.gestorsye.controllers;
 
-import com.gestorsye.dao.TasksDao;
-import com.gestorsye.dto.TasksDto;
-import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author gato-
+ * @author jose
  */
-public class InsertTask extends HttpServlet {
+public class ShowTasks extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,33 +29,32 @@ public class InsertTask extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         
-       UsersDto user =(UsersDto)request.getSession().getAttribute("usuarioSesion");
-       int project = Integer.parseInt(request.getParameter("project"));
-       String title = request.getParameter("title");
-       String type = request.getParameter("type");
-       String priority = request.getParameter("priority");
-       String description = request.getParameter("description");
-       String estimatedDate = request.getParameter("estimatedDate");
-       String deliveryDate = request.getParameter("deliveryDate");
-       int userAssigned = Integer.parseInt(request.getParameter("userAssigned"));
-       String status = request.getParameter("status");
-       
-        TasksDto dto =  new TasksDto();
-        dto.setIdProject(project);
-        dto.setNameCreator(user.getIdUser());
-        dto.setTitle(title);   
-        dto.setTypeTask(type);
-        dto.setPriority(priority);
-        dto.setDescription(description);
-        dto.setEstimatedTime(estimatedDate);
-        dto.setDeliveryDate(deliveryDate);
-        dto.setUserAssigned(userAssigned);
-        dto.setStatusTask(status);
-        TasksDao dao = new TasksDao();
-        dao.create(dto);
-              
-        response.sendRedirect("ViewTasks");
+        int opcion = Integer.parseInt(request.getParameter("opcion"));
+        int usuario = Integer.parseInt(request.getParameter("usuario"));
+           
+            out.println("<table>");
+            out.println("<tr>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("</tr>");
+                        out.println("<tr>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("</tr>");
+                        out.println("<tr>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("<td>Exmaple 1</td>");
+            out.println("</tr>");
+            out.println("</table>");
+            
+            
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

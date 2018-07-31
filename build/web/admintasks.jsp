@@ -17,6 +17,14 @@
     ProjectsDao pdao = new ProjectsDao();
     List<ProjectsDto> projects = new ArrayList();
     projects = pdao.selectbycreator(user.getIdUser());
+    
+    ProjectsDao prodao=new ProjectsDao();
+    List<ProjectsDto> allprojects = new ArrayList();
+    allprojects = prodao.selectAll();
+    
+    UsersDao daou =new UsersDao();
+    List<UsersDto> users =new ArrayList();
+    users=daou.selectAll();
 
     UsersDao us = new UsersDao();
 
@@ -137,7 +145,7 @@
 
                             </div>  
                         </div>
-                    </div>
+                  
 
 
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -154,7 +162,7 @@
                             </div>
                         </div>
                     </div>
-
+  </div>
                     <!--Aqui va todo el contenido nuevo-->
                 </div>
       
@@ -178,6 +186,18 @@
                 <div class="modal-body">
                     <form action="InsertTask" method="post">
                         <div class="form-group">
+                             <label for="recipient-name" class="col-form-label">Proyecto</label>
+                           <div>
+                                <select class="form-control" name="project" required>
+                                   <%
+                                   for(int j=0; j<allprojects.size(); j++){
+                                   %>
+                                   <option value="<%=allprojects.get(j).getIdProject()%>"><%=allprojects.get(j).getProjectName()%></option>          
+                                    <%
+                                    }
+                                    %>
+                                </select>
+                            </div>
                             <label for="recipient-name" class="col-form-label">Nombre de la tarea</label>
                             <input name="title" type="text" class="form-control" id="recipient-name" required>
                             <label for="recipient-name" class="col-form-label">Tipo de tarea</label>
@@ -210,8 +230,13 @@
                             <label for="recipient-name" class="col-form-label">Responsable</label>
                             <div>
                                 <select class="form-control" name="userAssigned" required>
-                                    <option value="1">Usuario 1</option>
-                                    <option value="2">Usuario 2</option>                                       
+                                    <%
+                                    for(int i=0; i<users.size(); i++){
+                                    %>
+                                    <option value="<%=users.get(i).getIdUser()%>"><%=users.get(i).getName()%></option>                                    
+                                    <%
+                                    }
+                                    %>                                                               
                                 </select>
                             </div>
                             <label for="recipient-name" class="col-form-label">Status</label>
@@ -256,6 +281,8 @@
             </div>
         </div>
     </div>
+            
+            
     <div class="modal fade" id="reabrir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -275,6 +302,8 @@
             </div>
         </div>
     </div>
+            
+            
     <div class="modal fade" id="suspender" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -295,6 +324,7 @@
             </div>
         </div>
     </div>
+            
     <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -315,6 +345,8 @@
             </div>
         </div>
     </div>
+            
+            
     <script>
         var opcion;
         var id;

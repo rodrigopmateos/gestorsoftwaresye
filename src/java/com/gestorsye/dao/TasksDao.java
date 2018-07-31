@@ -21,12 +21,14 @@ import java.util.logging.Logger;
  */
 public class TasksDao implements InterfaceDao<TasksDto> {
 
-     private static final String SQL_INSERT = "INSERT INTO tasks (name_task_creator,name_user_assigned, title, description, name_type_task, name_priority, delivery_date, estimated_time, status_task) VALUES(?,?,?,?,?,?,?,?,?)";
+     private static final String SQL_INSERT = "INSERT INTO tasks (name_task_creator,name_user_assigned, title, description, name_type_task, name_priority, delivery_date, estimated_time, status_task, id_project) VALUES(?,?,?,?,?,?,?,?,?,?)";
     private static final String SQL_DELETE = " DELETE FROM tasks WHERE id_task= ?";
     private static final String SQL_UPDATE = "UPDATE tasks SET status_task= ? WHERE id_task=?";
     private static final String SQL_READ = "SELECT * FROM tasks WHERE id_task = ?";
     private static final String SQL_READALL = "SELECT * FROM tasks";
     private static final String SQL_READP="SELECT * FROM  tasks WHERE id_project = ? ";
+    private static final String SQL_READUS = "SELECT *  FROM tasks WHERE name_user_assigned = ? and status_task = ? ";
+    
     private static final Conexion con = Conexion.abrirConexion();
     
     @Override
@@ -44,6 +46,7 @@ public class TasksDao implements InterfaceDao<TasksDto> {
             ps.setString(7, dto.getDeliveryDate());
             ps.setString(8, dto.getEstimatedTime());
             ps.setString(9, dto.getStatusTask());
+            ps.setInt(10,dto.getIdProject() );
             ps.executeUpdate();
            
         } catch (SQLException ex) {
