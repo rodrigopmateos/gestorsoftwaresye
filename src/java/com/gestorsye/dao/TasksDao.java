@@ -187,5 +187,46 @@ public class TasksDao implements InterfaceDao<TasksDto> {
 
     
     }
+    public List<TasksDto> selectSomeTasks(int id, String status) {
+       PreparedStatement ps;
+        ResultSet rs;
+
+            List<TasksDto> tasks =new ArrayList();
+        try {           
+            ps = con.getConexion().prepareStatement(SQL_READUS);    
+            
+            ps.setInt(1,id);
+            ps.setString(2,status);
+            
+            
+            rs=ps.executeQuery();            
+            while(rs.next()){
+            Object o1=rs.getObject(1);
+            Object o2=rs.getObject(2);
+            Object o3=rs.getObject(3);
+            Object o4=rs.getObject(4);
+            Object o5=rs.getObject(5);
+            Object o6=rs.getObject(6);
+            Object o7=rs.getObject(7);
+            Object o8=rs.getObject(8);
+            Object o9=rs.getObject(9);
+            Object o10=rs.getObject(10);
+            Object o11=rs.getObject(11);     
+            Object o12=rs.getObject(12);     
+                        
+             tasks.add(new TasksDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+         
+            }
+            return tasks;
+        } catch (SQLException ex) {
+            Logger.getLogger(TasksDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            con.cerrarConexion();
+        }
+        return tasks;
+
+    
+    }
         
 }

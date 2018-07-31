@@ -25,10 +25,50 @@ UsersDto usser = (UsersDto)session.getAttribute("usuarioSesion");
     
      <script>
             $(document).ready(function () {
-                $('#cerrada').click(function (event) {
+                $('#abierta').click(function (event) {
                     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
                     $.post('ShowTasks', {
                         opcion: 1 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('#progreso').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 2 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('#suspendida').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 3 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('#reabierta').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 4 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('#cerrada').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 5 , usuario: <%= usser.getIdUser()%>
                     }, function (responseText) {
                         $('#table').html(responseText);
                     });

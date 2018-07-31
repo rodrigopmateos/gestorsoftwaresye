@@ -7,6 +7,7 @@ package com.gestorsye.controllers;
 
 import com.gestorsye.dao.ProjectsDao;
 import com.gestorsye.dao.TasksDao;
+import com.gestorsye.dao.UsersDao;
 import com.gestorsye.dto.ProjectsDto;
 import com.gestorsye.dto.TasksDto;
 import java.io.IOException;
@@ -47,6 +48,9 @@ public class PruebaServlet extends HttpServlet {
             TasksDao dao = new TasksDao();
             List<TasksDto> dtos = new ArrayList();
             dtos = dao.selectByProject(id);
+            
+            UsersDao userdao = new UsersDao();
+            
             out.println(" <a class=\"btn btn-info btn-xs\" data-toggle=\"modal\" data-target=\"#modal1\" style=\"float:right\">Agregar</a>    ");
             out.println("<table id=\"datatable\" class=\"table table-striped table-bordered\">");
             out.println("<thead>");
@@ -67,8 +71,8 @@ public class PruebaServlet extends HttpServlet {
                 out.println("<td>" + dtos.get(i).getTitle() + "</td>");
                 out.println("<td>" + dtos.get(i).getTypeTask() + "</td>");
                 out.println("<td>" + dtos.get(i).getPriority() + "</td>");
-                out.println("<td>" + dtos.get(i).getNameCreator() + "</td>");
-                out.println("<td>" + dtos.get(i).getUserAssigned() + "</td>");
+                out.println("<td>" + userdao.getNameById(dtos.get(i).getNameCreator()) + "</td>");
+                out.println("<td>" + userdao.getNameById(dtos.get(i).getUserAssigned()) + "</td>");
                 out.println("<td>" + dtos.get(i).getStatusTask() + "</td>");
                 out.println("<td>");
                         out.println(" <a href=\"ViewProject\" class=\"btn btn-primary btn-xs\"><i class=\"fa fa-folder\"></i> Detalles </a>");
