@@ -88,7 +88,7 @@
                             <div class="col-md-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2><%=projects.getProject_name()%></h2>
+                                        <h2><%=projects.getProjectName()%></h2>
                                         <div class="clearfix"></div>
                                     </div>
 
@@ -281,7 +281,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="InsertParticipant?id=<%= projects.getId_project()%>" method="post">
+                        <form action="InsertParticipant?id=<%= projects.getIdProject()%>" method="post">
                             <div class="form-group">
 
                                 <label for="recipient-name">Responsable</label>
@@ -291,7 +291,7 @@
                                         <%
                                             for (int i = 0; i < sinAsignar.size(); i++) {
                                         %>
-                                        <option value="<%= sinAsignar.get(i).getId_user()%>"><%= sinAsignar.get(i).getName()%></option>                                                        
+                                        <option value="<%= sinAsignar.get(i).getIdUser()%>"><%= sinAsignar.get(i).getName()%></option>                                                        
                                         <%
                                             }
                                         %>
@@ -323,7 +323,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="InsertParticipant?id=<%= projects.getId_project()%>" method="post">
+                        <form action="InsertParticipant?id=<%= projects.getIdProject()%>" method="post">
                             <div class="form-group">
                                 <br/>
                                 <label for="recipient-name">Selecciona el archivo</label>

@@ -46,8 +46,8 @@ public class PruebaServlet extends HttpServlet {
 
             TasksDao dao = new TasksDao();
             List<TasksDto> dtos = new ArrayList();
-            dtos = dao.selectAll();
-
+            dtos = dao.selectByProject(id);
+            out.println(" <a class=\"btn btn-info btn-xs\" data-toggle=\"modal\" data-target=\"#modal1\" style=\"float:right\">Agregar</a>    ");
             out.println("<table id=\"datatable\" class=\"table table-striped table-bordered\">");
             out.println("<thead>");
             out.println("<tr>");
@@ -71,7 +71,7 @@ public class PruebaServlet extends HttpServlet {
                 out.println("<td>" + dtos.get(i).getUserAssigned() + "</td>");
                 out.println("<td>" + dtos.get(i).getStatusTask() + "</td>");
                 out.println("<td>");
-                        out.println(" <a href=\"ViewProject\" class=\"btn btn-primary btn-xs\"><i class=\"fa fa-folder\"></i> Ver </a>");
+                        out.println(" <a href=\"ViewProject\" class=\"btn btn-primary btn-xs\"><i class=\"fa fa-folder\"></i> Detalles </a>");
                         out.println(" <a class=\"btn btn-info btn-xs\" data-toggle=\"modal\" data-target=\"#modal1\" ><i class=\"fa fa-pencil\"></i> Editar </a>");
                         out.println(" <a class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#confirmacion\" onclick=\"setId("+dtos.get(i).getIdTask()+")\" ></i> Eliminar </a>");
                          out.println(" <div class=\"btn-group\">");

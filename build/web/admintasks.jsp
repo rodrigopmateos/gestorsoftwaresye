@@ -17,6 +17,14 @@
     ProjectsDao pdao = new ProjectsDao();
     List<ProjectsDto> projects = new ArrayList();
     projects = pdao.selectbycreator(user.getIdUser());
+    
+    ProjectsDao prodao=new ProjectsDao();
+    List<ProjectsDto> allprojects = new ArrayList();
+    allprojects = prodao.selectAll();
+    
+    UsersDao daou =new UsersDao();
+    List<UsersDto> users =new ArrayList();
+    users=daou.selectAll();
 
     UsersDao us = new UsersDao();
 
@@ -64,19 +72,16 @@
         <script>
             $(document).ready(function () {
                 $('#submit').click(function (event) {
-                    console.log("prueba");
-                    var projects = document.getElementById("projects");
-                    var pro = projects.options[projects.selectedIndex].value;
-
+                    var select = document.getElementById('projects').value;
                     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
                     $.post('PruebaServlet', {
-                        id: pro
+                        id: select
                     }, function (responseText) {
                         $('#tabla').html(responseText);
                     });
                 });
             });
-           
+
         </script>
 
     </head>
@@ -124,103 +129,43 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <select id="pojects" class="form-control ">
+                                    <select id="projects" class="form-control ">
                                         <%                                                for (int i = 0; i < projects.size(); i++) {
                                         %>
-                                        <option value="projects.get(i).getIdProject()"><%=projects.get(i).getProjectName()%></option>
+                                        <option value="<%=projects.get(i).getIdProject()%>"><%=projects.get(i).getProjectName()%></option>
                                         <%
                                             }
                                         %>
                                     </select>
-
                                 </div>
+                                    
                                 <div class=col-sm-3">
                                     <input class="btn btn-primary" type="button" value="Seleccionar" id="submit">
                                 </div>
-                                <input type="text" id="id">
-                            </div>
 
-
+                            </div>  
                         </div>
-                    </div>
+                  
 
 
-                    <div class="x_panel">
-                        <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1">Agregar</a>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12" id="table" >
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Listado de tareas</h2>                                    
+                                <h2>Listado de tareas</h2>                                 
                                 <div class="clearfix"></div>
                             </div>
-
                             <div class="x_content" >  
-                                <div id="tabla">
-                                </div>
-
-                                <div class="table-responsive" style="display: none">
-                                    <table id="datatable" class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr class="headings">                                                                                                                                                            
-                                                <th class="column-title">Titulo </th>                                                    
-                                                <th class="column-title">Tipo de tarea</th>
-                                                <th class="column-title">Prioridad </th>                           
-                                                <th class="column-title">Informante </th>
-                                                <th class="column-title">Responsable</th>
-                                                <th class="column-title">Status</th>         
-                                                <th class="column-title">Opciones</th>         
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>   
-                                            <%                                                    for (int i = 0; i < dtos.size(); i++) {
-                                            %>
-                                            <tr class="odd pointer">
-
-                                                <td ><%=dtos.get(i).getTitle()%></td>
-                                                <td ><%=dtos.get(i).getTypeTask()%></td>
-                                                <td ><%=dtos.get(i).getPriority()%></td>
-                                                <td ><%=us.getNameById(dtos.get(i).getNameCreator())%></td>
-                                                <td ><a href="#"><%=us.getNameById(dtos.get(i).getUserAssigned())%></a></td>
-                                                <td ><%=dtos.get(i).getStatusTask()%></td>   
-                                                <td>
-
-                                                    <a href="ViewProject" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Ver </a>
-                                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1" ><i class="fa fa-pencil"></i> Editar </a>                                                        
-                                                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmacion" onclick="setId(<%=dtos.get(i).getIdTask()%>)" ></i> Eliminar </a>
-                                                    <div class="btn-group">
-                                                        <button data-toggle="dropdown" class="btn btn-xs dropdown-toggle" type="button" aria-expanded="false">Accion <span class="caret"></span>
-                                                        </button>
-                                                        <ul role="menu" class="dropdown-menu">
-                                                            <li><a data-toggle="modal" data-target="#cerrar" onclick="setOpcion('Cerrada');setId(<%=dtos.get(i).getIdTask()%>);
-                                                                    changeStatus()">Cerrar</a>
-                                                            </li>
-                                                            <li><a data-toggle="modal" data-target="#suspender" onclick="setOpcion('Suspendida');setId(<%=dtos.get(i).getIdTask()%>);
-                                                                    changeStatus()">Suspender</a>
-                                                            </li>
-                                                            <li><a data-toggle="modal" data-target="#reabrir" onclick="setOpcion('Reabierta');
-                                                                    setId(<%=dtos.get(i).getIdTask()%>);
-                                                                    changeStatus()">Reabir</a>
-                                                            </li>                                                                
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <%
-                                                }
-                                            %>
-                                        </tbody>
-                                    </table>
-
+                                <div class="table-responsive" >
+                                    <div id="tabla">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+  </div>
                     <!--Aqui va todo el contenido nuevo-->
                 </div>
-            </div>
+      
             <!-- /page content -->
 
             <!-- footer content -->
@@ -228,6 +173,7 @@
 
         </div>
     </div>
+            
     <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -240,6 +186,18 @@
                 <div class="modal-body">
                     <form action="InsertTask" method="post">
                         <div class="form-group">
+                             <label for="recipient-name" class="col-form-label">Proyecto</label>
+                           <div>
+                                <select class="form-control" name="project" required>
+                                   <%
+                                   for(int j=0; j<allprojects.size(); j++){
+                                   %>
+                                   <option value="<%=allprojects.get(j).getIdProject()%>"><%=allprojects.get(j).getProjectName()%></option>          
+                                    <%
+                                    }
+                                    %>
+                                </select>
+                            </div>
                             <label for="recipient-name" class="col-form-label">Nombre de la tarea</label>
                             <input name="title" type="text" class="form-control" id="recipient-name" required>
                             <label for="recipient-name" class="col-form-label">Tipo de tarea</label>
@@ -272,8 +230,13 @@
                             <label for="recipient-name" class="col-form-label">Responsable</label>
                             <div>
                                 <select class="form-control" name="userAssigned" required>
-                                    <option value="1">Usuario 1</option>
-                                    <option value="2">Usuario 2</option>                                       
+                                    <%
+                                    for(int i=0; i<users.size(); i++){
+                                    %>
+                                    <option value="<%=users.get(i).getIdUser()%>"><%=users.get(i).getName()%></option>                                    
+                                    <%
+                                    }
+                                    %>                                                               
                                 </select>
                             </div>
                             <label for="recipient-name" class="col-form-label">Status</label>
@@ -318,6 +281,8 @@
             </div>
         </div>
     </div>
+            
+            
     <div class="modal fade" id="reabrir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -337,6 +302,8 @@
             </div>
         </div>
     </div>
+            
+            
     <div class="modal fade" id="suspender" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -357,6 +324,7 @@
             </div>
         </div>
     </div>
+            
     <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -377,6 +345,8 @@
             </div>
         </div>
     </div>
+            
+            
     <script>
         var opcion;
         var id;
@@ -429,5 +399,5 @@
 
     <script>
 
-                    </body>
-                    </html>
+        </body>
+        </html>
