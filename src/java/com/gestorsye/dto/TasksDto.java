@@ -17,10 +17,11 @@ public class TasksDto {
     private String priority;
     private String deliveryDate;
     private String estimatedTime;
+    private String workedTime;
     private String statusTask;
     private int status;
 
-    public TasksDto(int idTask, int idProject, int nameCreator, int userAssigned, String title, String description, String typeTask, String priority, String deliveryDate, String estimatedTime, String statusTask, int status) {
+    public TasksDto(int idTask, int idProject, int nameCreator, int userAssigned, String title, String description, String typeTask, String priority, String deliveryDate, String estimatedTime, String statusTask, int status, String workedTime) {
         this.idTask = idTask;
         this.idProject = idProject;
         this.nameCreator = nameCreator;
@@ -33,6 +34,7 @@ public class TasksDto {
         this.estimatedTime = estimatedTime;
         this.statusTask = statusTask;
         this.status = status;
+        this.workedTime=workedTime;
     }
 
     public TasksDto() {
@@ -70,8 +72,13 @@ public class TasksDto {
         this.userAssigned = UserAssigned;
     }
 
-   
+    public String getWorkedTime() {
+        return workedTime;
+    }
 
+    public void setWorkedTime(String workedTime) {
+        this.workedTime = workedTime;
+    }
 
     public String getTitle() {
         return title;

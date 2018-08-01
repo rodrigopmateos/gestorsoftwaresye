@@ -107,9 +107,11 @@ public class TasksDao implements InterfaceDao<TasksDto> {
             Object o9=rs.getObject(9);
             Object o10=rs.getObject(10);
             Object o11=rs.getObject(11);     
-            Object o12=rs.getObject(12);     
+            Object o12=rs.getObject(12);
+            Object o13 = rs.getObject(13);
+            
                         
-             tasks.add(new TasksDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+             tasks.add(new TasksDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12), rs.getString(13)));
          
             }
             return tasks;
@@ -153,6 +155,7 @@ public class TasksDao implements InterfaceDao<TasksDto> {
     public List<TasksDto> selectByProject(Object key) {
        PreparedStatement ps;
         ResultSet rs;
+        TasksDto dto = new TasksDto();
 
             List<TasksDto> tasks =new ArrayList();
         try {           
@@ -160,6 +163,21 @@ public class TasksDao implements InterfaceDao<TasksDto> {
             ps.setInt(1,(int) key);
             rs=ps.executeQuery();            
             while(rs.next()){
+            
+                dto.setIdTask(rs.getInt(1));
+                dto.setIdProject(rs.getInt(2));
+                dto.setNameCreator(rs.getInt(3));
+                dto.setUserAssigned(rs.getInt(4));
+                dto.setTitle(rs.getString(5));
+                dto.setDescription(rs.getString(6));
+                dto.setTypeTask(rs.getString(7));
+                dto.setPriority(rs.getString(8));
+                dto.setDeliveryDate(rs.getString(9));
+                dto.setEstimatedTime(rs.getString(10));
+                dto.setWorkedTime(rs.getString(11));
+                dto.setStatusTask(rs.getString(12));
+                dto.setStatus(rs.getInt(13));
+                
             Object o1=rs.getObject(1);
             Object o2=rs.getObject(2);
             Object o3=rs.getObject(3);
@@ -173,7 +191,7 @@ public class TasksDao implements InterfaceDao<TasksDto> {
             Object o11=rs.getObject(11);     
             Object o12=rs.getObject(12);     
                         
-             tasks.add(new TasksDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+             tasks.add(new TasksDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12), rs.getString(13)));
          
             }
             return tasks;
@@ -190,7 +208,7 @@ public class TasksDao implements InterfaceDao<TasksDto> {
     public List<TasksDto> selectSomeTasks(int id, String status) {
        PreparedStatement ps;
         ResultSet rs;
-
+            
             List<TasksDto> tasks =new ArrayList();
         try {           
             ps = con.getConexion().prepareStatement(SQL_READUS);    
@@ -201,20 +219,23 @@ public class TasksDao implements InterfaceDao<TasksDto> {
             
             rs=ps.executeQuery();            
             while(rs.next()){
-            Object o1=rs.getObject(1);
-            Object o2=rs.getObject(2);
-            Object o3=rs.getObject(3);
-            Object o4=rs.getObject(4);
-            Object o5=rs.getObject(5);
-            Object o6=rs.getObject(6);
-            Object o7=rs.getObject(7);
-            Object o8=rs.getObject(8);
-            Object o9=rs.getObject(9);
-            Object o10=rs.getObject(10);
-            Object o11=rs.getObject(11);     
-            Object o12=rs.getObject(12);     
+                TasksDto dto = new TasksDto();
+                
+           dto.setIdTask(rs.getInt(1));
+                dto.setIdProject(rs.getInt(2));
+                dto.setNameCreator(rs.getInt(3));
+                dto.setUserAssigned(rs.getInt(4));
+                dto.setTitle(rs.getString(5));
+                dto.setDescription(rs.getString(6));
+                dto.setTypeTask(rs.getString(7));
+                dto.setPriority(rs.getString(8));
+                dto.setDeliveryDate(rs.getString(9));
+                dto.setEstimatedTime(rs.getString(10));
+                dto.setWorkedTime(rs.getString(11));
+                dto.setStatusTask(rs.getString(12));
+                dto.setStatus(rs.getInt(13));
                         
-             tasks.add(new TasksDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12)));
+             tasks.add(dto);
          
             }
             return tasks;

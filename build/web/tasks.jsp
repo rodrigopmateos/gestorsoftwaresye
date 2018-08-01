@@ -127,49 +127,12 @@ UsersDto usser = (UsersDto)session.getAttribute("usuarioSesion");
                     </div>
               </div>
           
-              <div class="x_panel">
+             
                   
                   <div id="table">
-                  </div>
+                  </div>                                   
                   
-                  <%
-                  for(int i=0; i<10; i++){
-                  %>
-                 
-<!--                      <div class="col-md-3 col-xs-12 widget widget_tally_box">
-                        <div class="x_panel ">
-                          <div class="x_content text-center">
-
-                              <h2 >Musimbi</h2>
-
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>123</h3>
-                                  <h6>Tiempo estimado</h6>
-                                </li>
-                                <li>
-                                  <h3>1234</h3>
-                                  <h6>Tiempo trabajado</h6>
-                                </li>
-                              </ul>
-                            </div>
-                            <p>
-                              If you've decided to go in development mode and tweak all of this a bit, there are few things you should do.
-                            </p>
-                            <div>
-                            <button type="button" class="btn btn-primary">Registrar</button>
-                            </div>
-                          </div>
-                            
-                        </div>
-                          
-                      </div>-->
-                  <%
-                  }
-                  %>
-                  
-              </div>
+              
                
              
               <!--Aqui va todo el contenido nuevo-->
