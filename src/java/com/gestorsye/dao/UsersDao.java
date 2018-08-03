@@ -25,8 +25,9 @@ public class UsersDao implements InterfaceDao<UsersDto> {
     private static final String SQL_READ = "SELECT * FROM users WHERE id_user = ?";
     private static final String SQL_READALL = "SELECT * FROM users WHERE status=1";
     private static final String SQL_PARTICIPANTS = "SELECT id_user, name from users u LEFT JOIN collaborators c on u.id_user=c.Cid_user WHERE c.Cid_user is null";
-    private static final String SQL_NAME="SELECT name FROM `users` where id_user = ?";
-    
+    private static final String SQL_NAME = "SELECT name FROM `users` where id_user = ?";
+    private static final String SQL_USERSP = "SELECT * FROM collaborators WHERE Cid_project = ?";
+
     private static final Conexion con = Conexion.abrirConexion();
 
     public UsersDao() {
@@ -73,10 +74,9 @@ public class UsersDao implements InterfaceDao<UsersDto> {
 
         } catch (SQLException ex) {
 
-            delete= false;
+            delete = false;
             Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
+        } finally {
 
             con.cerrarConexion();
         }
@@ -85,8 +85,8 @@ public class UsersDao implements InterfaceDao<UsersDto> {
 
     @Override
     public boolean update(UsersDto dto) {
-        boolean update=false;            
-            PreparedStatement ps;
+        boolean update = false;
+        PreparedStatement ps;
         try {
             ps = con.getConexion().prepareStatement(SQL_UPDATE);
             ps.setInt(1, dto.getIdProfile());
@@ -98,17 +98,17 @@ public class UsersDao implements InterfaceDao<UsersDto> {
             ps.setInt(7, dto.getStatus());
             ps.setInt(8, dto.getIdUser());
             ps.executeUpdate();
-            
-            update=true;
+
+            update = true;
         } catch (SQLException ex) {
             Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
-        }       
-        finally{
+        } finally {
             con.cerrarConexion();
         }
-       return update;    
+        return update;
     }
 
+    @Override
     public UsersDto select(Object key) {
         UsersDto dto = null;
         PreparedStatement ps;
@@ -126,8 +126,7 @@ public class UsersDao implements InterfaceDao<UsersDto> {
         } catch (SQLException ex) {
 
             Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
+        } finally {
             con.cerrarConexion();
         }
         return dto;
@@ -169,7 +168,7 @@ public class UsersDao implements InterfaceDao<UsersDto> {
             ps = con.getConexion().prepareStatement(SQL_PARTICIPANTS);
             rs = ps.executeQuery();
             while (rs.next()) {
-                
+
                 UsersDto dto = new UsersDto();
                 dto.setIdUser(rs.getInt(1));
                 dto.setName(rs.getString(2));
@@ -185,8 +184,9 @@ public class UsersDao implements InterfaceDao<UsersDto> {
         }
         return users;
     }
-    public String getNameById(Object key){
-        String name="";
+
+    public String getNameById(Object key) {
+        String name = "";
         PreparedStatement ps;
         ResultSet rs;
 
@@ -196,18 +196,43 @@ public class UsersDao implements InterfaceDao<UsersDto> {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-            name =rs.getString(1);
+                name = rs.getString(1);
             }
 
         } catch (SQLException ex) {
 
             Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
+        } finally {
             con.cerrarConexion();
         }
-        
-        return name;        
+
+        return name;
+    }
+
+    public List<Integer> getUsersByProject(int id) {
+        PreparedStatement ps;
+        ResultSet rs;
+
+        List<Integer> ids = new ArrayList();
+        try {
+
+            ps = con.getConexion().prepareStatement(SQL_USERSP);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                UsersDto dto = new UsersDto();
+                int idUser = rs.getInt(2);
+
+                ids.add(idUser);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.cerrarConexion();
+        }
+        return ids;
     }
 
 }

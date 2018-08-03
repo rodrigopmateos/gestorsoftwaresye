@@ -24,6 +24,7 @@ public class TasksDao implements InterfaceDao<TasksDto> {
      private static final String SQL_INSERT = "INSERT INTO tasks (name_task_creator,name_user_assigned, title, description, name_type_task, name_priority, delivery_date, estimated_time, status_task, id_project) VALUES(?,?,?,?,?,?,?,?,?,?)";
     private static final String SQL_DELETE = " DELETE FROM tasks WHERE id_task= ?";
     private static final String SQL_UPDATE = "UPDATE tasks SET status_task= ? WHERE id_task=?";
+    private static final String SQL_UPDATE2 = "UPDATE tasks SET worked_time= ? WHERE id_task=?";
     private static final String SQL_READ = "SELECT * FROM tasks WHERE id_task = ?";
     private static final String SQL_READALL = "SELECT * FROM tasks";
     private static final String SQL_READP="SELECT * FROM  tasks WHERE id_project = ? ";
@@ -96,22 +97,24 @@ public class TasksDao implements InterfaceDao<TasksDto> {
             ps = con.getConexion().prepareStatement(SQL_READALL);                  
             rs=ps.executeQuery();            
             while(rs.next()){
-            Object o1=rs.getObject(1);
-            Object o2=rs.getObject(2);
-            Object o3=rs.getObject(3);
-            Object o4=rs.getObject(4);
-            Object o5=rs.getObject(5);
-            Object o6=rs.getObject(6);
-            Object o7=rs.getObject(7);
-            Object o8=rs.getObject(8);
-            Object o9=rs.getObject(9);
-            Object o10=rs.getObject(10);
-            Object o11=rs.getObject(11);     
-            Object o12=rs.getObject(12);
-            Object o13 = rs.getObject(13);
             
+                TasksDto dto= new TasksDto();
                         
-             tasks.add(new TasksDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12), rs.getString(13)));
+                dto.setIdTask(rs.getInt(1));
+                dto.setIdProject(rs.getInt(2));
+                dto.setNameCreator(rs.getInt(3));
+                dto.setUserAssigned(rs.getInt(4));
+                dto.setTitle(rs.getString(5));
+                dto.setDescription(rs.getString(6));
+                dto.setTypeTask(rs.getString(7));
+                dto.setPriority(rs.getString(8));
+                dto.setDeliveryDate(rs.getString(9));
+                dto.setEstimatedTime(rs.getString(10));
+                dto.setWorkedTime(rs.getString(11));
+                dto.setStatusTask(rs.getString(12));
+                dto.setStatus(rs.getInt(13));
+                        
+             tasks.add(dto);
          
             }
             return tasks;
@@ -128,7 +131,24 @@ public class TasksDao implements InterfaceDao<TasksDto> {
 
     @Override
     public boolean update(TasksDto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean update=false;            
+            PreparedStatement ps;
+        try {
+            ps = con.getConexion().prepareStatement(SQL_UPDATE2);
+            
+            ps.setString(1, dto.getWorkedTime());
+            ps.setInt(2, dto.getIdTask());          
+            
+            ps.executeUpdate();
+            
+            update=true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        finally{
+            con.cerrarConexion();
+        }
+       return update;
     }
     
     public boolean changeStatus(Object key, String opcion)
@@ -155,8 +175,7 @@ public class TasksDao implements InterfaceDao<TasksDto> {
     public List<TasksDto> selectByProject(Object key) {
        PreparedStatement ps;
         ResultSet rs;
-        TasksDto dto = new TasksDto();
-
+        
             List<TasksDto> tasks =new ArrayList();
         try {           
             ps = con.getConexion().prepareStatement(SQL_READP);    
@@ -164,6 +183,8 @@ public class TasksDao implements InterfaceDao<TasksDto> {
             rs=ps.executeQuery();            
             while(rs.next()){
             
+                TasksDto dto = new TasksDto();
+                
                 dto.setIdTask(rs.getInt(1));
                 dto.setIdProject(rs.getInt(2));
                 dto.setNameCreator(rs.getInt(3));
@@ -177,21 +198,8 @@ public class TasksDao implements InterfaceDao<TasksDto> {
                 dto.setWorkedTime(rs.getString(11));
                 dto.setStatusTask(rs.getString(12));
                 dto.setStatus(rs.getInt(13));
-                
-            Object o1=rs.getObject(1);
-            Object o2=rs.getObject(2);
-            Object o3=rs.getObject(3);
-            Object o4=rs.getObject(4);
-            Object o5=rs.getObject(5);
-            Object o6=rs.getObject(6);
-            Object o7=rs.getObject(7);
-            Object o8=rs.getObject(8);
-            Object o9=rs.getObject(9);
-            Object o10=rs.getObject(10);
-            Object o11=rs.getObject(11);     
-            Object o12=rs.getObject(12);     
-                        
-             tasks.add(new TasksDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12), rs.getString(13)));
+                            
+             tasks.add(dto);
          
             }
             return tasks;

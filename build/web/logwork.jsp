@@ -34,7 +34,22 @@
         <!-- Custom Theme Style -->
         <link href="${pageContext.request.contextPath}/assets/css/custom.min.css" rel="stylesheet" type="text/css"/>
         <!-- jQuery -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
 
+        <script>
+            $(document).ready(function () {
+                $('#registrar').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    var idTask = $("#idTask").val();
+                    var time = $("#time").val();
+                    $.post('LogWork', {
+                        id: idTask,time: time
+                    }, function (responseText) {
+                        $('#ejemplo').html(responseText);
+                    });
+                });
+            });
+        </script>
 
     </head>
 
@@ -79,7 +94,7 @@
                                 <div class="x_panel">
 
 
-                                    <%                                            for (int i = 0; i < tareas.size(); i++) {
+                                    <%                                        for (int i = 0; i < tareas.size(); i++) {
                                     %>
 
                                     <div class="col-md-3 col-xs-12 widget widget_tally_box">
@@ -101,21 +116,19 @@
                                                     </ul>
                                                 </div>
                                                 <p>
-                                                  <%= tareas.get(i).getDescription()%>
+                                                    <%= tareas.get(i).getDescription()%>
                                                 </p>
-                                                <div>
-                                                    <button type="button" class="btn btn-primary">Registrar</button>
+                                                <div id="<%= tareas.get(i).getDescription()%>">
+                                                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrar"  onclick="setData(<%= tareas.get(i).getIdTask()%>,'<%= tareas.get(i).getTitle()%>');">Registrar</button>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                     </div>
                                     <%
                                         }
                                     %>
-
-
+                                   
                                 </div>
                             </div>
                         </div>
@@ -130,81 +143,53 @@
 
             </div>
         </div>
-        <!-- calendar modal -->
-        <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
 
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">New Calendar Entry</h4>
+    
+
+             <div class="modal fade" id="modalRegistrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2A3F54" >
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">Registrar trabajo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                        <div id="testmodal" style="padding: 5px 20px;">
-                            <form id="antoform" class="form-horizontal calender" role="form">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Title</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="title" name="title">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Description</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                        <form>
+                            <div class="form-group">
+                                  <label for="recipient-name" class="col-form-label">Nombre:   </label> <span id="titulo"></span>
+                                <br/>
+                                <br/>
+                                <label for="recipient-name" class="col-form-label">Tiempo trabajado</label>
+                                <input type="time" class="form-control" id="time">
+                                <input type="text"  id="idTask" hidden>
+
+                                  </div>
+                            
+                  
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary antosubmit">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="registrar">Registrar</button>
+                         
                     </div>
+                            </form>
                 </div>
+                    
             </div>
         </div>
-        <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+    </div>
 
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
-                    </div>
-                    <div class="modal-body">
+        
+        <script>
+            
+            function setData(id, title){
+                $("#titulo").text(title);
+                $("#idTask").val(id);
+              
+            }
+            </script>
 
-                        <div id="testmodal2" style="padding: 5px 20px;">
-                            <form id="antoform2" class="form-horizontal calender" role="form">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Title</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="title2" name="title2">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Description</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
-        <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
-        <!-- /calendar modal -->
-
-        <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 

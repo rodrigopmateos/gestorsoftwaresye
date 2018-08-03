@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.gestorsye.dao.UsersDao"%>
 <%@page import="com.gestorsye.dto.ProjectsDto"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
@@ -11,6 +13,9 @@
         <%
             ArrayList<ProjectsDto> dtos = (ArrayList<ProjectsDto>) request.getSession().getAttribute("dtos");
             ArrayList<ProjectsDto> projects = (ArrayList<ProjectsDto>) request.getSession().getAttribute("projectsbycreator");
+            
+            UsersDao dao = new UsersDao();
+            List<Integer> users = new ArrayList();
         %>
         <title>Gentelella Alela! | </title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -109,7 +114,16 @@
                                                     <td><a><%= projects.get(i).getProjectName()%></a>
                                                         <br />
                                                         <small>Created <%= projects.get(i).getFecha()%></small></td>
-                                                    <td>Miembros del equipo</td>
+                                                    <td> 
+                                                        <%
+                                                            users= dao.getUsersByProject( projects.get(i).getIdProject());
+                                                        for(int u: users){
+                                                        %>
+                                                        <a href="ViewUser?id=<%=u%>"><img src="assets/images/user.png" alt="" height="20px" width="20px" data-toggle="tooltip" data-placement="top" title="<%= dao.getNameById(u) %>" /></a>                                   
+                                                     <%
+                                                        }
+                                                        %>
+                                                    </td>
                                                     <td><div class="progress progress_sm">
                                                             <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
                                                         </div>
@@ -244,7 +258,6 @@
         <script>
             var id;
             function setData(id, nombre, descripcion, progreso, status) {
-                console.log(nombre, descripcion, progreso, status);
                 $('#txt_1').val(nombre);
                 $('#txt_2').val(descripcion);
                 $('#txt_3').val(progreso);
