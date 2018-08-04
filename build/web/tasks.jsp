@@ -1,3 +1,6 @@
+<%
+UsersDto usser = (UsersDto)session.getAttribute("usuarioSesion");
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,6 +20,63 @@
     <link href="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css"/>
     <!-- Custom Theme Style -->
     <link href="${pageContext.request.contextPath}/assets/css/custom.min.css" rel="stylesheet" type="text/css"/>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    
+     <script>
+            $(document).ready(function () {
+                $('#abierta').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 1 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('#progreso').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 2 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('#suspendida').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 3 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('#reabierta').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 4 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $('#cerrada').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 5 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
+
+        </script>
+
     
   </head>
 
@@ -51,99 +111,29 @@
               </div>
 
             </div>
-              <br>
-              <br>
+              
               <!--Aqui va todo el contenido nuevo-->
               
-               <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Table design <small>Custom design</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="x_content">
-
-                    <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p>
-
-                    <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                          <tr class="headings">
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
-                            <th class="column-title">Proyecto</th>
-                            <th class="column-title">Informante </th>
-                            <th class="column-title">Titulo </th>
-                            <th class="column-title">Descripcion </th>
-                            <th class="column-title">Tipo de tarea</th>
-                            <th class="column-title">Prioridad </th>
-                            <th class="column-title">Fecha de entrega </th>
-                            <th class="column-title">Status</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                         
-
-
-
-                        </tbody>
-                      </table>
+              <br/>
+              <div class="x_content text-center">
+                    <div class="row">
+                      <div class="btn-group">
+                          <button id="abierta" class="btn btn-default" type="button">Abierta</button>
+                          <button id="progreso" class="btn btn-info" type="button">En progreso</button>
+                          <button id="suspendida" class="btn btn-warning" type="button">Suspendida</button>
+                          <button id="reabierta" class="btn btn-dark" type="button">Reabierta</button>
+                          <button id="cerrada" class="btn btn-danger" type="button">Cerrada</button>
+                      </div>
                     </div>
-							
-						
-                  </div>
-                </div>
               </div>
+          
+             
+                  
+                  <div id="table">
+                  </div>                                   
+                  
+              
+               
              
               <!--Aqui va todo el contenido nuevo-->
           </div>
@@ -156,8 +146,7 @@
       </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    
     <!-- Bootstrap -->
     <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- FastClick -->

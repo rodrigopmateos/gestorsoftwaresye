@@ -7,6 +7,7 @@ package com.gestorsye.controllers;
 
 import com.gestorsye.dao.TasksDao;
 import com.gestorsye.dto.TasksDto;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,6 +33,8 @@ public class InsertTask extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+       UsersDto user =(UsersDto)request.getSession().getAttribute("usuarioSesion");
+       int project = Integer.parseInt(request.getParameter("project"));
        String title = request.getParameter("title");
        String type = request.getParameter("type");
        String priority = request.getParameter("priority");
@@ -42,14 +45,16 @@ public class InsertTask extends HttpServlet {
        String status = request.getParameter("status");
        
         TasksDto dto =  new TasksDto();
+        dto.setIdProject(project);
+        dto.setNameCreator(user.getIdUser());
         dto.setTitle(title);   
         dto.setTypeTask(type);
         dto.setPriority(priority);
         dto.setDescription(description);
         dto.setEstimatedTime(estimatedDate);
         dto.setDeliveryDate(deliveryDate);
-        dto.setId_userAssigned(userAssigned);
-        dto.setStatus_task(status);
+        dto.setUserAssigned(userAssigned);
+        dto.setStatusTask(status);
         TasksDao dao = new TasksDao();
         dao.create(dto);
               

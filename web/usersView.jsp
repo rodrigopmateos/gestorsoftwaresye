@@ -130,32 +130,32 @@
 
                       <!-- start skills -->
                       <h4>Skills</h4>
-                      <ul class="list-unstyled user_data">
+<!--                      <ul class="list-unstyled user_data">
                         <li>
                           <p>Web Applications</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                            <div class="progress-bar bg-green" data-transitiongoal="50"></div>
                           </div>
                         </li>
                         <li>
                           <p>Website Design</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
+                            <div class="progress-bar bg-green" " data-transitiongoal="70"></div>
                           </div>
                         </li>
                         <li>
                           <p>Automation & Testing</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
+                            <div class="progress-bar bg-green"  data-transitiongoal="30"></div>
                           </div>
                         </li>
                         <li>
                           <p>UI / UX</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                            <div class="progress-bar bg-green"  data-transitiongoal="50"></div>
                           </div>
                         </li>
-                      </ul>
+                      </ul>-->
                       <!-- end of skills -->
 
                     </div>
@@ -269,7 +269,7 @@
                                   <th>Project Name</th>
                                   <th>Client Company</th>
                                   <th class="hidden-phone">Hours Spent</th>
-                                  <th>Contribution</th>
+                                 
                                 </tr>
                               </thead>
                               <tbody>
@@ -278,44 +278,28 @@
                                   <td>New Company Takeover Review</td>
                                   <td>Deveint Inc</td>
                                   <td class="hidden-phone">18</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                    </div>
-                                  </td>
+                                  
                                 </tr>
                                 <tr>
                                   <td>2</td>
                                   <td>New Partner Contracts Consultanci</td>
                                   <td>Deveint Inc</td>
                                   <td class="hidden-phone">13</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                                    </div>
-                                  </td>
+                                 
                                 </tr>
                                 <tr>
                                   <td>3</td>
                                   <td>Partners and Inverstors report</td>
                                   <td>Deveint Inc</td>
                                   <td class="hidden-phone">30</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                    </div>
-                                  </td>
+                                  
                                 </tr>
                                 <tr>
                                   <td>4</td>
                                   <td>New Company Takeover Review</td>
                                   <td>Deveint Inc</td>
                                   <td class="hidden-phone">28</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                    </div>
-                                  </td>
+                                  
                                 </tr>
                               </tbody>
                             </table>

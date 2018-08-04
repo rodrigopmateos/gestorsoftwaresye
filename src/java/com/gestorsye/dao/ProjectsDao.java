@@ -40,7 +40,7 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
             ps = con.getConexion().prepareStatement(SQL_INSERT);
             //ps.setS(1,"null" );
             ps.setInt(1, 1 );
-            ps.setString(2, dto.getProject_name()); 
+            ps.setString(2, dto.getProjectName()); 
             ps.setString(3, dto.getFecha());
             ps.setString(4, dto.getDescription());
             ps.setInt(5,1 );
@@ -84,11 +84,11 @@ public class ProjectsDao implements InterfaceDao<ProjectsDto>{
         try {
             ps = con.getConexion().prepareStatement(SQL_UPDATE);
             
-            ps.setString(1, dto.getProject_name());
+            ps.setString(1, dto.getProjectName());
             ps.setString(2, dto.getDescription());
             ps.setInt(3, dto.getProgress());
             ps.setString(4, dto.getStatus());
-            ps.setInt(5, dto.getId_project());
+            ps.setInt(5, dto.getIdProject());
             
             ps.executeUpdate();
             

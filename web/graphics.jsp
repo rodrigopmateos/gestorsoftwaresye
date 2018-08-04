@@ -56,7 +56,7 @@
               <br/>
               <div class="x_panel">
                  
-                  <div class="row">
+    <div class="row">
                   <label class="col-sm-3">Selecciona el proyecto</label>
                   <select class="col-sm-6">
                       <option>Opcion 1</option>
