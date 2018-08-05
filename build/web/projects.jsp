@@ -111,7 +111,7 @@
                                                 <%                                                for (int i = 0; i < projects.size(); i++) {
                                                 %>
                                                 <tr>
-                                                    <td><a><%= projects.get(i).getProjectName()%></a>
+                                                    <td><a href="ViewProject?id=<%=projects.get(i).getIdProject()%>"><%= projects.get(i).getProjectName()%></a>
                                                         <br />
                                                         <small>Created <%= projects.get(i).getFecha()%></small></td>
                                                     <td> 
@@ -130,9 +130,10 @@
                                                         <small><%=projects.get(i).getProgress()%>% Complete</small></td>
 
                                                     <td><button type="button" class="btn btn-success btn-xs"><%=projects.get(i).getStatus()%></button></td>
-                                                    <td><a href="ViewProject?id=<%=projects.get(i).getIdProject()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Ver </a>
+                                                    <td>
                                                         <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal1" onclick="setData(<%=projects.get(i).getIdProject()%>, '<%=projects.get(i).getProjectName()%>', '<%=projects.get(i).getDescription()%>',<%=projects.get(i).getProgress()%>, '<%=projects.get(i).getStatus()%>')" ><i class="fa fa-pencil"></i> Editar </a>                                                        
-                                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmacion" onclick="setId(<%=projects.get(i).getIdProject()%>)"><i class="fa fa-trash-o"></i> Eliminar </a></td>
+                                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmacion" onclick="setId(<%=projects.get(i).getIdProject()%>)"><i class="fa fa-trash-o"></i> Eliminar </a>
+                                                    </td>
                                                 </tr>
                                                 <% }%>
 
