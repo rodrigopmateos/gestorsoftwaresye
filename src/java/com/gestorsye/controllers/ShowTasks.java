@@ -44,7 +44,12 @@ public class ShowTasks extends HttpServlet {
         
         List<TasksDto> dtos = new ArrayList<>();
         TasksDao daot = new TasksDao();
-        dtos=daot.selectSomeTasks(usuario, status);
+        if(opcion == 6){
+            dtos=daot.selectAllByUser(usuario);
+        }else{
+            dtos=daot.selectByEstatus(usuario, status);
+        }
+        
         
         UsersDao userdao=new UsersDao();
                 
@@ -73,7 +78,6 @@ public class ShowTasks extends HttpServlet {
                 out.println("<td>" + userdao.getNameById(dtos.get(i).getUserAssigned()) + "</td>");
                 out.println("<td>" + dtos.get(i).getStatusTask() + "</td>");
                 out.println("<td>");
-                out.println(" <a href=\"ViewProject\" class=\"btn btn-primary btn-xs\"><i class=\"fa fa-folder\"></i> Detalles </a>");
                 out.println(" <a class=\"btn btn-info btn-xs\" data-toggle=\"modal\" data-target=\"#modal1\" ><i class=\"fa fa-pencil\"></i> Editar </a>");
                 out.println(" <a class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#confirmacion\" onclick=\"setId("+dtos.get(i).getIdTask()+")\" ></i> Eliminar </a>");
                 out.println(" <div class=\"btn-group\">");

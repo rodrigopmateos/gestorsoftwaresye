@@ -74,6 +74,16 @@ UsersDto usser = (UsersDto)session.getAttribute("usuarioSesion");
                     });
                 });
             });
+            $(document).ready(function () {
+                $('#todas').click(function (event) {
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('ShowTasks', {
+                        opcion: 6 , usuario: <%= usser.getIdUser()%>
+                    }, function (responseText) {
+                        $('#table').html(responseText);
+                    });
+                });
+            });
 
         </script>
 
@@ -118,7 +128,8 @@ UsersDto usser = (UsersDto)session.getAttribute("usuarioSesion");
               <div class="x_content text-center">
                     <div class="row">
                       <div class="btn-group">
-                          <button id="abierta" class="btn btn-default" type="button">Abierta</button>
+                          <button id="todas" class="btn btn-default" type="button">Todas</button>
+                          <button id="abierta" class="btn btn-primary" type="button">Abierta</button>
                           <button id="progreso" class="btn btn-info" type="button">En progreso</button>
                           <button id="suspendida" class="btn btn-warning" type="button">Suspendida</button>
                           <button id="reabierta" class="btn btn-dark" type="button">Reabierta</button>

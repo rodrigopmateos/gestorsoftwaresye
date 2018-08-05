@@ -340,7 +340,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     <button onclick="deleteById()" class="btn btn-primary">Aceptar</button>
-
                 </div>
             </div>
         </div>
