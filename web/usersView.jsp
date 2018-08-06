@@ -32,6 +32,8 @@
     <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/scss/toastr.scss" rel="stylesheet" type="text/css"/>
+
 
     </head>
 
@@ -125,12 +127,12 @@
                         </li>
                       </ul>
 
-                      <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                        <a class="btn btn-success" onclick="showToast()"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
                       <br />
 
                       <!-- start skills -->
                       <h4>Skills</h4>
-                      <ul class="list-unstyled user_data">
+                      <!--<ul class="list-unstyled user_data">
                         <li>
                           <p>Web Applications</p>
                           <div class="progress progress_sm">
@@ -155,7 +157,7 @@
                             <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
                           </div>
                         </li>
-                      </ul>
+                      </ul>-->
                       <!-- end of skills -->
 
                     </div>
@@ -279,9 +281,9 @@
                                   <td>Deveint Inc</td>
                                   <td class="hidden-phone">18</td>
                                   <td class="vertical-align-mid">
-                                    <div class="progress">
+                                    <!--<div class="progress">
                                       <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                    </div>
+                                    </div>-->
                                   </td>
                                 </tr>
                                 <tr>
@@ -291,7 +293,7 @@
                                   <td class="hidden-phone">13</td>
                                   <td class="vertical-align-mid">
                                     <div class="progress">
-                                      <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
+                                      <!--<div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>-->
                                     </div>
                                   </td>
                                 </tr>
@@ -301,9 +303,9 @@
                                   <td>Deveint Inc</td>
                                   <td class="hidden-phone">30</td>
                                   <td class="vertical-align-mid">
-                                    <div class="progress">
+                                    <!--<div class="progress">
                                       <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                    </div>
+                                    </div>-->
                                   </td>
                                 </tr>
                                 <tr>
@@ -312,9 +314,9 @@
                                   <td>Deveint Inc</td>
                                   <td class="hidden-phone">28</td>
                                   <td class="vertical-align-mid">
-                                    <div class="progress">
+                                    <!--<div class="progress">
                                       <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                    </div>
+                                    </div>-->
                                   </td>
                                 </tr>
                               </tbody>
@@ -351,11 +353,11 @@
         <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- FastClick -->
         <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
-        <!-- NProgress -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
+
         <!-- Custom Theme Scripts -->
         <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>
-        
+        <!-- NProgress -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>        
     <!-- Datatables -->
     <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -381,7 +383,9 @@
     <!-- bootstrap-daterangepicker -->
     <script src="${pageContext.request.contextPath}/assets/vendors/moment/min/moment.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/vendors/iCheck/iCheck.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendors/iCheck/icheck.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/toastr.js" type="text/javascript"></script>
+
 
         <script>
             
@@ -408,6 +412,11 @@
                 $('#txt_7').val(status);
                 $('#txt_id').val(id);
             }
+            
+            function showToast() {
+                toastr["success"]("Usuario ingresado correctamente!!!")
+            }
+
         </script>
 
     </body>

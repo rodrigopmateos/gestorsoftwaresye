@@ -13,6 +13,7 @@
             ArrayList<UsersDto> dtos = (ArrayList<UsersDto>) request.getSession().getAttribute("dtos");
             ArrayList<ProfilesDto> dtosprofiles = (ArrayList<ProfilesDto>) request.getSession().getAttribute("dtosprofiles");
         %>
+        
         <title>Gestor Sye | </title>
 
         <!-- Bootstrap -->
@@ -31,7 +32,8 @@
     <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
+    <link href="${pageContext.request.contextPath}/assets/scss/toastr.scss" rel="stylesheet" type="text/css"/>
+            
     </head>
 
     <body class="nav-md">
@@ -231,7 +233,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-primary">Crear</button>
+                                                <button type="submit" class="btn btn-primary" onclick="showToast()">Crear</button>
                                             </div>
                                         </form>
                                 </div>
@@ -334,6 +336,7 @@
     <script src="${pageContext.request.contextPath}/assets/vendors/jszip/dist/jszip.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/toastr.js" type="text/javascript"></script>
         <script>
             
                 $(document).ready(function(){
@@ -359,6 +362,11 @@
                 $('#txt_7').val(status);
                 $('#txt_id').val(id);
             }
+            
+            function showToast() {
+                toastr["success"]("Usuario ingresado correctamente!!!")
+            }
+         
         </script>
 
     </body>
