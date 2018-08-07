@@ -1,6 +1,6 @@
 <%@page import="com.gestorsye.dto.UsersDto"%>
 <%
-    UsersDto usr;
+    UsersDto usr = null;
     if(session.getAttribute("usuarioSesion") !=null){
     UsersDto dto = (UsersDto) request.getSession().getAttribute("user");
     usr = (UsersDto)session.getAttribute("usuarioSesion");
@@ -19,7 +19,7 @@
     </div>
     <div class="profile_info">
         <span>Welcome,</span>
-        <h2><%= usr.getName()%></h2>
+        <h2><%= usr.getUser()%></h2>
     </div>
     <div class="clearfix"></div>
 </div>

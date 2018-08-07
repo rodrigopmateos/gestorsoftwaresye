@@ -38,7 +38,7 @@ public class ProfilesDao implements InterfaceDao<ProfilesDto>{
             PreparedStatement ps;
             ps = con.getConexion().prepareStatement(SQL_INSERT);
             //ps.setS(1,"null" );
-            ps.setInt(1, dto.getId_profile() );
+            ps.setInt(1, dto.getIdProfile() );
             ps.setString(2, dto.getName()); 
             ps.setInt(3, dto.getStatus());
 

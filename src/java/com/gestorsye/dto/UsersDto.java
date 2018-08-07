@@ -2,8 +2,8 @@
 package com.gestorsye.dto;
 public class UsersDto {
     
-          private int id_user;
-          private int id_profile;
+          private int idUser;
+          private int idProfile;
           private String name;
           private String email;
           private String area;
@@ -14,9 +14,9 @@ public class UsersDto {
     public UsersDto() {
     }
 
-    public UsersDto(int id_user, int id_profile, String name, String email, String area, String user, String pass, int status) {
-        this.id_user = id_user;
-        this.id_profile = id_profile;
+    public UsersDto(int idUser, int idProfile, String name, String email, String area, String user, String pass, int status) {
+        this.idUser = idUser;
+        this.idProfile = idProfile;
         this.name = name;
         this.email = email;
         this.area = area;
@@ -25,8 +25,8 @@ public class UsersDto {
         this.status = status;
     }
 
-    public UsersDto(int id_profile, String name, String email, String area, String user, String pass, int status) {
-        this.id_profile = id_profile;
+    public UsersDto(int idProfile, String name, String email, String area, String user, String pass, int status) {
+        this.idProfile = idProfile;
         this.name = name;
         this.email = email;
         this.area = area;
@@ -35,21 +35,22 @@ public class UsersDto {
         this.status = status;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public int getId_profile() {
-        return id_profile;
+    public int getIdProfile() {
+        return idProfile;
     }
 
-    public void setId_profile(int id_profile) {
-        this.id_profile = id_profile;
+    public void setIdProfile(int idProfile) {
+        this.idProfile = idProfile;
     }
+
 
     public String getName() {
         return name;
@@ -99,7 +100,4 @@ public class UsersDto {
         this.status = status;
     }
           
-          
-          
-    
 }
