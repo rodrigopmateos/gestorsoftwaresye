@@ -2,15 +2,15 @@
 package com.gestorsye.dto;
 public class ProfilesDto {
     
-          private int id_profile;
+          private int idProfile;
           private String name;
           private int status;
           
     public ProfilesDto() {
     }
 
-    public ProfilesDto(int id_profile, String name, int status) {
-        this.id_profile = id_profile;
+    public ProfilesDto(int idProfile, String name, int status) {
+        this.idProfile = idProfile;
         this.name = name;
         this.status = status;
     }
@@ -20,14 +20,14 @@ public class ProfilesDto {
         this.status = status;
     }
 
-
-    public int getId_profile() {
-        return id_profile;
+    public int getIdProfile() {
+        return idProfile;
     }
 
-    public void setId_profile(int id_profile) {
-        this.id_profile = id_profile;
+    public void setIdProfile(int idProfile) {
+        this.idProfile = idProfile;
     }
+
 
     public String getName() {
         return name;

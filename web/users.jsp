@@ -104,16 +104,16 @@
                                             %>
                                             <tr>
                                                 <td><a><%= dtos.get(i).getName()%></a></td>
-                                                <td><a><%= dtos.get(i).getId_profile()%></a></td>
+                                                <td><a><%= dtos.get(i).getIdProfile()%></a></td>
                                                 <td><a><%= dtos.get(i).getEmail()%></a></td>
                                                 <td><a><%= dtos.get(i).getArea()%></a></td>
                                                 <td><a><%= dtos.get(i).getUser()%></a></td>
                                                 <td><a><%= dtos.get(i).getPass()%></a></td>
 
                                                 <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
-                                                <td><a href="ViewProject?id=<%=dtos.get(i).getId_user()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEditUser" onclick="setData(<%=dtos.get(i).getId_user()%>, '<%=dtos.get(i).getId_profile()%>','<%=dtos.get(i).getName()%>', '<%=dtos.get(i).getEmail()%>', '<%=dtos.get(i).getArea()%>', '<%=dtos.get(i).getUser()%>', '<%=dtos.get(i).getPass()%>', '<%=dtos.get(i).getStatus()%>'  )" ><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="DeleteUsers?id=<%=dtos.get(i).getId_user()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                                                <td><a href="ViewProject?id=<%=dtos.get(i).getIdUser()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEditUser" onclick="setData(<%=dtos.get(i).getIdUser()%>, '<%=dtos.get(i).getIdProfile()%>','<%=dtos.get(i).getName()%>', '<%=dtos.get(i).getEmail()%>', '<%=dtos.get(i).getArea()%>', '<%=dtos.get(i).getUser()%>', '<%=dtos.get(i).getPass()%>', '<%=dtos.get(i).getStatus()%>'  )" ><i class="fa fa-pencil"></i> Edit </a>
+                                                    <a href="DeleteUsers?id=<%=dtos.get(i).getIdUser()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                                             </tr>
                                             <% }%>
                                         </tbody>
@@ -170,16 +170,16 @@
                         %>
                          <tr>
                           <td><%= dtos.get(i).getName()%></td>
-                          <td><%= dtos.get(i).getId_profile()%></td>
+                          <td><%= dtos.get(i).getIdProfile()%></td>
                           <td><%= dtos.get(i).getEmail()%></td>
                           <td><%= dtos.get(i).getArea()%></td>
                           <td><%= dtos.get(i).getUser()%></td>
                           <td><%= dtos.get(i).getPass()%></td>
                           
                           <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
-                          <td><a href="ViewUser?id=<%=dtos.get(i).getId_user()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                              <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEditUser" onclick="setData(<%=dtos.get(i).getId_user()%>, '<%=dtos.get(i).getId_profile()%>','<%=dtos.get(i).getName()%>', '<%=dtos.get(i).getEmail()%>', '<%=dtos.get(i).getArea()%>', '<%=dtos.get(i).getUser()%>', '<%=dtos.get(i).getPass()%>', '<%=dtos.get(i).getStatus()%>'  )" ><i class="fa fa-pencil"></i> Edit </a>
-                              <a href="DeleteUsers?id=<%=dtos.get(i).getId_user()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                          <td><a href="ViewUser?id=<%=dtos.get(i).getIdUser()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                              <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEditUser" onclick="setData(<%=dtos.get(i).getIdUser()%>, '<%=dtos.get(i).getIdProfile()%>','<%=dtos.get(i).getName()%>', '<%=dtos.get(i).getEmail()%>', '<%=dtos.get(i).getArea()%>', '<%=dtos.get(i).getUser()%>', '<%=dtos.get(i).getPass()%>', '<%=dtos.get(i).getStatus()%>'  )" ><i class="fa fa-pencil"></i> Edit </a>
+                              <a href="DeleteUsers?id=<%=dtos.get(i).getIdUser()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                          </tr>
                           <% }%>
                       </tbody>
@@ -210,7 +210,7 @@
                                                                                             <%
                                                 for (int i = 0; i < dtosprofiles.size(); i++) {
                                             %>
-                                                <option value="<%=dtosprofiles.get(i).getId_profile()%>"><%=dtosprofiles.get(i).getName()%></option>
+                                                <option value="<%=dtosprofiles.get(i).getIdProfile()%>"><%=dtosprofiles.get(i).getName()%></option>
                                             <% 
                                             }
                                             %>
@@ -261,7 +261,7 @@
                                                                                             <%
                                                 for (int i = 0; i < dtosprofiles.size(); i++) {
                                             %>
-                                                <option value="<%=dtosprofiles.get(i).getId_profile()%>"><%=dtosprofiles.get(i).getName()%></option>
+                                                <option value="<%=dtosprofiles.get(i).getIdProfile()%>"><%=dtosprofiles.get(i).getName()%></option>
                                             <% 
                                             }
                                             %>
