@@ -59,70 +59,7 @@
                 <%@include file="structure/TopNavigation.jsp" %>
 
                 <!-- page content -->
-                <!--<div class="right_col" role="main">
-                    <div class="">
-                        <div class="page-title">
-                            <div class="title_center">
-                                <h3>Usuarios</h3>
-                            </div>
 
-                        </div>
-                        <br/>
-                        <br/>
-
-
-                        <div class="clearfix"></div>-->
-                        <!--Aqui va todo el contenido nuevo-->
-                        <!--<div class="row">
-                            <div class="col-md-12">
-                                <div class="x_panel">                   
-                                    <div class="col-md-1"> <h2>Busqueda</h2> </div>
-                                    <div class="col-md-2">                              
-                                        <input type="text" name="nameSearchUsers" id="searchUsers" class="form-control">
-                                    </div>
-                                    <div class="col-md-6"></div>
-                                    <div class="col-md-3">
-                                    <a href="#" onclick="openModalNewUSer()" class="btn btn-danger btn-xs" ><i class="fa fa-plus"></i> Añadir nuevo usuario </a></td>
-                                    </div>
-                                    <div class="col-md-12"><hr></div>
-                                    <table class="table">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Perfil</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Area</th>
-                                                <th scope="col">Usuario</th>
-                                                <th scope="col">Password</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Opciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <%
-                                                for (int i = 0; i < dtos.size(); i++) {
-                                            %>
-                                            <tr>
-                                                <td><a><%= dtos.get(i).getName()%></a></td>
-                                                <td><a><%= dtos.get(i).getIdProfile()%></a></td>
-                                                <td><a><%= dtos.get(i).getEmail()%></a></td>
-                                                <td><a><%= dtos.get(i).getArea()%></a></td>
-                                                <td><a><%= dtos.get(i).getUser()%></a></td>
-                                                <td><a><%= dtos.get(i).getPass()%></a></td>
-
-                                                <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
-                                                <td><a href="ViewProject?id=<%=dtos.get(i).getIdUser()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEditUser" onclick="setData(<%=dtos.get(i).getIdUser()%>, '<%=dtos.get(i).getIdProfile()%>','<%=dtos.get(i).getName()%>', '<%=dtos.get(i).getEmail()%>', '<%=dtos.get(i).getArea()%>', '<%=dtos.get(i).getUser()%>', '<%=dtos.get(i).getPass()%>', '<%=dtos.get(i).getStatus()%>'  )" ><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="DeleteUsers?id=<%=dtos.get(i).getIdUser()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
-                                            </tr>
-                                            <% }%>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>    
-                        </div>
-                        
--->
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
