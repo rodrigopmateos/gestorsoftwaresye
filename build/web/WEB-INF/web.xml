@@ -80,6 +80,11 @@
         <servlet-name>LogWork</servlet-name>
         <servlet-class>com.gestorsye.controllers.LogWork</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UsersFunctions</servlet-name>
+        <servlet-class>com.gestorsye.controllers.UsersFunctions</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -159,6 +164,10 @@
     <servlet-mapping>
         <servlet-name>LogWork</servlet-name>
         <url-pattern>/LogWork</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>UsersFunctions</servlet-name>
+        <url-pattern>/UsersFunctions</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

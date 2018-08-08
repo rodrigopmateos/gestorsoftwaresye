@@ -87,7 +87,7 @@
                     <p class="text-muted font-13 m-b-30">
                         Usuarios activos actualmente
                     </p>
-					
+                    <div id="tableuser">		
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
@@ -116,12 +116,13 @@
                           <td><button type="button" class="btn btn-success btn-xs"><%=dtos.get(i).getStatus()%></button></td>
                           <td><a href="ViewUser?id=<%=dtos.get(i).getIdUser()%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                               <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEditUser" onclick="setData(<%=dtos.get(i).getIdUser()%>, '<%=dtos.get(i).getIdProfile()%>','<%=dtos.get(i).getName()%>', '<%=dtos.get(i).getEmail()%>', '<%=dtos.get(i).getArea()%>', '<%=dtos.get(i).getUser()%>', '<%=dtos.get(i).getPass()%>', '<%=dtos.get(i).getStatus()%>'  )" ><i class="fa fa-pencil"></i> Edit </a>
-                              <a href="DeleteUsers?id=<%=dtos.get(i).getIdUser()%>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                              <!--<a href="DeleteUsers?id=<%=dtos.get(i).getIdUser()%>" onclick="eliminarAjax(<%=dtos.get(i).getIdUser()%>)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>-->
+                              <a href="" onclick="eliminarAjax(<%=dtos.get(i).getIdUser()%>)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                          </tr>
                           <% }%>
                       </tbody>
                     </table>
-					
+                  </div>		
 					
                   </div>
                 </div>
@@ -302,6 +303,16 @@
             
             function showToast() {
                 toastr["success"]("Usuario ingresado correctamente!!!")
+            }
+            
+            function eliminarAjax(id) {
+                alert(id);
+                    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                    $.post('UsersFunctions', {
+                        opcion: 1 , usuario: id
+                    }, function (responseText) {
+                        $('#tableuser').html(responseText);
+                    });
             }
          
         </script>
