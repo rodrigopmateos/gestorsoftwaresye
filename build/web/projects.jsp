@@ -13,7 +13,7 @@
         <%
             ArrayList<ProjectsDto> dtos = (ArrayList<ProjectsDto>) request.getSession().getAttribute("dtos");
             ArrayList<ProjectsDto> projects = (ArrayList<ProjectsDto>) request.getSession().getAttribute("projectsbycreator");
-            
+
             UsersDao dao = new UsersDao();
             List<Integer> users = new ArrayList();
         %>
@@ -25,8 +25,6 @@
         <!-- Font Awesome -->
         <link href="${pageContext.request.contextPath}/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
-        <!-- NProgress -->
-        <link href="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css"/>
 
         <!-- Custom Theme Style -->
         <link href="${pageContext.request.contextPath}/assets/css/custom.min.css" rel="stylesheet" type="text/css"/>
@@ -38,7 +36,9 @@
         <link href="${pageContext.request.contextPath}/assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
 
-
+        <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<!-- Bootstrap -->
+        <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>     
     </head>
 
     <body class="nav-md">
@@ -116,16 +116,17 @@
                                                         <small>Created <%= projects.get(i).getFecha()%></small></td>
                                                     <td> 
                                                         <%
-                                                            users= dao.getUsersByProject( projects.get(i).getIdProject());
-                                                        for(int u: users){
+                                                            users = dao.getUsersByProject(projects.get(i).getIdProject());
+                                                            for (int u : users) {
                                                         %>
-                                                        <a href="ViewUser?id=<%=u%>"><img src="assets/images/user.png" alt="" height="20px" width="20px" data-toggle="tooltip" data-placement="top" title="<%= dao.getNameById(u) %>" /></a>                                   
-                                                     <%
-                                                        }
-                                                        %>
+                                                        <a href="ViewUser?id=<%=u%>"><img src="assets/images/user.png" alt="" height="20px" width="20px" data-toggle="tooltip" data-placement="top" title="<%= dao.getNameById(u)%>" /></a>                                   
+                                                            <%
+                                                                }
+                                                            %>
                                                     </td>
-                                                    <td><div class="progress progress_sm">
-                                                            <!--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>-->
+                                                    <td>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
                                                         </div>
                                                         <small><%=projects.get(i).getProgress()%>% Complete</small></td>
 
@@ -284,16 +285,12 @@
         </script>
         <!-- jQuery -->
 
-        <script src="${pageContext.request.contextPath}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
 
-        <!-- Bootstrap -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        
 
         <!-- FastClick -->
         <script src="${pageContext.request.contextPath}/assets/vendors/fastclick/lib/fastclick.js" type="text/javascript"></script>
 
-        <!-- NProgress -->
-        <script src="${pageContext.request.contextPath}/assets/vendors/nprogress/nprogress.js" type="text/javascript"></script>
 
         <!-- Custom Theme Scripts -->
         <script src="${pageContext.request.contextPath}/assets/js/custom.min.js" type="text/javascript"></script>

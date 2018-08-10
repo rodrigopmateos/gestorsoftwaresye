@@ -5,8 +5,10 @@
  */
 package com.gestorsye.controllers;
 
+import com.gestorsye.dao.ParticipantsDao;
 import com.gestorsye.dao.ProjectsDao;
 import com.gestorsye.dto.ProjectsDto;
+import com.gestorsye.dto.UsersDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -44,15 +46,20 @@ public class InsertProjects extends HttpServlet {
         LocalDateTime now = LocalDateTime.now();
 
         String name, description, date;
+        int last;
         name = request.getParameter("nombre");
         description = request.getParameter("descripcion");
         String[] array= request.getParameterValues("participants");      
-
+        UsersDto usr = (UsersDto)request.getSession().getAttribute("usuarioSesion");
+        ParticipantsDao pdao = new ParticipantsDao();
         
         ProjectsDto dto = new ProjectsDto(name, description, dtf.format(now));
         ProjectsDao dao = new ProjectsDao();
         dao.create(dto);
-
+        
+        last = dao.getLast();
+        pdao.add(last,usr.getIdUser());
+        
         response.sendRedirect("crearproyecto.jsp");
     }
 
